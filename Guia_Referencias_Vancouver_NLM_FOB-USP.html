@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia para elaboração de referências (Vancouver) — NLM Reference Style</title>
+<meta name="description" content="Guia do Serviço de Biblioteca e Documentação da FOB-USP para elaboração de referências e citações no formato NLM (Vancouver).">
+<meta name="author" content="Jane Coelho Danuello; José Roberto Plácido Amadei; Valéria Cristina Trindade Ferraz">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul:#1B4F8F;          /* azul NLM */
+  --azul-esc:#123A6B;
+  --azul-cl:#4B7CB8;
+  --vinho:#6E1B2B;         /* títulos das seções no guia original */
+  --areia:#F6F2EC;
+  --nuvem:#EDF1F6;
+  --papel:#FFFFFF;
+  --tinta:#1E2329;
+  --grafite:#5D666F;
+  --linha:rgba(27,79,143,.18);
+  --linha-fraca:rgba(30,35,41,.10);
+  --marca:#FBE8A6;         /* realce da parte anotada */
+  --rail:300px;
+  --ui:'Archivo','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --ref:'Times New Roman',Times,serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;font-family:var(--ui);font-size:16px;line-height:1.6;color:var(--tinta);
+  background:var(--nuvem);-webkit-font-smoothing:antialiased}
+a{color:var(--azul);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--azul-esc)}
+:focus-visible{outline:2.5px solid var(--vinho);outline-offset:2px;border-radius:2px}
+
+/* ---------- topo ---------- */
+.topo{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:16px;
+  padding:10px 20px;background:var(--azul);color:#fff;border-bottom:3px solid var(--azul-esc)}
+.topo .marca{font-weight:700;font-size:.9rem;line-height:1.25}
+.topo .marca span{display:block;font-weight:400;font-size:.75rem;opacity:.8}
+.topo .norma{margin-left:auto;font-size:.75rem;font-weight:600;padding:4px 10px;
+  border:1px solid rgba(255,255,255,.45);border-radius:3px;white-space:nowrap}
+.abre-rail{display:none;background:transparent;border:1px solid rgba(255,255,255,.5);color:#fff;
+  font:inherit;font-size:.8rem;font-weight:600;padding:6px 11px;border-radius:3px;cursor:pointer}
+
+/* ---------- layout ---------- */
+.moldura{display:flex;align-items:flex-start;max-width:1460px;margin:0 auto;background:var(--papel)}
+.rail{position:sticky;top:57px;flex:0 0 var(--rail);width:var(--rail);height:calc(100vh - 57px);
+  overflow-y:auto;padding:22px 14px 60px 22px;background:var(--nuvem);border-right:1px solid var(--linha)}
+.busca-caixa{position:relative;margin-bottom:16px}
+.busca{width:100%;padding:9px 12px 9px 32px;font:inherit;font-size:.86rem;color:var(--tinta);
+  background:#fff;border:1px solid var(--linha);border-radius:3px}
+.busca::placeholder{color:#8992a0}
+.busca-caixa svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.5;pointer-events:none}
+.busca-vazio{display:none;font-size:.8rem;color:var(--grafite);padding:6px 2px 10px}
+.busca-vazio.on{display:block}
+.rail nav ol{list-style:none;margin:0;padding:0}
+.rail .ncap{margin-bottom:14px}
+.rail .ncap.oculto{display:none}
+.rail .ncap > a{display:flex;gap:9px;align-items:baseline;padding:5px 8px 5px 0;font-size:.9rem;
+  font-weight:600;color:var(--azul-esc);text-decoration:none;border-bottom:1px solid var(--linha)}
+.rail .ncap > a b{font-variant-numeric:tabular-nums;font-weight:700;color:var(--azul-cl);flex:0 0 18px}
+.rail .ncap ul{list-style:none;margin:5px 0 0;padding:0 0 0 27px}
+.rail .ncap li.oculto{display:none}
+.rail .ncap li a{display:block;padding:3px 0;font-size:.83rem;color:var(--grafite);
+  text-decoration:none;line-height:1.4}
+.rail .ncap li a:hover{color:var(--azul);text-decoration:underline}
+.rail .ncap li a.ativo,.rail .ncap > a.ativo{color:var(--azul);font-weight:600}
+.conteudo{flex:1 1 auto;min-width:0;padding:0 0 80px}
+.faixa{padding:0 clamp(20px,4.2vw,64px)}
+.texto{max-width:70ch}
+
+/* ---------- hero ---------- */
+.hero{padding:clamp(38px,5.5vw,70px) clamp(20px,4.2vw,64px) 40px;border-bottom:1px solid var(--linha)}
+.hero .ancora{font-size:.78rem;font-weight:600;color:var(--vinho);margin:0 0 18px;letter-spacing:.02em}
+.hero h1{font-size:clamp(1.85rem,3.9vw,3.05rem);line-height:1.06;letter-spacing:-.025em;
+  font-weight:700;margin:0 0 6px;max-width:20ch;color:var(--azul-esc)}
+.hero .sub{font-size:1.15rem;font-weight:600;color:var(--azul-cl);margin:0 0 20px}
+.hero .abre{font-size:1.03rem;line-height:1.62;color:var(--grafite);max-width:62ch;margin:0 0 28px}
+.hero .abre strong{color:var(--tinta);font-weight:600}
+.autoria{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:.82rem;color:var(--grafite);
+  padding-top:16px;border-top:1px solid var(--linha-fraca);margin-top:30px}
+.autoria b{font-weight:600;color:var(--tinta)}
+.atalhos{display:flex;flex-wrap:wrap;gap:10px}
+.atalho{display:inline-flex;flex-direction:column;gap:2px;padding:11px 16px;min-width:180px;
+  background:var(--nuvem);border:1px solid var(--linha);border-left:4px solid var(--azul);
+  border-radius:2px;text-decoration:none;color:var(--tinta)}
+.atalho:hover{background:#E3EAF3;color:var(--tinta)}
+.atalho b{font-size:.92rem;font-weight:600;color:var(--azul-esc)}
+.atalho span{font-size:.78rem;color:var(--grafite)}
+
+/* ---------- seções ---------- */
+.cap{padding-top:clamp(40px,4.6vw,62px)}
+.cap-cab{display:flex;align-items:baseline;gap:14px;padding-bottom:10px;margin-bottom:26px;
+  border-bottom:2px solid var(--azul)}
+.cap-cab .num{font-size:1.55rem;font-weight:700;color:var(--azul-cl);opacity:.5;
+  font-variant-numeric:tabular-nums;line-height:1}
+.cap-cab h2{display:flex;align-items:center;gap:11px;font-size:clamp(1.35rem,2.4vw,1.72rem);margin:0;letter-spacing:-.02em;
+  color:var(--azul-esc);line-height:1.15}
+.sub-s{padding-top:30px}
+.sub-s h3{font-size:1.1rem;margin:0 0 10px;color:var(--vinho);letter-spacing:-.01em}
+.sub-s h4{font-size:.95rem;margin:20px 0 6px;color:var(--tinta)}
+.sub-s p{margin:0 0 12px;max-width:70ch}
+.sub-s ul,.sub-s ol{max-width:70ch;margin:0 0 12px;padding-left:20px}
+.sub-s li{margin:0 0 6px}
+.sub-s li::marker{color:var(--azul-cl)}
+
+.nota{border-left:4px solid var(--azul-cl);background:var(--nuvem);padding:14px 18px;margin:16px 0;
+  max-width:70ch;border-radius:0 3px 3px 0}
+.nota p{margin:0 0 8px}
+.nota p:last-child{margin:0}
+.nota .rot{font-weight:700;font-size:.85rem;color:var(--azul-esc);margin-bottom:4px}
+.nota.alerta{border-left-color:var(--vinho);background:#FBF4F5}
+.nota.alerta .rot{color:var(--vinho)}
+
+/* ---------- amostra de referência avulsa ---------- */
+.am{font-family:var(--ref);font-size:1.04rem;line-height:1.5;background:#fff;
+  border:1px solid var(--linha);border-left:3px solid var(--azul-cl);border-radius:0 3px 3px 0;
+  padding:12px 16px;margin:10px 0;max-width:74ch}
+.am .rot{font-family:var(--ui);font-size:.7rem;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--azul-cl);margin-bottom:6px}
+.am.err{border-left-color:#B04B4B}
+.am.err .rot{color:#B04B4B}
+.par{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:12px 0;max-width:74ch}
+.qr{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:.88rem;max-width:74ch}
+.qr th,.qr td{padding:9px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--linha-fraca)}
+.qr thead th{background:var(--nuvem);color:var(--azul-esc);font-size:.78rem;font-weight:700;
+  border-bottom:2px solid var(--azul)}
+.qr tbody tr:hover{background:#F7FAFD}
+.qr td.mono{font-family:var(--ref);font-size:1rem}
+.baixar{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;background:#fff;
+  color:var(--azul);text-decoration:none;font-size:.88rem;font-weight:600;border-radius:3px;
+  border:1px solid var(--azul)}
+.baixar:hover{background:var(--nuvem);color:var(--azul-esc)}
+.baixar.pri{background:var(--azul);color:#fff;border-color:var(--azul)}
+.baixar.pri:hover{background:var(--azul-esc);color:#fff}
+.linha-btn{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+
+/* ---------- catálogo ---------- */
+.painel{position:sticky;top:57px;z-index:40;background:var(--papel);
+  padding:14px 0 12px;border-bottom:1px solid var(--linha);margin-bottom:6px}
+.painel .ferramentas{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:11px}
+.filtro{flex:1 1 260px;max-width:420px;position:relative}
+.filtro input{width:100%;padding:10px 12px 10px 34px;font:inherit;font-size:.9rem;
+  border:1px solid var(--linha);border-radius:3px;background:#fff;color:var(--tinta)}
+.filtro svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.5;pointer-events:none}
+.contador{font-size:.82rem;color:var(--grafite);white-space:nowrap}
+.legenda-t{font-size:.78rem;color:var(--grafite);margin:0 0 7px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:inherit;font-size:.78rem;font-weight:600;cursor:pointer;padding:5px 11px;
+  border:1px solid var(--linha);background:#fff;color:var(--azul-esc);border-radius:14px}
+.chip:hover{border-color:var(--azul-cl)}
+.chip[aria-pressed="true"]{background:var(--vinho);color:#fff;border-color:var(--vinho)}
+
+.grupo{padding-top:26px;scroll-margin-top:230px}
+.grupo.oculto{display:none}
+.grupo h3{font-size:1.05rem;margin:0 0 12px;color:var(--vinho);
+  padding-bottom:6px;border-bottom:1px solid var(--linha)}
+.ficha{scroll-margin-top:230px;border:1px solid var(--linha);border-radius:3px;margin-bottom:14px;background:#fff;max-width:78ch}
+.ficha.oculto{display:none}
+.ficha-cab{display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--nuvem);
+  border-bottom:1px solid var(--linha)}
+.ficha-cab .rotulo{font-size:.78rem;font-weight:600;color:var(--azul-esc)}
+.ficha-cab .copiar{margin-left:auto;font:inherit;font-size:.74rem;font-weight:600;cursor:pointer;
+  background:#fff;border:1px solid var(--linha);color:var(--azul);border-radius:3px;padding:4px 10px}
+.ficha-cab .copiar:hover{background:var(--azul);color:#fff;border-color:var(--azul)}
+.ref{font-family:var(--ref);font-size:1.06rem;line-height:1.62;padding:14px 16px;
+  word-break:break-word;overflow-wrap:anywhere}
+.ref .pt{cursor:pointer;border-radius:2px;padding:1px 0;
+  border-bottom:1.5px dotted rgba(27,79,143,.42);transition:background .12s}
+.ref .pt:hover{background:#EAF1F9}
+.ref .pt.on{background:var(--marca);border-bottom-color:var(--vinho)}
+.ref .liso{color:var(--tinta)}
+.etiqueta{min-height:0;padding:0 16px 12px;font-family:var(--ui);font-size:.8rem;color:var(--grafite)}
+.etiqueta:empty{display:none}
+.etiqueta b{color:var(--vinho);font-weight:700}
+.dica{font-size:.82rem;color:var(--grafite);margin:0 0 4px}
+
+/* ---------- citações ---------- */
+.cit{font-family:var(--ref);font-size:1.04rem;line-height:1.6;background:#fff;
+  border:1px solid var(--linha);border-radius:3px;padding:13px 16px;margin:10px 0;max-width:74ch}
+.cit sup{font-size:.7em;color:var(--vinho);font-weight:700}
+.cit .rot{font-family:var(--ui);font-size:.7rem;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--azul-cl);margin-bottom:6px}
+.cit .listado{display:flex;gap:10px;margin-top:10px;padding-top:10px;border-top:1px solid var(--linha-fraca)}
+.cit .listado .n{flex:0 0 auto;font-weight:700;color:var(--vinho)}
+
+/* ---------- rodapé ---------- */
+.rodape{margin-top:60px;padding:38px clamp(20px,4.2vw,64px) 44px;background:var(--azul);color:#fff}
+.rodape a{color:#fff}
+.rodape h2{font-size:1.15rem;margin:0 0 16px}
+.rodape-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px}
+.rodape ul{list-style:none;margin:0;padding:0;font-size:.9rem}
+.rodape li{margin-bottom:9px;line-height:1.45}
+.rodape .end{font-size:.87rem;line-height:1.65;opacity:.9}
+.rodape .fim{margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.25);
+  font-size:.78rem;opacity:.78;line-height:1.6}
+
+/* ---------- responsivo ---------- */
+@media (max-width:1000px){
+  .abre-rail{display:block}
+  .rail{position:fixed;top:57px;left:0;bottom:0;height:auto;width:min(320px,86vw);flex-basis:auto;
+    transform:translateX(-102%);transition:transform .22s ease;z-index:55;box-shadow:2px 0 18px rgba(0,0,0,.16)}
+  .rail.aberto{transform:none}
+  .moldura{display:block}
+  .painel{position:static}
+}
+@media (max-width:560px){
+  body{font-size:15.5px}
+  .atalho{flex:1 1 100%;min-width:0}
+  .baixar{width:100%;justify-content:center;text-align:center}
+  .topo .norma{display:none}
+  .ref{font-size:1rem}
+}
+@media print{
+  .topo,.rail,.atalhos,.abre-rail,.busca-caixa,.painel,.copiar{display:none!important}
+  body{background:#fff;font-size:10.5pt}
+  .moldura{display:block;max-width:none}
+  .cap{padding-top:22px}
+  .cap-cab,.grupo h3{page-break-after:avoid}
+  .ficha,.nota,.am,.cit{page-break-inside:avoid}
+  .ref .pt{border-bottom:none}
+  a{text-decoration:none;color:#000}
+  .rodape{background:#fff;color:#000;border-top:2px solid #000}
+  .rodape a{color:#000}
+}
+
+/* ============================================================
+   ÍCONES
+   ============================================================ */
+.ic{width:1em;height:1em;flex:0 0 auto;vertical-align:-.12em}
+.cap-cab .ic{width:1.15em;height:1.15em;color:var(--azul);opacity:.85}
+.sub-s h3{display:flex;align-items:center;gap:9px}
+.sub-s h3 .ic{width:1.12em;height:1.12em;color:var(--azul-cl)}
+.grupo h3{display:flex;align-items:center;gap:9px}
+.grupo h3 .ic{width:1.32em;height:1.32em;color:var(--azul-cl)}
+.rail .ncap li a{display:flex;align-items:center;gap:8px}
+.rail .ncap li a .ic{width:1.05em;height:1.05em;color:var(--azul-cl);opacity:.75}
+.atalho .ic{width:1.15em;height:1.15em;color:var(--azul);margin-bottom:4px}
+.nota .rot{display:flex;align-items:center;gap:7px}
+.nota .rot .ic{width:1.05em;height:1.05em}
+
+/* ============================================================
+   DIAGRAMAS
+   ============================================================ */
+.esquema{margin:18px 0 24px;max-width:560px}
+.esquema.larga{max-width:100%;width:100%}
+.esquema svg{width:100%;height:auto;display:block;background:var(--nuvem);
+  border:1px solid var(--linha);border-radius:3px;padding:8px}
+.esquema figcaption{font-size:.82rem;color:var(--grafite);margin-top:9px;line-height:1.5;max-width:62ch}
+.esquema .pg{fill:#fff;stroke:var(--linha);stroke-width:1}
+.esquema .tira{fill:#fff;stroke:var(--linha);stroke-width:1}
+.esquema .realce{fill:var(--marca);stroke:none}
+.esquema .ln{fill:#CBD5E1}
+.esquema .lead{stroke:var(--vinho);stroke-width:1}
+.esquema .dot{fill:var(--vinho)}
+.esquema .div{stroke:var(--linha);stroke-width:1}
+.esquema .seta{stroke:var(--azul-cl);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.esquema .ref{font-family:var(--ref);font-size:14px;fill:var(--tinta)}
+.esquema .ref.pequena{font-size:11.5px}
+.esquema .ref.micro{font-size:9.5px}
+.esquema .sup{fill:var(--vinho);font-weight:700}
+.esquema .rot{font-family:var(--ui);font-size:10.5px;font-weight:700;fill:var(--vinho)}
+.esquema .mini{font-family:var(--ui);font-size:10.5px;fill:var(--grafite)}
+.esquema .mini.forte{fill:var(--azul-esc);font-weight:700;font-size:11.5px}
+.esquema .num{font-family:var(--ref);font-size:10px;fill:var(--grafite)}
+.esquema .num.forte{fill:var(--vinho);font-weight:700}
+.esquema .av{font-family:var(--ui);font-size:11px;font-weight:700;fill:var(--vinho)}
+.esquema .bd{fill:var(--vinho);stroke:none}
+.esquema .bdn{font-family:var(--ui);font-weight:700;fill:#fff}
+.esquema .aviso{fill:#FBF4F5;stroke:var(--vinho);stroke-width:1;stroke-dasharray:4 3}
+.esquema .p{fill:#fff;stroke:#B7C4D2;stroke-width:1.3;stroke-dasharray:2.6 2}
+.esquema .p.on{fill:#D3E2F2;stroke:var(--azul);stroke-dasharray:none}
+.esquema .p.l{fill:none}
+.esquema .t-aut{fill:var(--vinho)}
+.esquema .t-tit{fill:var(--tinta)}
+.esquema .t-ed,.esquema .t-loc,.esquema .t-edt,.esquema .t-ano,.esquema .t-pag{fill:#2C4A6B}
+.esquema .t-web{fill:var(--azul)}
+@media (max-width:560px){.esquema{max-width:100%}}
+@media print{.esquema svg{background:#fff}}
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <button class="abre-rail" id="btnRail" aria-expanded="false" aria-controls="rail">Sumário</button>
+  <div class="marca">Serviço de Biblioteca e Documentação<span>Faculdade de Odontologia de Bauru · USP</span></div>
+  <div class="norma">NLM Reference Style</div>
+</header>
+
+<div class="moldura">
+<aside class="rail" id="rail">
+  <div class="busca-caixa">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+    <input type="search" class="busca" id="busca" placeholder="Buscar no guia" aria-label="Buscar seção do guia">
+  </div>
+  <p class="busca-vazio" id="buscaVazio">Nada encontrado com esse termo.</p>
+  <nav aria-label="Sumário do guia"><ol id="navLista"></ol></nav>
+</aside>
+
+<main class="conteudo">
+
+<section class="hero">
+  <p class="ancora">Guia para apoio para elaboração de trabalhos acadêmicos - Campus USP Bauru · set. 2026</p>
+  <h1>Referências no formato Vancouver</h1>
+  <p class="sub">NLM Reference Style</p>
+  <p class="abre">
+    Modelos e exemplos de referências no formato conhecido como <strong>Vancouver</strong>, recomendado
+    pela ICMJE, com as regras de citação no texto. Os exemplos seguem as orientações do
+    <em>Citing Medicine — The NLM Style Guide for Authors</em>.
+  </p>
+  <div class="atalhos">
+    <a class="atalho" href="#catalogo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8.5 4v16"/><path d="M11.5 8.5h6.5M11.5 12h6.5M11.5 15.5h4"/></svg><b>Achar meu tipo de documento</b><span>66 exemplos, busca por tipo</span></a>
+    <a class="atalho" href="#elementos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1.3"/><rect x="14" y="4" width="7" height="7" rx="1.3"/><rect x="3" y="13" width="7" height="7" rx="1.3"/><rect x="14" y="13" width="7" height="7" rx="1.3"/></svg><b>Os elementos da referência</b><span>Autoria, título, local, ano</span></a>
+    <a class="atalho" href="#citacoes"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.5C7 7.5 5.5 9.8 5.5 12.5H8a1.8 1.8 0 0 1 1.8 1.8v2.4A1.8 1.8 0 0 1 8 18.5H6.3a1.8 1.8 0 0 1-1.8-1.8v-3.6c0-3.6 2-6.6 5-7.9z"/><path d="M19 6.5c-2.5 1-4 3.3-4 6h2.5a1.8 1.8 0 0 1 1.8 1.8v2.4a1.8 1.8 0 0 1-1.8 1.8h-1.7a1.8 1.8 0 0 1-1.8-1.8v-3.6c0-3.6 2-6.6 5-7.9z"/></svg><b>Citar no texto</b><span>Numérica, alfanumérica, apud</span></a>
+  </div>
+  <div class="autoria">
+    <span><b>Jane Coelho Danuello</b></span>
+    <span><b>José Roberto Plácido Amadei</b></span>
+    <span><b>Valéria Cristina Trindade Ferraz</b></span>
+    <span>Bauru, set. 2026</span>
+  </div>
+</section>
+
+
+<section class="faixa cap" id="comecar">
+  <div class="cap-cab"><span class="num">1</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.7"/><path d="M12 11v5.5"/><path d="M12 7.8h.01"/></svg>Apresentação</h2></div>
+  <p class="texto">Os exemplos e os padrões apresentados neste guia seguem as recomendações e orientações contidas nos dois principais documentos de referência do estilo NLM.</p>
+
+  <div class="sub-s" id="fontes">
+    <h3>Documentos de referência</h3>
+    <div class="linha-btn">
+      <a class="baixar pri" href="https://www.ncbi.nlm.nih.gov/books/NBK7256/pdf/Bookshelf_NBK7256.pdf">Citing Medicine — The NLM Style Guide for Authors</a>
+      <a class="baixar" href="https://www.nlm.nih.gov/bsd/uniform_requirements.html">Samples of Formatted References for Authors of Journal Articles</a>
+    </div>
+    <div class="nota alerta">
+      <p class="rot">Antes de submeter</p>
+      <p>Ao enviar seu trabalho para uma revista que exija o estilo NLM (Vancouver), verifique as adaptações e convenções estabelecidas nas diretrizes do próprio periódico. Elas prevalecem sobre este guia.</p>
+    </div>
+  </div>
+
+  <div class="sub-s" id="nota-versao">
+    <h3>Nota da versão — outubro de 2023</h3>
+    <p class="texto">Nesta versão foram atualizados exemplos como <em>podcast</em> e <em>blog</em>, e acrescentados modelos para novos materiais: <em>preprints</em>, dados de pesquisa, artigos da base UpToDate e conteúdo de inteligência artificial.</p>
+    <p class="texto">Os elementos explicativos que compõem as referências no estilo NLM — <em>cited</em>, <em>available from</em>, <em>dissertation</em>, entre outros — são apresentados em inglês, por ser uma norma amplamente reconhecida para a divulgação internacional de textos acadêmicos e científicos.</p>
+  </div>
+
+  <div class="sub-s" id="o-que-e">
+    <h3>O que é referência</h3>
+    <p class="texto">Referência é o conjunto padronizado de elementos descritivos, retirados de um documento, que permite sua identificação individual (ABNT, 2018).</p>
+    <p class="texto">A exatidão e a precisão na apresentação da referência são decisivas para a fundamentação do trabalho científico e permitem que o leitor recupere o trabalho referenciado.</p>
+    <div class="nota">
+      <p class="rot">A regra que vale para tudo</p>
+      <p>Só entram na lista as publicações efetivamente citadas no texto. Tudo o que está citado deve ser referenciado, e tudo o que está referenciado deve ser citado.</p>
+    </div>
+  </div>
+
+  <div class="sub-s" id="gerenciadores">
+    <h3>Os gerenciadores de referências</h3>
+    <p class="texto">São softwares que organizam e gerenciam as referências durante a redação. Servem tanto para inserir as citações ao longo do texto quanto para gerar a lista final, escolhendo um dos padrões de saída disponíveis. Mendeley, EndNote, Zotero e Paperpile estão entre os mais usados.</p>
+    <div class="nota alerta">
+      <p class="rot">O software não fecha a conta</p>
+      <p>Nenhum gerenciador entrega uma lista perfeita e completa sem correções e complementações. Revise e corrija a lista depois de gerá-la.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="faixa cap" id="elementos">
+  <div class="cap-cab"><span class="num">2</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="7" height="7" rx="1.3"/><rect x="14" y="4" width="7" height="7" rx="1.3"/><rect x="3" y="13" width="7" height="7" rx="1.3"/><rect x="14" y="13" width="7" height="7" rx="1.3"/></svg>Os principais elementos</h2></div>
+
+  <div class="sub-s" id="autoria">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.3"/><path d="M3 19.5c0-3 2.7-5 6-5s6 2 6 5"/><path d="M16 5.4a3.3 3.3 0 0 1 0 5.2M17.5 14.9c2 .7 3.5 2.4 3.5 4.6"/></svg>Autoria</h3>
+    <ul class="texto">
+      <li>Os autores são indicados pelo sobrenome em letras minúsculas, seguido das iniciais do nome. Limita-se a duas iniciais por autor.</li>
+      <li>Havendo até seis autores, todos devem ser indicados.</li>
+      <li>Havendo mais de seis, indicar até o sexto, seguido da expressão <strong>et al.</strong></li>
+    </ul>
+    <div class="par">
+      <div class="am"><p class="rot">1 autor</p>Reis DR.</div>
+      <div class="am"><p class="rot">2 autores</p>Berger PL, Luckmann T.</div>
+      <div class="am"><p class="rot">3 autores</p>Öwall B, Käyser AF, Carlsson GE.</div>
+    </div>
+    <div class="am"><p class="rot">6 autores</p>Lopes CC, Soares CJ, Lara VC, Arana-Chavez VE, Soares PB, Novais VR.</div>
+    <div class="am"><p class="rot">Mais de 6 autores</p>Rose ME, Huerbin MB, Melick J, Marion DW, Palmer AM, Schiding JK, et al.</div>
+    <figure class="esquema larga"><svg viewBox="0 0 480 266" role="img" aria-label="Esquema comparando referência com até seis autores, em que todos são indicados, e com mais de seis, em que se indica até o sexto seguido de et al." xmlns="http://www.w3.org/2000/svg"><text class="mini forte" x="10" y="18">até 6 autores</text><text class="mini" x="10" y="32">todos são indicados</text><circle class="p on" cx="28" cy="58" r="6.4"/><path class="p on l" d="M20.5 76c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="62" cy="58" r="6.4"/><path class="p on l" d="M54.5 76c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="96" cy="58" r="6.4"/><path class="p on l" d="M88.5 76c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="130" cy="58" r="6.4"/><path class="p on l" d="M122.5 76c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="164" cy="58" r="6.4"/><path class="p on l" d="M156.5 76c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="198" cy="58" r="6.4"/><path class="p on l" d="M190.5 76c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><text class="ref pequena" x="10" y="102">Lopes CC, Soares CJ, Lara VC, Arana-Chavez VE, Soares PB, Novais VR.</text><line class="div" x1="10" y1="122" x2="470" y2="122"/><text class="mini forte" x="10" y="146">mais de 6 autores</text><text class="mini" x="10" y="160">até o sexto, seguido de et al.</text><circle class="p on" cx="28" cy="186" r="6.4"/><path class="p on l" d="M20.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="62" cy="186" r="6.4"/><path class="p on l" d="M54.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="96" cy="186" r="6.4"/><path class="p on l" d="M88.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="130" cy="186" r="6.4"/><path class="p on l" d="M122.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="164" cy="186" r="6.4"/><path class="p on l" d="M156.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p on" cx="198" cy="186" r="6.4"/><path class="p on l" d="M190.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p" cx="232" cy="186" r="6.4"/><path class="p l" d="M224.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p" cx="266" cy="186" r="6.4"/><path class="p l" d="M258.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><circle class="p" cx="300" cy="186" r="6.4"/><path class="p l" d="M292.5 204c0-5 4.2-8 7.5-8s7.5 3 7.5 8"/><line class="lead" x1="266" y1="200" x2="266" y2="216"/><text class="rot" x="266" y="228" text-anchor="middle">viram “et al.”</text><text class="ref pequena" x="10" y="252">Rose ME, Huerbin MB, Melick J, Marion DW, Palmer AM, Schiding JK, et al.</text></svg><figcaption>O sexto autor é o limite. A partir do sétimo, todos os demais são substituídos por et al.</figcaption></figure>
+    <p class="dica">A vírgula separa os autores. No formato Vancouver, a expressão <em>et al.</em> não recebe itálico nem qualquer outro destaque.</p>
+
+    <h4>Responsabilidade intelectual</h4>
+    <p class="texto">As indicações de editores, organizadores e coordenadores são apresentadas em inglês: <em>editor(s)</em>, <em>organizator(s)</em>, <em>coordinator(s)</em>.</p>
+    <div class="am"><p class="rot">Com responsabilidade intelectual</p>Landau L, Cunha GG, Haguenauer C, organizators.</div>
+    <div class="am"><p class="rot">Sem autoria — entrada pelo título</p>Concise encyclopedia: chemistry.</div>
+
+    <h4>Sobrenomes que pedem atenção</h4>
+    <div class="par">
+      <div class="am"><p class="rot">Grau de parentesco</p>Ferreira R Filho.<br>Castro AC Neto.</div>
+      <div class="am"><p class="rot">Hispânicos</p>Alvarez Alduan MA.</div>
+      <div class="am"><p class="rot">Com prefixos</p>Ver Boven D.<br>Di Creddo R.<br>La Bruyere R.<br>Van Ende E.<br>De Montfort F.</div>
+    </div>
+
+    <h4>Autoria corporativa</h4>
+    <div class="am"><p class="rot">Entidade</p>Associação Brasileira de Normas Técnicas.<br>Sociedade Brasileira de Pesquisa Odontológica.</div>
+    <table class="qr">
+      <thead><tr><th scope="col">Situação</th><th scope="col">Como fica</th></tr></thead>
+      <tbody>
+        <tr><td>Entidade governamental ou institucional cujo nome do país não faz parte do título — usar as iniciais do país conforme os <a href="https://www.ncbi.nlm.nih.gov/books/n/citmed/appd/">códigos ISO</a></td><td class="mono">Ministério da Saúde (BR).</td></tr>
+        <tr><td>Duas ou mais organizações — separar por ponto e vírgula</td><td class="mono">Canadian Association of Orthodontists; Canadian Dental Association.</td></tr>
+        <tr><td>Organizações de língua inglesa — omitir o <em>The</em></td><td class="mono">American Cancer Society<br><span style="font-family:var(--ui);font-size:.8rem;color:var(--grafite)">(e não “The American Cancer Society”)</span></td></tr>
+        <tr><td>Hierarquia da instituição — separar por vírgula</td><td class="mono">American Medical Association, Committee on Ethics.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-s" id="titulo">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.4 12.4 20.5a2 2 0 0 1-2.8 0l-6.1-6.1a2 2 0 0 1-.6-1.6l.4-6.2A2 2 0 0 1 5.2 4.7l6.2-.4a2 2 0 0 1 1.6.6l7.5 7.5z"/><circle cx="8.2" cy="8.2" r="1.5"/></svg>O título</h3>
+    <p class="texto">Apresentado no idioma original, em letras minúsculas e sem recursos de destaque.</p>
+    <div class="par">
+      <div class="am"><p class="rot">Sem subtítulo</p>Gestão da inovação tecnológica.</div>
+      <div class="am"><p class="rot">Com subtítulo</p>Prótese dentária: princípios e condutas estratégicas.</div>
+    </div>
+  </div>
+
+  <div class="sub-s" id="titulo-revista">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5 12 5l9 3.5-9 3.5z"/><path d="M4.5 12 12 15l7.5-3M4.5 15.8 12 18.8l7.5-3"/></svg>O título da revista</h3>
+    <p class="texto">O título do periódico deve estar <strong>sem destaque</strong> e <strong>abreviado</strong>, respeitando as abreviaturas das bases MEDLINE ou LILACS.</p>
+    <div class="par">
+      <div class="am"><p class="rot">Oral Surgery, Oral Medicine, Oral Pathology, Oral Radiology, and Endodontology</p>Oral Surg Oral Med Oral Pathol Oral Radiol Endod</div>
+      <div class="am"><p class="rot">Audiology Communication Research</p>Audiol Commun Res</div>
+    </div>
+    <div class="linha-btn">
+      <a class="baixar" href="https://www.ncbi.nlm.nih.gov/nlmcatalog/journals">NLM Catalog — revistas internacionais</a>
+      <a class="baixar" href="http://portal.revistas.bvs.br/">Portal de Revistas Científicas em Saúde — nacionais e latino-americanas</a>
+    </div>
+  </div>
+
+  <div class="sub-s" id="edicao">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><path d="M12 4.5v-2M12 21.5v-2M19.5 12h2M2.5 12h2"/><path d="M9.6 10.2a2.4 2.4 0 1 1 3 3.3v1"/><path d="M12.6 16.6h.01"/></svg>Edição</h3>
+    <p class="texto">Se constar no documento, a edição é transcrita pelas abreviaturas do numeral ordinal e da palavra edição, ambas no idioma do documento.</p>
+    <div class="par">
+      <div class="am"><p class="rot">Todo idioma que não o inglês</p>2. ed.<br>11. ed.<br>23. ed.</div>
+      <div class="am"><p class="rot">Publicações em inglês</p>1st ed.<br>2nd ed.<br>3rd ed.<br>15th ed.</div>
+    </div>
+  </div>
+
+  <div class="sub-s" id="local">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.5s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10.2" r="2.6"/></svg>Local</h3>
+    <p class="texto">O local de publicação — a cidade — é indicado como consta no documento. Na ausência do nome da cidade, pode-se indicar o estado ou o país, desde que constem no documento.</p>
+    <table class="qr">
+      <thead><tr><th scope="col">Situação</th><th scope="col">Como fica</th></tr></thead>
+      <tbody>
+        <tr><td>Como consta no documento</td><td class="mono">Barueri:</td></tr>
+        <tr><td>Não aparece no documento, mas pode ser identificado — entre colchetes</td><td class="mono">[São Paulo]:</td></tr>
+        <tr><td>Impossível identificar</td><td class="mono">[place unknown]:</td></tr>
+        <tr><td>Cidades dos Estados Unidos e do Canadá — <a href="https://www.ncbi.nlm.nih.gov/books/n/citmed/appe/">abreviatura do estado</a> entre parênteses</td><td class="mono">Montreal (QC):</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-s" id="editora">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20.5h18"/><path d="M5 20.5V8l7-4.5L19 8v12.5"/><path d="M9.5 20.5v-5h5v5"/><path d="M9 11h2M13 11h2"/></svg>Editora</h3>
+    <p class="texto">O nome da editora, gravadora ou outra instituição responsável pela publicação é indicado como aparece no documento e no idioma da publicação. Abreviaturas de nomes conhecidos podem ser usadas, com cautela, para não gerar confusão.</p>
+    <div class="par">
+      <div class="am"><p class="rot">Como aparece no documento</p>Barueri: Manole;</div>
+      <div class="am"><p class="rot">Editora não identificada</p>[publisher unknown];</div>
+    </div>
+  </div>
+
+  <div class="sub-s" id="data">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.8h17"/><path d="M8 3v4M16 3v4"/><path d="M7.5 13.5h3M7.5 17h3M13.5 13.5h3"/></svg>Data e ano de publicação</h3>
+    <p class="texto">O ano de publicação é indicado em algarismos arábicos.</p>
+    <div class="am"><p class="rot">Padrão</p>Barueri: Manole; 2008.</div>
+    <p class="texto">Se nenhum ano puder ser localizado no documento, indica-se o ano de <em>copyright</em>, quando constar na publicação, ou um ano estimado entre colchetes.</p>
+    <div class="par">
+      <div class="am"><p class="rot">Ano de copyright</p>c2017</div>
+      <div class="am"><p class="rot">Ano estimado</p>[1975?].</div>
+    </div>
+  </div>
+
+  <div class="sub-s" id="paginacao">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7.5L19 8v12.5H7z"/><path d="M14.5 3.5V8H19"/><path d="M5 6.5v14h11"/></svg>Paginação e descrição física</h3>
+    <p class="texto">Pode ser registrado o número da última página ou folha de cada sequência, em algarismos arábicos. Se a publicação estiver numerada em algarismos romanos, converta para arábicos e indique entre colchetes.</p>
+    <table class="qr">
+      <thead><tr><th scope="col">Situação</th><th scope="col">Como fica</th></tr></thead>
+      <tbody>
+        <tr><td>Obra completa</td><td class="mono">236 p.</td></tr>
+        <tr><td>Numeração romana convertida</td><td class="mono">[58] p.</td></tr>
+        <tr><td>Partes da publicação — artigos ou capítulos: página inicial e final</td><td class="mono">31-40</td></tr>
+        <tr><td>Intervalos — eliminam-se as dezenas que se repetem</td><td class="mono">125-127 &nbsp;→&nbsp; 125-7</td></tr>
+        <tr><td>Volumes</td><td class="mono">vol. 2</td></tr>
+        <tr><td>Fascículos</td><td class="mono">no. 6</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub-s" id="mes">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.8h17"/><path d="M8 3v4M16 3v4"/><rect x="7" y="12.5" width="5" height="4" rx=".8"/></svg>Mês</h3>
+    <p class="texto">O mês de publicação <strong>não</strong> é indicado nas referências de artigos de periódicos. Para outros tipos de documento, quando for necessário indicá-lo, ele vem depois do ano, abreviado com as três primeiras letras.</p>
+    <div class="par">
+      <div class="am"><p class="rot">Um mês</p>2019 Jan</div>
+      <div class="am"><p class="rot">Intervalo</p>2005 Jan-Feb</div>
+    </div>
+    <div class="am"><p class="rot">Aplicado a uma referência</p>Collins SR, Kriss JL, Davis K, Doty MM, Holmgren AL. Squeezed: why rising exposure to health care costs threatens the health and financial well-being of American families. New York: Commonwealth Fund; 2006 Sep. 34 p.</div>
+  </div>
+
+  <div class="sub-s" id="disponibilidade">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.2 13.8a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 0 0-5.7-5.7l-1.4 1.4"/><path d="M13.8 10.2a4 4 0 0 0-5.7 0l-2.8 2.8a4 4 0 0 0 5.7 5.7l1.4-1.4"/></svg>Disponibilidade e acesso</h3>
+    <p class="texto">Para todo material disponível eletronicamente na internet é preciso indicar o suporte, a data de acesso e o endereço eletrônico.</p>
+    <div class="am"><p class="rot">Mesma referência acima, agora na internet</p>Collins SR, Kriss JL, Davis K, Doty MM, Holmgren AL. Squeezed: why rising exposure to health care costs threatens the health and financial well-being of American families [Internet]. New York: Commonwealth Fund; 2006 Sept [cited 2023 Sept 21]. 34 p. Available from: https://www.commonwealthfund.org/publications/fund-reports/2006/sep/squeezed-why-rising-exposure-health-care-costs-threatens-health</div>
+    <figure class="esquema larga"><svg viewBox="0 0 640 190" role="img" aria-label="Esquema destacando os três elementos que a versão eletrônica acrescenta: o suporte entre colchetes, a data de acesso e o endereço" xmlns="http://www.w3.org/2000/svg"><rect class="tira" x="8" y="40" width="620" height="66" rx="3"/><text class="ref pequena" x="20" y="60"><tspan class="t-aut">Collins SR, Kriss JL, Davis K, Doty MM, Holmgren AL.</tspan> <tspan class="t-tit">Squeezed: why rising exposure to health care</tspan></text><text class="ref pequena" x="20" y="80"><tspan class="t-tit">costs threatens the health of American families</tspan> <tspan class="t-web">[Internet].</tspan> <tspan class="t-loc" dx="13">New York:</tspan> <tspan class="t-edt">Commonwealth Fund;</tspan> <tspan class="t-ano">2006 Sept</tspan> <tspan class="t-web">[cited 2023 Sept 21].</tspan></text><text class="ref pequena" x="20" y="99"><tspan class="t-web">Available from: https://www.commonwealthfund.org/...</tspan></text><circle class="bd" cx="291" cy="72" r="5.4"/><text class="bdn" x="291" y="74.862" text-anchor="middle" font-size="7.128">1</text><circle class="bd" cx="611" cy="72" r="5.4"/><text class="bdn" x="611" y="74.862" text-anchor="middle" font-size="7.128">2</text><circle class="bd" cx="282" cy="91" r="5.4"/><text class="bdn" x="282" y="93.862" text-anchor="middle" font-size="7.128">3</text><circle class="bd" cx="26.4" cy="130" r="6.4"/><text class="bdn" x="26.4" y="133.392" text-anchor="middle" font-size="8.448">1</text><text class="mini" x="38" y="134">suporte</text><circle class="bd" cx="176.4" cy="130" r="6.4"/><text class="bdn" x="176.4" y="133.392" text-anchor="middle" font-size="8.448">2</text><text class="mini" x="188" y="134">data de acesso</text><circle class="bd" cx="366.4" cy="130" r="6.4"/><text class="bdn" x="366.4" y="133.392" text-anchor="middle" font-size="8.448">3</text><text class="mini" x="378" y="134">endereço eletrônico</text><rect class="aviso" x="8" y="150" width="330" height="28" rx="3"/><text class="av" x="173" y="168" text-anchor="middle">data de acesso não é data de publicação</text></svg><figcaption>Material eletrônico acrescenta três peças à referência: o suporte, a data de acesso e o endereço.</figcaption></figure>
+    <div class="nota alerta">
+      <p class="rot">Não confunda</p>
+      <p>Data de acesso não é data de publicação. O <em>[cited ...]</em> registra quando você consultou o documento; o ano solto registra quando ele foi publicado.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="faixa cap" id="catalogo">
+  <div class="cap-cab"><span class="num">3</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8.5 4v16"/><path d="M11.5 8.5h6.5M11.5 12h6.5M11.5 15.5h4"/></svg>Exemplos de referências</h2></div>
+  <p class="texto">Busque pelo tipo de documento e clique em qualquer trecho da referência para ver que elemento ele é. Os filtros abaixo destacam o mesmo elemento em todos os exemplos de uma vez.</p>
+
+  <figure class="esquema larga"><svg viewBox="0 0 480 186" role="img" aria-label="As partes de uma referência de livro, com autoria, título, edição, local, editora, ano e paginação identificados" xmlns="http://www.w3.org/2000/svg"><rect class="tira" x="8" y="86" width="464" height="30" rx="3"/><text class="ref" x="20" y="106"><tspan class="t-aut">Reis DR.</tspan> <tspan class="t-tit">Gestão da inovação tecnológica.</tspan> <tspan class="t-ed">2. ed.</tspan> <tspan class="t-loc">Barueri:</tspan> <tspan class="t-edt">Manole;</tspan> <tspan class="t-ano">2008.</tspan> <tspan class="t-pag">206 p.</tspan></text><line class="lead" x1="46" y1="47" x2="46" y2="87"/><circle class="dot" cx="46" cy="87" r="1.5"/><text class="rot" x="46" y="44" text-anchor="middle">autoria</text><line class="lead" x1="165" y1="47" x2="165" y2="87"/><circle class="dot" cx="165" cy="87" r="1.5"/><text class="rot" x="165" y="44" text-anchor="middle">título</text><line class="lead" x1="275" y1="47" x2="275" y2="87"/><circle class="dot" cx="275" cy="87" r="1.5"/><text class="rot" x="275" y="44" text-anchor="middle">edição</text><line class="lead" x1="366" y1="47" x2="366" y2="87"/><circle class="dot" cx="366" cy="87" r="1.5"/><text class="rot" x="366" y="44" text-anchor="middle">editora</text><line class="lead" x1="316" y1="114" x2="316" y2="138"/><circle class="dot" cx="316" cy="114" r="1.5"/><text class="rot" x="316" y="144" text-anchor="middle">local</text><line class="lead" x1="409" y1="114" x2="409" y2="138"/><circle class="dot" cx="409" cy="114" r="1.5"/><text class="rot" x="409" y="144" text-anchor="middle">ano</text><line class="lead" x1="445" y1="114" x2="445" y2="164"/><circle class="dot" cx="445" cy="114" r="1.5"/><text class="rot" x="445" y="170" text-anchor="middle">paginação</text></svg><figcaption>A ordem dos elementos é sempre esta. O que muda de um tipo de documento para outro é quais deles aparecem.</figcaption></figure>
+
+  <div class="painel">
+    <div class="ferramentas">
+      <div class="filtro">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+        <input type="search" id="filtro" placeholder="livro, tese, podcast, lei, artigo..." aria-label="Filtrar exemplos de referências">
+      </div>
+      <span class="contador" id="contador"></span>
+    </div>
+    <p class="legenda-t">Destacar um elemento em todos os exemplos:</p>
+    <div class="chips" id="chipsEl" role="group" aria-label="Elementos da referência"></div>
+  </div>
+
+  <div id="catalogoLista"></div>
+</section>
+
+
+<section class="faixa cap" id="formatacao">
+  <div class="cap-cab"><span class="num">4</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 10h16M4 14h11M4 18h11"/></svg>Formatação das referências</h2></div>
+  <ul class="texto">
+    <li>Elaboradas em espaço simples, alinhadas à margem esquerda do texto e separadas entre si por uma linha em branco de espaço simples.</li>
+    <li>A pontuação deve ser uniforme para todas as referências.</li>
+    <li>Organizadas em uma única lista e padronizadas quanto à adoção dos elementos complementares.</li>
+  </ul>
+  <table class="qr" style="max-width:52ch">
+    <tbody>
+      <tr><th scope="row">Espaçamento</th><td>Simples</td></tr>
+      <tr><th scope="row">Alinhamento</th><td>À margem esquerda</td></tr>
+      <tr><th scope="row">Separação</th><td>Uma linha em branco entre as referências</td></tr>
+      <tr><th scope="row">Ordenação</th><td>Numeradas em ordem crescente, conforme a apresentação no texto</td></tr>
+    </tbody>
+  </table>
+</section>
+
+
+<section class="faixa cap" id="citacoes">
+  <div class="cap-cab"><span class="num">5</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.5C7 7.5 5.5 9.8 5.5 12.5H8a1.8 1.8 0 0 1 1.8 1.8v2.4A1.8 1.8 0 0 1 8 18.5H6.3a1.8 1.8 0 0 1-1.8-1.8v-3.6c0-3.6 2-6.6 5-7.9z"/><path d="M19 6.5c-2.5 1-4 3.3-4 6h2.5a1.8 1.8 0 0 1 1.8 1.8v2.4a1.8 1.8 0 0 1-1.8 1.8h-1.7a1.8 1.8 0 0 1-1.8-1.8v-3.6c0-3.6 2-6.6 5-7.9z"/></svg>Citações no texto</h2></div>
+
+  <div class="sub-s" id="chamada">
+    <h3>Como chamar a referência</h3>
+    <p class="texto">A citação dos autores no texto pode ser feita de duas maneiras.</p>
+    <h4>1 · Somente numérica</h4>
+    <p class="texto">As referências devem ser citadas em ordem crescente no parágrafo.</p>
+    <div class="cit">“... and interfere with the bacterial system and tissue system.”<sup>3,4,7-10</sup></div>
+    <figure class="esquema larga"><svg viewBox="0 0 700 158" role="img" aria-label="Esquema ligando o número em expoente na citação do texto à entrada correspondente na lista de referências" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="8" y="14" width="300" height="126" rx="3"/><text class="mini" x="20" y="32">no corpo do texto</text><rect class="ln" x="20" y="46" width="268" height="3" rx="1.5"/><rect class="ln" x="20" y="57" width="268" height="3" rx="1.5"/><rect class="ln" x="20" y="68" width="268" height="3" rx="1.5"/><rect class="ln" x="20" y="79" width="210" height="3" rx="1.5"/><text class="ref pequena" x="20" y="104">a ausência de condição febril.<tspan class="sup" dy="-5" font-size="9">5</tspan></text><rect class="ln" x="20" y="116" width="268" height="3" rx="1.5"/><rect class="ln" x="20" y="127" width="190" height="3" rx="1.5"/><path class="seta" d="M318 78h56"/><path class="seta" d="M368 73l7 5-7 5"/><text class="mini" x="346" y="66" text-anchor="middle">nº 5</text><rect class="pg" x="384" y="14" width="308" height="126" rx="3"/><text class="mini" x="396" y="32">na lista de referências</text><text class="num" x="398" y="52">3 -</text><rect class="ln" x="416" y="49" width="262" height="3" rx="1.5"/><text class="num" x="398" y="66">4 -</text><rect class="ln" x="416" y="63" width="262" height="3" rx="1.5"/><rect class="realce" x="392" y="72" width="292" height="34" rx="2"/><text class="num forte" x="398" y="86">5 -</text><text class="ref micro" x="416" y="86">Montenegro MA, Guerreiro MM. Epilepsia.</text><text class="ref micro" x="416" y="99">In: Moura-Ribeiro MV. 2. ed. Revinter; 2010. p. 73-112.</text><text class="num" x="398" y="120">6 -</text><rect class="ln" x="416" y="117" width="240" height="3" rx="1.5"/><text class="num" x="398" y="134">7 -</text><rect class="ln" x="416" y="131" width="240" height="3" rx="1.5"/></svg><figcaption>O expoente no texto e o número na lista são a mesma coisa. A lista é numerada na ordem em que as obras aparecem no texto.</figcaption></figure>
+    <h4>2 · Alfanumérica</h4>
+    <p class="texto">A citação do ano é opcional.</p>
+    <div class="par">
+      <div class="cit"><p class="rot">Um autor</p>Gatewood<sup>31</sup> (2012)</div>
+      <div class="cit"><p class="rot">Dois autores</p>Cotti, Mercuro<sup>19</sup> (2016)</div>
+      <div class="cit"><p class="rot">Três autores</p>Azar, Safi, Nikaein<sup>27</sup> (2012)</div>
+      <div class="cit"><p class="rot">Três autores ou mais</p>Gealh et al.<sup>28</sup> (2014)</div>
+    </div>
+    <p class="dica">No formato Vancouver, a expressão <em>et al.</em> não é apresentada com o recurso itálico.</p>
+  </div>
+
+  <div class="sub-s" id="direta">
+    <h3>Citação direta</h3>
+    <p class="texto">Caracteriza-se pela transcrição textual de parte da obra do autor consultado — transcreve com exatidão as palavras do autor citado. É usada somente quando um pensamento significativo estiver particularmente bem expresso, ou quando for absolutamente necessário e essencial transcrever as palavras do autor. Muito utilizada para definições e conceitos.</p>
+    <p class="texto">A citação é marcada pelo uso das aspas duplas. O texto transcrito é apresentado entre aspas, sem limite de linhas.</p>
+    <div class="cit">“A epilepsia caracteriza-se pela presença de crises epiléticas recorrentes, na ausência de condição toxicometabólica ou febril.”<sup>5</sup></div>
+    <p class="dica" style="text-align:center;max-width:74ch"><strong>ou</strong></p>
+    <div class="cit">Segundo Montenegro, Guerreiro<sup>5</sup> (2010) “a epilepsia caracteriza-se pela presença de crises epiléticas recorrentes, na ausência de condição toxicometabólica ou febril.”
+      <div class="listado"><span class="n">5 -</span><span>Montenegro MA, Guerreiro MM. Epilepsia. In: Moura-Ribeiro MV, Ferreira LS. Condutas em neurologia infantil. 2. ed. Rio de Janeiro: Revinter; 2010. p. 73-112.</span></div>
+    </div>
+  </div>
+
+  <div class="sub-s" id="consideracoes">
+    <h3>Supressões, grifos e traduções</h3>
+    <p class="texto">Devem ser indicadas as supressões, interpolações, comentários, ênfase ou destaques, do seguinte modo:</p>
+    <table class="qr" style="max-width:56ch">
+      <tbody>
+        <tr><th scope="row">Supressões</th><td class="mono">[...]</td></tr>
+        <tr><th scope="row">Interpolações, acréscimos ou comentários</th><td class="mono">[ ]</td></tr>
+        <tr><th scope="row">Ênfase ou destaque</th><td>grifo, negrito ou itálico</td></tr>
+      </tbody>
+    </table>
+    <div class="cit"><p class="rot">Supressão</p>“[...] a localização incisal dos apoios podem representar dois inconvenientes: estético, pois o apoio fica aparente, e biomecânico, relacionado com o braço da alavanca, maior quanto menor a implantação periodontal.”<sup>9</sup></div>
+    <p class="texto">Para enfatizar trechos da citação, destaque-os e indique a alteração com a expressão “grifo nosso” entre parênteses, após a chamada da citação — ou “grifo do autor”, caso o destaque já faça parte da obra consultada. Quando a citação incluir texto traduzido por você, inclua a expressão “tradução nossa” entre parênteses, também após a chamada.</p>
+    <div class="cit"><p class="rot">Grifo nosso</p>“As alterações estruturais mínimas são variações constitucionais na anatomia laríngea cuja expressão clínica, quando presente, se restringe exclusivamente à <strong>fonação</strong>.”<sup>8</sup> (grifo nosso).</div>
+    <div class="cit"><p class="rot">Tradução nossa</p>“Nos primeiros mecanismos citados empregam-se moléculas com grupos químicos capazes de reagir entre si para gerar a união entre elas.”<sup>10</sup> (tradução nossa).</div>
+  </div>
+
+  <div class="sub-s" id="indireta">
+    <h3>Citação indireta</h3>
+    <p class="texto">Caracteriza-se por um texto baseado nas obras dos autores consultados. Utiliza-se tanto a paráfrase quanto a condensação, sem que haja distorções do texto original. Sua apresentação dispensa o uso de aspas duplas.</p>
+    <div class="cit">Hoare et al.<sup>14</sup> (2014) com objetivo de avaliar os efeitos e benefícios dos AASI e GS em pacientes com zumbido e PA coexistente, realizaram uma revisão de literatura de ensaios clínicos controlados, randomizados e não randomizados, em que a intervenção envolveu a amplificação com AASI em comparação a outras intervenções ou ao placebo.
+      <div class="listado"><span class="n">14 -</span><span>Hoare DJ, Searchfield GD, Grant D, El Rafaie A, Henry JA. Sound therapy for tinnitus management: practicable options. J Am Acad Audiol [Internet]. 2014 [cited 2023 Sept 19];25(1):62-75. Available from: https://doi.org/10.3766/jaaa.25.1.5 doi: 10.3766/jaaa.25.1.5</span></div>
+    </div>
+    <div class="cit">Corroborando com este estudo, autores referem que, embora a heterogeneidade do zumbido seja amplamente reconhecida pelos clínicos, muitos tratamentos comuns de zumbidos baseados em som são aplicados com avaliação limitada das diferenças individuais.<sup>14</sup></div>
+    <div class="cit">As MMPs constituem uma família importante de endopeptidases metalodependentes que são capazes de degradar quase todas, se não todas as matrizes extracelulares.<sup>9,11</sup></div>
+    <p class="dica">Exemplos extraídos de Rocha AV. Diretrizes para intervenção fonoaudiológica do zumbido [thesis]. Bauru: Faculdade de Odontologia de Bauru, Universidade de São Paulo; 2018. 135 p.; e de Zarella BL. Papel das proteases na erosão dentinária [thesis]. Bauru: Faculdade de Odontologia de Bauru, Universidade de São Paulo; 2017. 82 p.</p>
+  </div>
+
+  <div class="sub-s" id="apud">
+    <h3>Citação de citação</h3>
+    <p class="texto">É a citação, direta ou indireta, de um texto ao qual <strong>não se teve acesso no original</strong>. Pode ser reproduzida literalmente, interpretada, resumida ou traduzida.</p>
+    <div class="nota alerta">
+      <p class="rot">Último recurso</p>
+      <p>Só deve ser usada na total impossibilidade de acesso ao documento original.</p>
+    </div>
+    <p class="texto">É marcada pela expressão latina <em>apud</em>, que significa “citado por”. Portanto, obrigatoriamente, deve ser apresentada no formato alfanumérico.</p>
+    <div class="cit">Minkler (1985) apud Holanda et al.<sup>25</sup> (2015) esclarece que a interação social positiva caracteriza-se pelo contato entre pessoas em busca de lazer e relaxamento.
+      <div class="listado"><span class="n">25 -</span><span>Holanda CM, Andrade FL, Bezerra MA, Nascimento SP, Neves RF, Alves SB, et al. Support networks and people with physical disabilities: social inclusion and access to health services. Cienc Saude Coletiva [Internet]. 2015 [cited 2023 Sept 19];20(1):175-84. Available from: http://dx.doi.org/10.1590/1413-81232014201.19012013</span></div>
+    </div>
+    <p class="dica">Só o trabalho ao qual você teve acesso — o de Holanda et al. — entra na lista de referências.</p>
+  </div>
+
+  <div class="sub-s" id="notas">
+    <h3>Notas</h3>
+    <p class="texto">São usadas para comentários, esclarecimentos, indicações de fontes ou explanações que não possam ser incluídos no texto nem na lista de referências.</p>
+    <div class="nota alerta">
+      <p class="rot">Letras, não números</p>
+      <p>No formato Vancouver, a chamada das notas explicativas é feita por letras, e não por números, para não serem confundidas com as citações numéricas das referências ao longo do texto.</p>
+    </div>
+    <ul class="texto">
+      <li>Ficam no rodapé das páginas.</li>
+      <li>A partir da segunda linha da mesma nota, alinham-se abaixo da primeira letra da primeira palavra, de forma a destacar o expoente.</li>
+      <li>Sem espaço entre uma nota e outra, e com fonte menor que a do texto.</li>
+      <li>Em documentos digitais, também pode ser usado o recurso de <em>hyperlink</em>.</li>
+    </ul>
+  </div>
+
+  <div class="sub-s" id="marcas">
+    <h3>Citação de marcas comerciais</h3>
+    <p class="texto">Marcas comerciais de equipamentos, produtos e materiais só devem ser incluídas quando necessárias, e a citação figura entre parênteses após o nome.</p>
+    <div class="cit">Para a realização deste estudo foi utilizado o cimento de ionômero de vidro modificado por resina (Vitrebond<sup style="color:var(--tinta)">TM</sup> Light Cure Glass Ionomer Liner/Base).</div>
+  </div>
+</section>
+
+
+<footer class="rodape" id="recursos">
+  <div class="rodape-grade">
+    <div>
+      <h2>Acesse também</h2>
+      <ul>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Citacoes_ABNT10520_FOB-USP.html">Guia para elaboração de citações em documentos — ABNT NBR 10520:2023</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Referencias_ABNT6023_FOB-USP.html">Guia para elaboração de referências — ABNT NBR 6023:2018</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_TCC_convencional_FOB-USP.html">Guia para TCC (formato convencional) — ABNT NBR 14724:2024</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_TCC_artigo_FOB-USP.html">Guia para TCC constituído por artigo — ABNT NBR 14724:2024</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Teses_Dissertacoes_convencional_FOB-USP.html">Guia para dissertações e teses (formato convencional) — ABNT NBR 14724:2024</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Teses_Dissertacoes_artigo_FOB-USP.html">Guia para dissertações e teses constituídas por artigos — ABNT NBR 14724:2024</a></li>
+        <li><a href="https://sddinforma.fob.usp.br/gabaritos/">Gabaritos pré-formatados</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Contato</h2>
+      <p class="end">
+        Universidade de São Paulo<br>
+        Faculdade de Odontologia de Bauru<br>
+        Serviço de Biblioteca e Documentação<br>
+        Al. Octávio Pinheiro Brisola, 9-75<br>
+        Bauru — SP — Brasil — 17012-901<br>
+        (14) 3235-8373
+      </p>
+    </div>
+    <div>
+      <h2>Redes</h2>
+      <ul>
+        <li><a href="https://www.instagram.com/bibliotecafobusp/">Instagram · @bibliotecafobusp</a></li>
+        <li><a href="https://www.facebook.com/BibliotecaFOBUSP/">Facebook · Biblioteca FOB USP</a></li>
+        <li><a href="https://twitter.com/bibfobusp">X · @bibfobusp</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="fim">
+    Guia para elaboração de referências (Vancouver) — NLM Reference Style.
+    Jane Coelho Danuello, José Roberto Plácido Amadei e Valéria Cristina Trindade Ferraz.
+    Serviço de Biblioteca e Documentação, FOB-USP. Bauru, set. 2026. Licença Creative Commons BY-NC.
+  </p>
+</footer>
+
+</main>
+</div>
+
+<script>
+var DADOS = [{"nome": "Livro", "id": "livro", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4.5A1.5 1.5 0 0 1 5.5 3H19v18H5.5A1.5 1.5 0 0 1 4 19.5z\"/><path d=\"M4 17.5h15\"/><path d=\"M8 3v11l2.5-1.8L13 14V3\"/></svg>", "itens": [{"r": "Livro impresso", "p": [["Reis DR.", "autoria"], ["Gestão da inovação tecnológica.", "titulo"], ["2. ed.", "edicao"], ["Barueri:", "local"], ["Manole;", "editora"], ["2008.", "ano"], ["206 p.", "pag"]]}, {"r": "Com tradutor", "p": [["Bess FH, Humes LE.", "autoria"], ["Fundamentos da audiologia.", "titulo"], ["2. ed.", "edicao"], ["Domingues MA, translator.", "resp"], ["Porto Alegre:", "local"], ["Artmed;", "editora"], ["1998.", "ano"], ["326 p.", "pag"]]}, {"r": "Com responsabilidade intelectual", "p": [["Landau L, Cunha GG, Hanguenauer C, organizators.", "resp"], ["Pesquisa em realidade virtual e aumentada.", "titulo"], ["1. ed.", "edicao"], ["Curitiba:", "local"], ["Editora CRV;", "editora"], ["2014.", "ano"], ["164 p.", "pag"]]}, {"r": "Autoria institucional, na internet", "p": [["Organização Mundial da Saúde.", "autoria"], ["Mulheres e saúde: evidências de hoje: agenda de amanhã", "titulo"], ["[Internet].", "suporte"], ["Geneva:", "local"], ["OMS;", "editora"], ["2009", "ano"], ["[cited 2023 Sept 21].", "acesso"], ["92 p.", "pag"], ["Available from: https://www.who.int/eportuguese/publications/Mulheres_Saude.pdf", "url"]]}, {"r": "E-book com registro DOI", "p": [["Rabello LS.", "autoria"], ["Promoção da saúde: a construção social de um conceito em perspectiva comparada", "titulo"], ["[Internet].", "suporte"], ["Rio de Janeiro:", "local"], ["Fiocruz;", "editora"], ["2010", "ano"], ["[cited 2023 Sept 21].", "acesso"], ["220 p.", "pag"], ["Available from: https://books.scielo.org/id/z7jxb", "url"], ["doi: 10.7476/9788575413524", "doi"]]}]}, {"nome": "Livro em parte", "id": "livro-em-parte", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 6.5C10.5 5 8.5 4.5 4 4.5v13c4.5 0 6.5.5 8 2 1.5-1.5 3.5-2 8-2v-13c-4.5 0-6.5.5-8 2z\"/><path d=\"M12 6.5v13\"/><path d=\"M15 9.5h3.5M15 12.5h3.5\"/></svg>", "itens": [{"r": "Autoria da parte difere da autoria do livro", "p": [["Bachega K, Accetturi E.", "autoria"], ["Transplantes de tecido ósseos no Brasil: uma história segura de sucesso da odontologia.", "titulo"], ["In:", ""], ["Santos PS, Mello WR, Coracin FL, Balnda RC, organizators.", "resp"], ["Odontologia em transplante de órgãos e tecidos.", "titulo"], ["Curitiba:", "local"], ["Editora CRV;", "editora"], ["2018.", "ano"], ["p. 109-27.", "pag"]]}, {"r": "Autoria da parte igual à do livro", "p": [["Bess FH, Humes LE.", "autoria"], ["Fundamentos da audiologia.", "titulo"], ["Domingues MA, translator.", "resp"], ["2. ed.", "edicao"], ["Porto Alegre:", "local"], ["Artmed;", "editora"], ["1998.", "ano"], ["Capítulo 7, Amplificação e reabilitação para os deficientes auditivos;", "titulo"], ["p. 233-73.", "pag"]]}]}, {"nome": "Trabalhos acadêmicos", "id": "trabalhos-academicos", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3 2.5 8 12 13l9.5-5z\"/><path d=\"M6.5 10.3V15c0 1.5 2.6 3 5.5 3s5.5-1.5 5.5-3v-4.7\"/><path d=\"M21.5 8v6\"/></svg>", "itens": [{"r": "Dissertação", "p": [["Polzin AC.", "autoria"], ["Material didático para capacitação de fonoaudiólogos no tratamento das alterações de fala na disfunção velofaríngea", "titulo"], ["[dissertation].", "tipo"], ["Bauru:", "local"], ["Faculdade de Odontologia de Bauru, Universidade de São Paulo;", "editora"], ["2017.", "ano"], ["155 p.", "pag"]]}, {"r": "Tese", "p": [["Rizzo M.", "autoria"], ["Stability of first and second premolars extraction space closure", "titulo"], ["[thesis].", "tipo"], ["Bauru:", "local"], ["Faculdade de Odontologia de Bauru, Universidade de São Paulo;", "editora"], ["2018.", "ano"], ["79 p.", "pag"]]}, {"r": "Trabalho de conclusão de curso", "p": [["Oliveira TL.", "autoria"], ["Prevalência de desgaste dentário e a correlação com fatores etiológicos em adultos jovens", "titulo"], ["[undergraduate thesis].", "tipo"], ["Bauru:", "local"], ["Faculdade de Odontologia de Bauru, Universidade de São Paulo;", "editora"], ["2007.", "ano"], ["72 p.", "pag"]]}, {"r": "Disponível na internet", "p": [["Cunha TC.", "autoria"], ["Investigação genética de casos de deficiência intelectual em populações consanguíneas do sertão paraibano", "titulo"], ["[thesis on the Internet].", "tipo"], ["João Pessoa:", "local"], ["Rede Nordeste de Bioteconologia;", "editora"], ["2015", "ano"], ["[cited 2023 Sept 21].", "acesso"], ["76 p.", "pag"], ["Available from: https://repositorio.ufpb.br/jspui/handle/tede/9816", "url"]]}, {"r": "Com registro DOI", "p": [["Caballero JT.", "autoria"], ["Comparação da estabilidade dos arcos dentários em pacientes com e sem fissura labiopalatina após tratamento ortodôntico/reabilitador", "titulo"], ["[dissertation on the Internet].", "tipo"], ["Bauru:", "local"], ["Faculdade de Odontologia de Bauru, Universidade de São Paulo;", "editora"], ["2018", "ano"], ["[cited 2023 Sept 21].", "acesso"], ["62 p.", "pag"], ["Available from: http://www.teses.usp.br/teses/disponiveis/25/25146/tde-31082018-174817/pt-br.php", "url"], ["doi: 10.11606/D.25.2018.tde-31082018-174817", "doi"]]}]}, {"nome": "Artigos de periódicos", "id": "artigos-de-periodicos", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"14\" height=\"16\" rx=\"1.5\"/><path d=\"M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2h-2\"/><path d=\"M6.5 8h7M6.5 11.5h7M6.5 15h4\"/></svg>", "itens": [{"r": "Artigo convencional", "p": [["Moreira RS, Oliveira MV, Baldissera R, Luiz BK, Fedeli A Jr.", "autoria"], ["Avaliação anatômica por tomografia computadorizada de feixe cônico da fossa submandibular.", "titulo"], ["ImplantNewsPerio.", "revista"], ["2018;3(2):239-46.", "ano"]]}, {"r": "Artigo na internet", "p": [["Korona-Glowniak I, Niedzielski A, Malm A.", "autoria"], ["Upper respiratory colonization by <i>Streptococcus pneumoniae</i> in healthy pre-school childre in south-east Poland.", "titulo"], ["Int J Pediatr Otorhinolaryngol", "revista"], ["[Internet].", "suporte"], ["2001", "ano"], ["[cited 2023 Sept 21];", "acesso"], ["75(12):1529-34.", "pag"], ["Available from: https://doi.org/10.1016/j.ijporl.2011.08.021", "url"], ["doi: 10.1016/j.ijporl.2011.08.021", "doi"]]}, {"r": "Exclusivo eletrônico com identificador digital", "p": [["Pereira M, Daré LR, Bueno CR, Favaretto-Júnior, IA, Buchaim RL, Andreo JC.", "autoria"], ["Influence of β-Hydroxy-β-methylbutyrate on predominantly white and red muscles of rats not submitted to physical exercise.", "titulo"], ["Acta Sci", "revista"], ["[Internet].", "suporte"], ["2018", "ano"], ["[cited 2023 Sept 23];", "acesso"], ["40:e38270.", "pag"], ["Available from: http://eduem.uem.br/ojs/index.php/ActaSciHealthSci/article/view/38270/pdf", "url"], ["doi: 10.4025/actascihealthsci.v40i1.38270", "doi"]]}, {"r": "Exclusivo eletrônico com identificador digital", "p": [["Zhou H, Wu W, Wang F, Qi H, Cheng Z.", "autoria"], ["Tea consumption is associated with decreased risk of oral cancer: a comprehensive and dose-response meta-analysis based on 14 case-control studies (MOOSE compliant).", "titulo"], ["Medicine (Baltimore)", "revista"], ["[Internet].", "suporte"], ["2018", "ano"], ["[cited 2023 Sept 23];", "acesso"], ["97(51):e13611.", "pag"], ["Available from: http://dx.doi.org/10.1097/MD.0000000000013611", "url"], ["doi: 10.1097/MD.0000000000013611", "doi"]]}, {"r": "Publicação contínua", "p": [["Emiru YK, Siraj EA, Teklehaimanot TT, Amare GG.", "autoria"], ["Antibacterial potential of <i>Aloe weloensis</i> (Aloeacea) leaf latex against gram-Positive and gram-Negative bacteria strains.", "titulo"], ["Int J Microbiol", "revista"], ["[Internet].", "suporte"], ["2019", "ano"], ["[cited 2023 Sept 23];", "acesso"], ["2019:5328238.", "pag"], ["Available from: https://doi.org/10.1155/2019/5328238", "url"], ["doi: 10.1155/2019/5328238", "doi"]]}, {"r": "Editorial e carta", "p": [["Ribeiro FA.", "autoria"], ["Classificação das lesões indutoras dos colesteatomas adquiridos da orelha média: uma sugestão didática", "titulo"], ["[editorial].", "tipo"], ["Braz J Otorhinolaryngol", "revista"], ["[Internet].", "suporte"], ["2018", "ano"], ["[cited 2023 Sept 23];", "acesso"], ["84(5):529-31.", "pag"], ["Available from: http://dx.doi.org/10.1016/j.bjorl.2018.07.001", "url"], ["doi: 10.1016/j.bjorl.2018.07.001", "doi"]]}, {"r": "Suplemento de volume", "p": [["Machado AK, Wendt A, Wehrmeister FC.", "autoria"], ["Problemas de sono e fatores associados em população rural de um município no sul do Brasil.", "titulo"], ["Rev Saude Publica", "revista"], ["[Internet].", "suporte"], ["2018", "ano"], ["[cited 2023 Sept 23];", "acesso"], ["52 Suppl 1:1s-12s.", "pag"], ["Available from: http://dx.doi.org/10.11606/s1518-8787.2018052000260", "url"], ["doi: 10.11606/s1518-8787.2018052000260", "doi"]]}, {"r": "Suplemento de fascículo", "p": [["Caiafa JS, Castro AA, Fidelis C, Santos VP, Silva ES, Sitrângulo CJ Jr.", "autoria"], ["Atenção integral ao portador de pé diabético.", "titulo"], ["J Vas Bras", "revista"], ["[Internet].", "suporte"], ["2011", "ano"], ["[cited 2019 Mar 8];", "acesso"], ["10(4 Suppl 2):1-32.", "pag"], ["Available from: http://www.scielo.br/pdf/jvb/v10n4s2/a01v10n4s2.pdf", "url"], ["doi: 10.1590/S1677-54492011000600001", "doi"]]}]}, {"nome": "Preprints", "id": "preprints", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z\"/><path d=\"M14 3v5h5\"/><path d=\"M12 11.5v5.5M9.5 14 12 11.5 14.5 14\"/></svg>", "itens": [{"r": "Preprint em repositório", "p": [["Weissheimer T, Só MV, Alcalde MP, Cortez JB, Rosa RA, Vivan RR, et al.", "autoria"], ["Evaluation of mechanical properties of coronal flaring nickel-titanium instruments.", "titulo"], ["Research Square", "editora"], ["rs-49258/v1", "tipo"], ["[Preprint].", "tipo"], ["2020", "ano"], ["[cited 2023 Sept 21].", "acesso"], ["Available from: https://doi.org/10.21203/rs.3.rs-49258/v1", "url"], ["doi: 10.21203/rs.3.rs-49258/v1", "doi"]]}, {"r": "Preprint com data completa", "p": [["Santama LA, Santos MA, Albuquerque HI, Costa SF, Rezende-Silva E, Gercina AC, et al.", "autoria"], ["Teledentistry in Brazil: a viable alternative during COVID-19 pandemic.", "titulo"], ["SciELO Preprints", "editora"], ["e200082", "tipo"], ["[Preprint].", "tipo"], ["2020 June 29", "ano"], ["[cited 2023 Sept 21].", "acesso"], ["Available from: https://doi.org/10.1590/1980-549720200082", "url"], ["doi: 10.1590/1980-549720200082", "doi"]]}]}, {"nome": "Dados de pesquisa", "id": "dados-de-pesquisa", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><ellipse cx=\"12\" cy=\"6\" rx=\"7.5\" ry=\"3\"/><path d=\"M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6\"/><path d=\"M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6\"/></svg>", "itens": [{"r": "Dataset no Dryad", "p": [["Mahardawi B.", "autoria"], ["The role of hemostatic agents following dental extractions: a systematic review and meta-analysis", "titulo"], ["[dataset].", "tipo"], ["2022 Mar 14", "ano"], ["[cited 2023 Sept 21].", "acesso"], ["Dryad.", "editora"], ["Available from: https://doi.org/10.5061/dryad.59zw3r297", "url"], ["doi: 10.5061/dryad.59zw3r297", "doi"]]}, {"r": "Dataset no SciELO Data", "p": [["Ai Y, Wu S, Zhou X.", "autoria"], ["Pro-angiogenic photo-crosslinked silk fibroin hydrogel: a potential candidate for repairing alveolar bone defects", "titulo"], ["[dataset].", "tipo"], ["2023 July 17", "ano"], ["[cited 2023 Sept 21].", "acesso"], ["SciELO Data.", "editora"], ["Available from: https://dx.doi.org/10.1590/1678-7757-2023-0158", "url"], ["doi: 10.48331/scielodata.YKRIKZ", "doi"]]}]}, {"nome": "Matéria de jornal", "id": "materia-de-jornal", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 6.5A1.5 1.5 0 0 1 4.5 5H18v12.5a2.5 2.5 0 0 0 2.5 2.5H5.5A2.5 2.5 0 0 1 3 17.5z\"/><path d=\"M18 9h2.5a.5.5 0 0 1 .5.5v8\"/><path d=\"M6 8.5h5v4H6zM13.5 8.5h1.5M13.5 11.5h1.5M6 15.5h9\"/></svg>", "itens": [{"r": "Jornal impresso", "p": [["Abramczyk J.", "autoria"], ["A fragilidade em idosos e a saúde bucal.", "titulo"], ["Folha de São Paulo.", "revista"], ["2018 Jan 6:", "ano"], ["Caderno Ciência + Saúde:B7.", "pag"]]}, {"r": "Portal eletrônico de jornal", "p": [["Tomazela JM.", "autoria"], ["Duas pessoas morrem com sintomas de febre maculosa no interior de SP.", "titulo"], ["Estadão", "revista"], ["[Internet].", "suporte"], ["2019 Jan 3", "ano"], ["[cited 2023 Sept 22];", "acesso"], ["Saúde:[about 3 screens].", "pag"], ["Available from: https://saude.estadao.com.br/noticias/geral,duas-pessoas-morrem-com-sintomas-de-febre-maculosa-no-interior-de-sp,70002666449", "url"]]}]}, {"nome": "Eventos", "id": "eventos", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3.5\" width=\"18\" height=\"11\" rx=\"1.5\"/><path d=\"M12 14.5v3\"/><path d=\"M7.5 20.5c0-1.7 2-3 4.5-3s4.5 1.3 4.5 3\"/><path d=\"M7 7.5h6M7 10.5h4\"/></svg>", "itens": [{"r": "Trabalho em anais, na internet", "p": [["Cunha PO, Michel RC, Ferreira R, Scarcella CR, Damante CA, Zangrando MS.", "autoria"], ["Avaliação do efeito da fototerapia com laser no crescimento de fibroblastos gengivais de pacientes com Síndrome de Down.", "titulo"], ["In:", ""], ["Anais do 27th Congresso Brasileiro de Periodontologia", "revista"], ["[Internet];", "suporte"], ["2017 Apr 19-22;", "ano"], ["São Paulo, SP.", "local"], ["Belo Horizonte: Sociedade Brasileira de Periodontologia;", "editora"], ["2017", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["[Paper 149/1085-0].", "pag"], ["Available from: https://www.passgroup.com.br/hotsite2/site/default.asp?TroncoID=518080&SecaoID=937153&SubSecaoID=&Template=../../asp/hotsite2/AnaisTrabalhoArquivo.asp&id=149/1085-0&Formato=Resumo", "url"]]}, {"r": "Resumo em anais", "p": [["Oyadomari AT, Pomini KT, Rosso MP, Buchaim RL.", "autoria"], ["Efeitos da terapia por laser de baixa potência no processo de reparo de defeitos ósseos preenchidos pelo osso bovino Bio-Oss® associados ao novo selante heterólogo de fibrina.", "titulo"], ["In:", ""], ["Resumo do 25th Simpóstio Internacional de Iniciação Cientifica da Universidade de São Paulo;", "revista"], ["2017 Oct 24-25;", "ano"], ["Bauru, Brazil.", "local"], ["São Paulo: Universidade de São Paulo,", "editora"], ["2017.", "ano"]]}, {"r": "Trabalho de evento publicado em revista", "p": [["Bordin D, Bergamo ET, Saran S, Witek L, Bonfante EA, Coelho PG.", "autoria"], ["Abutment's screw design influences the reliability of implant-supported restorations.", "titulo"], ["In:", ""], ["Abstract of the Academy of Dental Materials Annual Meeting", "revista"], ["[Internet];", "suporte"], ["2018 Oct 4-6;", "ano"], ["Porto de Galinhas, Brazil.", "local"], ["Oxford: Elsevier;", "editora"], ["2018", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["p. e15-6.", "pag"], ["(Dental Materials; vol. 34, supp. 1).", "revista"], ["Available from: https://doi.org/10.1016/j.dental.2018.08.031", "url"]]}, {"r": "Trabalho de evento publicado em revista", "p": [["Azenha FS, Ferrari DV.", "autoria"], ["Acceptable noise level (ANL): results with different stimuli.", "titulo"], ["In:", ""], ["Anais do 23th Congresso Fonoaudiológico de Bauru “Profa. Dra. Adréa Cintra Lopes”;", "revista"], ["2016 Aug 10-13;", "ano"], ["Bauru, Brazil.", "local"], ["Bauru: Faculdade de Odontologia de Bauru;", "editora"], ["2016.", "ano"], ["p. 219.", "pag"], ["(Journal of Applied Oral Science; vol. 24, Spec no.).", "revista"]]}]}, {"nome": "Patentes", "id": "patentes", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"9.5\" r=\"6\"/><path d=\"M9.5 9.5l1.8 1.8 3.4-3.6\"/><path d=\"M8.7 14.6 7 21.5l5-2.2 5 2.2-1.7-6.9\"/></svg>", "itens": [{"r": "Patente brasileira", "p": [["Birindelli RF, inventor;", "autoria"], ["3M Innovative Properties Company, assignee.", "resp"], ["Disposição construtiva apliacada em dispositivo protetor auditivo.", "titulo"], ["Brazil", "local"], ["patent", "tipo"], ["BR MU 8201717-4.", "pag"], ["2002 Feb 19.", "ano"]]}, {"r": "Patente norte-americana", "p": [["Jones G, inventor;", "autoria"], ["Oticon A/S, assignee.", "resp"], ["Hearing device comprising a signal generator for masking tinnitus.", "titulo"], ["United States", "local"], ["patent", "tipo"], ["US 20160366527 A1.", "pag"], ["2016 Jun 8.", "ano"]]}]}, {"nome": "Bula de medicamento", "id": "bula-de-medicamento", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 5.5h6v14H4zM10 5.5h6v14h-6zM16 5.5h4v14h-4z\"/><path d=\"M13 9.5v4M11 11.5h4\"/></svg>", "itens": [{"r": "Bula na internet", "p": [["Pantoprazol sódio sesqui-hidratado", "titulo"], ["[Internet].", "suporte"], ["São Paulo:", "local"], ["Biosintética Farmacêutica Ltda;", "editora"], ["2021", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Package insert.", "tipo"], ["MS 1.0573.0550.", "pag"], ["Available from: https://www.ache.com.br/wp-content/uploads/application/pdf/bula-paciente-pantoprazol-20mg.pdf", "url"]]}]}, {"nome": "Normas técnicas", "id": "normas-tecnicas", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z\"/><path d=\"M14 3v5h5\"/><path d=\"M8.5 12h7M8.5 15.5h5\"/></svg>", "itens": [{"r": "Norma ABNT", "p": [["Associação Brasileira de Normas Técnicas.", "autoria"], ["ABNT NBR ISO 12836: odontologia: dispositivos para sistemas CAD/CAM para restaurações dentárias indiretas: métodos de ensaio para avaliação de exatidão.", "titulo"], ["Rio de Janeiro:", "local"], ["ABNT;", "editora"], ["2017.", "ano"], ["14 p.", "pag"]]}, {"r": "Norma ISO", "p": [["International Organization for Standardization.", "autoria"], ["ISO/TS 11405:2015: dentistry: testing of adhesion to tooth structure.", "titulo"], ["Geneva:", "local"], ["ISO;", "editora"], ["2015.", "ano"], ["12 p.", "pag"]]}]}, {"nome": "Referências legislativas", "id": "referencias-legislativas", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 20h18\"/><path d=\"M12 3 3.5 7.5h17z\"/><path d=\"M6 10v7M10 10v7M14 10v7M18 10v7\"/></svg>", "itens": [{"r": "Constituição Federal", "p": [["Brasil.", "autoria"], ["[Constituição (1988)]. Constituição da República Federativa do Brasil", "titulo"], ["[Internet].", "suporte"], ["Brasília, DF:", "local"], ["Senado Federal;", "editora"], ["2016", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["496 p.", "pag"], ["Available from: https://www2.senado.leg.br/bdsf/bitstream/handle/id/518231/CF88_Livro_EC91_2016.pdf", "url"]]}, {"r": "Portaria", "p": [["Fundação de Amparo à Pesquisa do Estado de São Paulo.", "autoria"], ["Portaria PR nº08/2015. Dispõe sobre prorrogação de bolsas em razão do advento de prole", "titulo"], ["[Internet].", "suporte"], ["São Paulo:", "local"], ["FAPESP;", "editora"], ["2015", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Available from: http://www.fapesp.br/9593", "url"]]}, {"r": "Lei federal", "p": [["Brasil.", "autoria"], ["Lei nº 13.709, de 14 de agosto de 2018. Dispõe sobre a proteção de dados pessoais e altera a Lei nº 12.965, de 23 de abril de 2014 (Marco Civil da Internet).", "titulo"], ["Diário Oficial da União.", "revista"], ["2018 Aug 15;", "ano"], ["155(157 seção 1):59-64.", "pag"]]}, {"r": "Lei municipal", "p": [["Bauru (SP).", "autoria"], ["Lei Municipal 7148/2018. Dispõe sobre a organização do Sistema de Inovação do Município de Bauru e sobre medidas de incentivo à inovação tecnológica [...].", "titulo"], ["Bauru:", "local"], ["Prefeitura Municipal de Bauru;", "editora"], ["2018", "ano"], ["[cited 2019 Mar 19].", "acesso"], ["Available from: https://sapl.bauru.sp.leg.br/sapl_documentos/norma_juridica/12147_texto_integral.pdf", "url"]]}, {"r": "Resolução estadual", "p": [["São Paulo (Estado).", "autoria"], ["Resolução nº 918, de 14 de dezembro de 2018. Cria a comissão permanente de defesa e dos direitos das mulheres.", "titulo"], ["Diário Oficial [do] Estado de São Paulo", "revista"], ["[Internet].", "suporte"], ["2018 Dec 15", "ano"], ["[cited 2023 Sept 22];", "acesso"], ["128(227):3.", "pag"], ["Available from: http://dobuscadireta.imprensaoficial.com.br/default.aspx?DataPublicacao=20181215&Caderno=Legislativo&NumeroPagina=3", "url"]]}, {"r": "Resolução de conselho", "p": [["Conselho Federal de Medicina.", "autoria"], ["Resolução CFM nº 2.180/2018. Estabelece os dados de médicos que devem ser disponibilizados em consultas eletrônicas relacionadas aos registros dos profissionais médicos inscritos no Sistema Conselhos de Medicina e dá outras providências.", "titulo"], ["Diário Oficial da União.", "revista"], ["2018 Sept 19;", "ano"], ["155(181 seção 1):128.", "pag"]]}]}, {"nome": "Documento iconográfico", "id": "documento-iconografico", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4.5\" width=\"18\" height=\"15\" rx=\"1.5\"/><circle cx=\"8.5\" cy=\"9.5\" r=\"1.6\"/><path d=\"M3 16.5l4.8-4.3 3.4 3 3-2.6L21 16\"/></svg>", "itens": [{"r": "Ilustração na internet", "p": [["Balik.", "autoria"], ["[Lung]", "titulo"], ["[Illustration on the Internet].", "tipo"], ["Neu-Ulm:", "local"], ["Pixabay;", "editora"], ["2017", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["color, 2312 x 3000 pixels.", "pag"], ["Available from: https://pixabay.com/en/lungs-heart-anatomy-cross-section-2183442/", "url"]]}, {"r": "Ilustração com autoria", "p": [["Meincke J, Hewitt M, Reischl M, Rupp R, Schmidt-Samoa C, Liebetanz D.", "autoria"], ["Human auricular muscles", "titulo"], ["[Illustration on the Internet].", "tipo"], ["London:", "local"], ["Figshare;", "editora"], ["2018", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["2461 x 3221 pixels.", "pag"], ["Available from: https://figshare.com/articles/Human_auricular_muscles_/6872915", "url"]]}]}, {"nome": "Enciclopédia", "id": "enciclopedia", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4.5A1.5 1.5 0 0 1 5.5 3H19v18H5.5A1.5 1.5 0 0 1 4 19.5z\"/><path d=\"M4 17.5h15\"/><path d=\"M9 7.5h6M9 11h4\"/></svg>", "itens": [{"r": "Verbete sem autoria", "p": [["Concise encyclopedia: biochemistry.", "titulo"], ["2nd ed.", "edicao"], ["Berlin:", "local"], ["Walter de Gruyter;", "editora"], ["1998.", "ano"], ["Electron transport particles;", "titulo"], ["p. 175.", "pag"]]}, {"r": "Verbete com autoria", "p": [["Jerrard HG, McNeil DB.", "autoria"], ["Dictionary of scientific units: including dimensionless numbers and scales.", "titulo"], ["6th ed.", "edicao"], ["London:", "local"], ["Chapman & Hill;", "editora"], ["1992.", "ano"], ["Survival ratio;", "titulo"], ["p. 160.", "pag"]]}]}, {"nome": "Wikipédia", "id": "wikipedia", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18\"/><path d=\"M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z\"/></svg>", "itens": [{"r": "Verbete da Wikipédia", "p": [["Wikipédia: a enciclopédia livre", "titulo"], ["[Internet].", "suporte"], ["[São Francisco, CA:", "local"], ["Fundação Wikimedia];", "editora"], ["2017", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Transplante de medula óssea", "titulo"], ["[modified 2023 Sept 17].", "ano"], ["Available from: https://pt.wikipedia.org/wiki/Transplante_de_medula_%C3%B3ssea", "url"]]}]}, {"nome": "Texto na internet", "id": "texto-na-internet", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"1.8\"/><path d=\"M3 8.5h18\"/><circle cx=\"6\" cy=\"6.2\" r=\".6\" fill=\"currentColor\"/><path d=\"M7 12h10M7 15.5h6\"/></svg>", "itens": [{"r": "Matéria em site", "p": [["Pinheiro E.", "autoria"], ["Há 13 anos no topo da lista, Brasil continua sendo o país que mais mata pessoas trans no mundo", "titulo"], ["[Internet].", "suporte"], ["São Paulo:", "local"], ["Brasil de Fato;", "editora"], ["2022", "ano"], ["[cited 2023 Sept 22];", "acesso"], ["[about 10 screens].", "pag"], ["Available from: https://www.brasildefato.com.br/2022/01/23/ha-13-anos-no-topo-da-lista-brasil-continua-sendo-o-pais-que-mais-mata-pessoas-trans-no-mundo", "url"]]}, {"r": "Ano provável entre colchetes", "p": [["Froes S.", "autoria"], ["Dor na mandíbula: 6 causas que você precisa saber", "titulo"], ["[Internet].", "suporte"], ["Juiz de Fora:", "local"], ["Codental,", "editora"], ["[2023]", "ano"], ["[cited 2023 Sept 22];", "acesso"], ["[about 5 screens].", "pag"], ["Available from: https://www.codental.com.br/blog/dor-na-mandibula-6-causas-que-voce-precisa-saber", "url"]]}, {"r": "Documento em PDF", "p": [["Santos RR, Carvalho MB.", "autoria"], ["Facetas diretas em resina composta.", "titulo"], ["Rio Verde:", "local"], ["Universidade de Rio Verde,", "editora"], ["[2021]", "ano"], ["[cited 2023 Sept 22].;", "acesso"], ["[13 p].", "pag"], ["Available from: https://www.unirv.edu.br/conteudos/fckfiles/files/RAIANE%20RIBEIRO.pdf", "url"]]}]}, {"nome": "UpToDate", "id": "uptodate", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 7v5.3l3.3 2\"/></svg>", "itens": [{"r": "Verbete do UpToDate", "p": [["Anderson DJ, Kanafani ZA.", "autoria"], ["Infection control in the outpatient setting (15 abr. 2022)", "titulo"], ["[Internet].", "suporte"], ["In:", ""], ["UpToDate.", "revista"], ["Alphen aan den Rijn:", "local"], ["Wolters Kluwer;", "editora"], ["c2023", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Available: https://www.uptodate.com/contents/infection-control-in-the-outpatient-setting", "url"]]}]}, {"nome": "Vídeos", "id": "videos", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"5\" width=\"14\" height=\"14\" rx=\"2\"/><path d=\"M16.5 10.5 21.5 7.5v9l-5-3z\"/><path d=\"M7.5 9.5 11.5 12l-4 2.5z\"/></svg>", "itens": [{"r": "YouTube, autoria institucional", "p": [["TV USP Bauru.", "autoria"], ["De bem com a saúde – AVC: qual a importância do rápido atendimento?", "titulo"], ["[Internet].", "suporte"], ["Bauru:", "local"], ["TV USP;", "editora"], ["2018 Oct 29", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Video: 1 min.", "pag"], ["Available from: https://www.youtube.com/watch?v=gkT-eMYlrKw", "url"]]}, {"r": "YouTube, autoria pessoal", "p": [["Osier F.", "autoria"], ["The key to a better malaria vaccine", "titulo"], ["[Internet].", "suporte"], ["[New York]:", "local"], ["TED,", "editora"], ["2018 Nov 6", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Video: 7 min.", "pag"], ["Available from: https://www.youtube.com/watch?v=b2Jv8vC-m3g", "url"]]}, {"r": "Figshare", "p": [["Petrucci O, Simon-lee R.", "autoria"], ["Heart tansplantation for a failed Fontan", "titulo"], ["[Internet].", "suporte"], ["[place unknown]:", "local"], ["CTSNet;", "editora"], ["2018", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Video: 7 min.", "pag"], ["Available from: https://figshare.com/articles/media/Heart_Transplantation_for_a_Failed_Fontan/7342751", "url"], ["doi: 10.25373/ctsnet.7342751.v1", "doi"]]}]}, {"nome": "Twitter / Threads", "id": "twitter-threads", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4l7 8.5M4 20l6.6-7.4M20 4l-7.4 8.2M13 12.4 20 20\"/><path d=\"M4 4h3.2M16.8 4H20M4 20h3M17 20h3\"/></svg>", "itens": [{"r": "Postagem no Twitter", "p": [["Agência Nacional de Vigilância Sanitária.", "autoria"], ["Uma nova promessa terapêutica em situações clínicas complexas e sem alternativas disponíveis começará a ter seus estudos desenvolvidos no Brasil [...]", "titulo"], ["[Internet].", "suporte"], ["2019 Jan 5", "ano"], ["[cited 2019 Mar 18].", "acesso"], ["Twitter: @anvisa_oficial.", "editora"], ["Available from: https://twitter.com/anvisa_oficial/status/1081597493614465025", "url"]]}, {"r": "Postagem no Threads", "p": [["Universidade de São Paulo.", "autoria"], ["A infecção pelo vírus da covid-19 pode aumentar a produção de autoanticorpos, relacionados a doenças autoimunes, explicando a suscetibilidade dos idosos e a gravidade da doença com distúrbios de coagulação, revela pesquisa conduzida na USP", "titulo"], ["[Internet].", "suporte"], ["2023 Sept 1", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Threads: @usp.oficial.", "editora"], ["Available from: https://www.threads.net/@usp.oficial/post/CwpaowcAAEC", "url"]]}]}, {"nome": "Facebook", "id": "facebook", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3.5\" y=\"3.5\" width=\"17\" height=\"17\" rx=\"4\"/><path d=\"M15 8h-1.6A2 2 0 0 0 11.4 10v10\"/><path d=\"M9 12.5h5\"/></svg>", "itens": [{"r": "Postagem no Facebook", "p": [["SciELO Network.", "autoria"], ["Chatbots são realmente autores de artigos científicos? Podem ser legalmente responsáveis, tomar decisões éticas? [...]", "titulo"], ["[Internet].", "suporte"], ["2023 Aug 30", "ano"], ["[cited 2023 Sept 22].", "acesso"], ["Facebook: @SciELONetwork.", "editora"], ["Available from: https://www.facebook.com/SciELONetwork/posts/pfbid02F8wdEAHdYdiZVkaEH9LJ8smmqEgtNBwzL9k6Pi7hG7PU8WePDq5THDLTMN3r2zXol", "url"]]}]}, {"nome": "Blog", "id": "blog", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 8.5h18\"/><path d=\"M6.8 12.5h4.4M6.8 16h8.4M14.5 12.5h2.7\"/></svg>", "itens": [{"r": "Postagem em blog", "p": [["Spinack E.", "autoria"], ["GPT, tradução automática e o quão bons eles são: uma avaliação abrangente.", "titulo"], ["2023 Aug 14", "ano"], ["[cited 2023 Sept 1].", "acesso"], ["In:", ""], ["SciELO em Perspectiva.", "revista"], ["São Paulo:", "local"], ["Scientific Electronic Library Online,", "editora"], ["c2023.", "ano"], ["[about 4 screens].", "pag"], ["Available from: https://blog.scielo.org/blog/2023/08/14/gpt-traducao-automatica-e-o-quao-bons-eles-sao/.", "url"]]}]}, {"nome": "Podcast", "id": "podcast", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"9\" y=\"2.5\" width=\"6\" height=\"10\" rx=\"3\"/><path d=\"M5.5 11a6.5 6.5 0 0 0 13 0\"/><path d=\"M12 17.5V21M9 21h6\"/></svg>", "itens": [{"r": "Podcast independente", "p": [["Dragões de Garagem", "titulo"], ["[Internet].", "suporte"], ["[place unknown]:", "local"], ["Dragões de Garagem;", "editora"], ["2018 Aug 14.", "ano"], ["[Podcast],", "tipo"], ["#137: vó Maria: vacinas e escolhas #semanadavacin;", "titulo"], ["2018 Aug 14", "ano"], ["[cited 2023 Sept 5];", "acesso"], ["[99 min.].", "pag"], ["Available from: http://dragoesdegaragem.com/podcast/dragoes-de-garagem-137-vo-maria-vacinas-e-escolhas-semanadavacina/.", "url"]]}, {"r": "Podcast institucional", "p": [["FOBCast", "titulo"], ["[Internet].", "suporte"], ["Bauru:", "local"], ["FOB-USP;", "editora"], ["2023 Aug 15.", "ano"], ["[Podcast],", "tipo"], ["#3: harmonização orofacial: mitos e verdade;", "titulo"], ["2023 Aug 15", "ano"], ["[cited 2023 Sept 1];", "acesso"], ["[41 min.].", "pag"], ["Available from: https://open.spotify.com/episode/5cvnoFRsKnL8udd9NU2rvU/.", "url"]]}]}, {"nome": "E-mail", "id": "e-mail", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2\"/><path d=\"M3 7l9 6.2L21 7\"/></svg>", "itens": [{"r": "Mensagem eletrônica", "p": [["Agência de Bibliotecas e Coleções Digitais da USP.", "autoria"], ["Revistas USP se destacam por sua qualidade", "titulo"], ["[Internet].", "suporte"], ["Message to: Rede de bibliotecas da USP.", "resp"], ["2023 Aug 14", "ano"], ["[cited 2023 Oct 18].", "acesso"], ["[12 paragraphs].", "pag"]]}]}, {"nome": "Base de dados", "id": "base-de-dados", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 4.5 4 8v5c0 4 3.4 6.6 8 7.5 4.6-.9 8-3.5 8-7.5V8z\"/><path d=\"M9 12.2l2 2 4-4.2\"/></svg>", "itens": [{"r": "LILACS", "p": [["LILACS, Informação Científica e Técnica em Saúde da América Latina e Caribe", "titulo"], ["[Internet].", "suporte"], ["São Paulo:", "local"], ["BIREME;", "editora"], ["2023", "ano"], ["[cited 2023 Sept 1].", "acesso"], ["Available from: http://lilacs.bvsalud.org/.", "url"]]}, {"r": "Cochrane Library", "p": [["Cochrane Library", "titulo"], ["[Internet].", "suporte"], ["St Albans House:", "local"], ["Wiley;", "editora"], ["c2000-2023", "ano"], ["[cited 2023 Sept 1].", "acesso"], ["Available from: https://www.cochranelibrary.com.", "url"]]}]}, {"nome": "Website", "id": "website", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.7\"/><path d=\"M3.5 9.5h17M3.5 14.5h17\"/><path d=\"M12 3.3c-2.3 2.4-3.5 5.3-3.5 8.7s1.2 6.3 3.5 8.7c2.3-2.4 3.5-5.3 3.5-8.7s-1.2-6.3-3.5-8.7z\"/></svg>", "itens": [{"r": "Página dentro de um site", "p": [["Coordenação de Aperfeiçoamento de Pessoal de Nível Superior", "titulo"], ["[Internet].", "suporte"], ["Brasília, DF:", "local"], ["CAPES;", "editora"], ["c2022", "ano"], ["[cited 2023 Sept 1].", "acesso"], ["Plataforma Sucupira;", "titulo"], ["[about 1 screen].", "pag"], ["Available from: https://sucupira.capes.gov.br/sucupira/.", "url"]]}, {"r": "Site institucional", "p": [["World Health Organization", "titulo"], ["[Internet].", "suporte"], ["Geneva:", "local"], ["WHO;", "editora"], ["c2023", "ano"], ["[cited 2023 Sept 1].", "acesso"], ["Available from: https://www.who.int/.", "url"]]}]}, {"nome": "Inteligência artificial", "id": "inteligencia-artificial", "ic": "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"10\" height=\"10\" rx=\"2\"/><path d=\"M10 3.5v3.5M14 3.5v3.5M10 17v3.5M14 17v3.5\"/><path d=\"M3.5 10H7M3.5 14H7M17 10h3.5M17 14h3.5\"/><path d=\"M10.6 13.6h2.8M12 10.3l-1.6 3.9M12 10.3l1.6 3.9\"/></svg>", "itens": [{"r": "ChatGPT", "p": [["OpenAI.", "autoria"], ["O que é ciência aberta?", "titulo"], ["[artificial intelligence].", "tipo"], ["GPT-3.5 version 2023 Sept 25", "edicao"], ["[cited 2023 Oct 18].", "acesso"], ["Available from: https://chat.openai.com/", "url"]]}, {"r": "ChatPDF", "p": [["ChatPDF GmbH.", "autoria"], ["What is the significance of beta-defensin 118 in the defense against Candida infection?", "titulo"], ["[artificial intelligence].", "tipo"], ["GPT-3.5 version 2023", "edicao"], ["[cited 2023 Oct 19].", "acesso"], ["Available from: https://www.chatpdf.com/", "url"]]}]}];
+var ELEMENTOS = {"autoria": "Autoria", "titulo": "Título", "revista": "Título da revista", "edicao": "Edição", "local": "Local", "editora": "Editora", "ano": "Data / ano", "pag": "Paginação", "tipo": "Tipo de documento", "suporte": "Suporte", "acesso": "Data de acesso", "url": "Disponibilidade", "doi": "DOI", "resp": "Responsabilidade"};
+var SUMARIO = [{"id": "comecar", "n": "1", "t": "Apresentação", "itens": [["fontes", "Documentos de referência"], ["nota-versao", "Nota da versão · set. 2026"], ["o-que-e", "O que é referência"], ["gerenciadores", "Os gerenciadores de referências"]]}, {"id": "elementos", "n": "2", "t": "Os principais elementos", "itens": [["autoria", "Autoria"], ["titulo", "O título"], ["titulo-revista", "O título da revista"], ["edicao", "Edição"], ["local", "Local"], ["editora", "Editora"], ["data", "Data / ano de publicação"], ["paginacao", "Paginação e descrição física"], ["mes", "Mês"], ["disponibilidade", "Disponibilidade e acesso"]]}, {"id": "catalogo", "n": "3", "t": "Exemplos de referências", "itens": [["livro", "Livro", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4.5A1.5 1.5 0 0 1 5.5 3H19v18H5.5A1.5 1.5 0 0 1 4 19.5z\"/><path d=\"M4 17.5h15\"/><path d=\"M8 3v11l2.5-1.8L13 14V3\"/></svg>"], ["livro-em-parte", "Livro em parte", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 6.5C10.5 5 8.5 4.5 4 4.5v13c4.5 0 6.5.5 8 2 1.5-1.5 3.5-2 8-2v-13c-4.5 0-6.5.5-8 2z\"/><path d=\"M12 6.5v13\"/><path d=\"M15 9.5h3.5M15 12.5h3.5\"/></svg>"], ["trabalhos-academicos", "Trabalhos acadêmicos", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3 2.5 8 12 13l9.5-5z\"/><path d=\"M6.5 10.3V15c0 1.5 2.6 3 5.5 3s5.5-1.5 5.5-3v-4.7\"/><path d=\"M21.5 8v6\"/></svg>"], ["artigos-de-periodicos", "Artigos de periódicos", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"14\" height=\"16\" rx=\"1.5\"/><path d=\"M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2h-2\"/><path d=\"M6.5 8h7M6.5 11.5h7M6.5 15h4\"/></svg>"], ["preprints", "Preprints", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z\"/><path d=\"M14 3v5h5\"/><path d=\"M12 11.5v5.5M9.5 14 12 11.5 14.5 14\"/></svg>"], ["dados-de-pesquisa", "Dados de pesquisa", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><ellipse cx=\"12\" cy=\"6\" rx=\"7.5\" ry=\"3\"/><path d=\"M4.5 6v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3V6\"/><path d=\"M4.5 12v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6\"/></svg>"], ["materia-de-jornal", "Matéria de jornal", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 6.5A1.5 1.5 0 0 1 4.5 5H18v12.5a2.5 2.5 0 0 0 2.5 2.5H5.5A2.5 2.5 0 0 1 3 17.5z\"/><path d=\"M18 9h2.5a.5.5 0 0 1 .5.5v8\"/><path d=\"M6 8.5h5v4H6zM13.5 8.5h1.5M13.5 11.5h1.5M6 15.5h9\"/></svg>"], ["eventos", "Eventos", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"3.5\" width=\"18\" height=\"11\" rx=\"1.5\"/><path d=\"M12 14.5v3\"/><path d=\"M7.5 20.5c0-1.7 2-3 4.5-3s4.5 1.3 4.5 3\"/><path d=\"M7 7.5h6M7 10.5h4\"/></svg>"], ["patentes", "Patentes", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"9.5\" r=\"6\"/><path d=\"M9.5 9.5l1.8 1.8 3.4-3.6\"/><path d=\"M8.7 14.6 7 21.5l5-2.2 5 2.2-1.7-6.9\"/></svg>"], ["bula-de-medicamento", "Bula de medicamento", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 5.5h6v14H4zM10 5.5h6v14h-6zM16 5.5h4v14h-4z\"/><path d=\"M13 9.5v4M11 11.5h4\"/></svg>"], ["normas-tecnicas", "Normas técnicas", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z\"/><path d=\"M14 3v5h5\"/><path d=\"M8.5 12h7M8.5 15.5h5\"/></svg>"], ["referencias-legislativas", "Referências legislativas", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 20h18\"/><path d=\"M12 3 3.5 7.5h17z\"/><path d=\"M6 10v7M10 10v7M14 10v7M18 10v7\"/></svg>"], ["documento-iconografico", "Documento iconográfico", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4.5\" width=\"18\" height=\"15\" rx=\"1.5\"/><circle cx=\"8.5\" cy=\"9.5\" r=\"1.6\"/><path d=\"M3 16.5l4.8-4.3 3.4 3 3-2.6L21 16\"/></svg>"], ["enciclopedia", "Enciclopédia", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4.5A1.5 1.5 0 0 1 5.5 3H19v18H5.5A1.5 1.5 0 0 1 4 19.5z\"/><path d=\"M4 17.5h15\"/><path d=\"M9 7.5h6M9 11h4\"/></svg>"], ["wikipedia", "Wikipédia", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18\"/><path d=\"M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z\"/></svg>"], ["texto-na-internet", "Texto na internet", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"1.8\"/><path d=\"M3 8.5h18\"/><circle cx=\"6\" cy=\"6.2\" r=\".6\" fill=\"currentColor\"/><path d=\"M7 12h10M7 15.5h6\"/></svg>"], ["uptodate", "UpToDate", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.5\"/><path d=\"M12 7v5.3l3.3 2\"/></svg>"], ["videos", "Vídeos", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"5\" width=\"14\" height=\"14\" rx=\"2\"/><path d=\"M16.5 10.5 21.5 7.5v9l-5-3z\"/><path d=\"M7.5 9.5 11.5 12l-4 2.5z\"/></svg>"], ["twitter-threads", "Twitter / Threads", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4l7 8.5M4 20l6.6-7.4M20 4l-7.4 8.2M13 12.4 20 20\"/><path d=\"M4 4h3.2M16.8 4H20M4 20h3M17 20h3\"/></svg>"], ["facebook", "Facebook", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3.5\" y=\"3.5\" width=\"17\" height=\"17\" rx=\"4\"/><path d=\"M15 8h-1.6A2 2 0 0 0 11.4 10v10\"/><path d=\"M9 12.5h5\"/></svg>"], ["blog", "Blog", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M3 8.5h18\"/><path d=\"M6.8 12.5h4.4M6.8 16h8.4M14.5 12.5h2.7\"/></svg>"], ["podcast", "Podcast", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"9\" y=\"2.5\" width=\"6\" height=\"10\" rx=\"3\"/><path d=\"M5.5 11a6.5 6.5 0 0 0 13 0\"/><path d=\"M12 17.5V21M9 21h6\"/></svg>"], ["e-mail", "E-mail", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"2.5\" y=\"5\" width=\"19\" height=\"14\" rx=\"2\"/><path d=\"M3 7l9 6.2L21 7\"/></svg>"], ["base-de-dados", "Base de dados", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 4.5 4 8v5c0 4 3.4 6.6 8 7.5 4.6-.9 8-3.5 8-7.5V8z\"/><path d=\"M9 12.2l2 2 4-4.2\"/></svg>"], ["website", "Website", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.7\"/><path d=\"M3.5 9.5h17M3.5 14.5h17\"/><path d=\"M12 3.3c-2.3 2.4-3.5 5.3-3.5 8.7s1.2 6.3 3.5 8.7c2.3-2.4 3.5-5.3 3.5-8.7s-1.2-6.3-3.5-8.7z\"/></svg>"], ["inteligencia-artificial", "Inteligência artificial", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"7\" y=\"7\" width=\"10\" height=\"10\" rx=\"2\"/><path d=\"M10 3.5v3.5M14 3.5v3.5M10 17v3.5M14 17v3.5\"/><path d=\"M3.5 10H7M3.5 14H7M17 10h3.5M17 14h3.5\"/><path d=\"M10.6 13.6h2.8M12 10.3l-1.6 3.9M12 10.3l1.6 3.9\"/></svg>"]]}, {"id": "formatacao", "n": "4", "t": "Formatação das referências", "itens": []}, {"id": "citacoes", "n": "5", "t": "Citações no texto", "itens": [["chamada", "Como chamar a referência"], ["direta", "Citação direta"], ["consideracoes", "Supressões, grifos e traduções"], ["indireta", "Citação indireta"], ["apud", "Citação de citação"], ["notas", "Notas"], ["marcas", "Citação de marcas comerciais"]]}, {"id": "recursos", "n": "6", "t": "Outros guias e contato", "itens": []}];
+
+(function(){
+"use strict";
+function normaliza(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+// o campo de texto pode conter <i>...</i> para nomes científicos
+function marcado(s){return esc(s).replace(/&lt;i&gt;/g,"<i>").replace(/&lt;\/i&gt;/g,"</i>");}
+
+/* ---------- 1. Sumário lateral ---------- */
+var lista=document.getElementById("navLista");
+SUMARIO.forEach(function(c){
+  var li=document.createElement("li"); li.className="ncap";
+  var a=document.createElement("a"); a.href="#"+c.id;
+  a.innerHTML='<b>'+c.n+'</b><span>'+c.t+'</span>';
+  li.appendChild(a);
+  if(c.itens.length){
+    var ul=document.createElement("ul");
+    c.itens.forEach(function(it){
+      var s=document.createElement("li");
+      var sa=document.createElement("a"); sa.href="#"+it[0];
+      sa.innerHTML=(it[2]||"")+"<span>"+it[1]+"</span>";
+      s.appendChild(sa); ul.appendChild(s);
+    });
+    li.appendChild(ul);
+  }
+  lista.appendChild(li);
+});
+
+var busca=document.getElementById("busca"),
+    vazio=document.getElementById("buscaVazio"),
+    caps=Array.prototype.slice.call(lista.querySelectorAll(".ncap"));
+busca.addEventListener("input",function(){
+  var q=normaliza(busca.value.trim()), achou=0;
+  caps.forEach(function(cap){
+    var titulo=normaliza(cap.querySelector("a").textContent);
+    var subs=Array.prototype.slice.call(cap.querySelectorAll("ul li"));
+    if(!q){
+      cap.classList.remove("oculto");
+      subs.forEach(function(s){s.classList.remove("oculto");});
+      achou++; return;
+    }
+    var capBate=titulo.indexOf(q)>-1, algumSub=false;
+    subs.forEach(function(s){
+      var bate=capBate||normaliza(s.textContent).indexOf(q)>-1;
+      s.classList.toggle("oculto",!bate);
+      if(bate) algumSub=true;
+    });
+    var mostra=capBate||algumSub;
+    cap.classList.toggle("oculto",!mostra);
+    if(mostra) achou++;
+  });
+  vazio.classList.toggle("on", !!q && achou===0);
+});
+
+/* ---------- 2. Sumário retrátil ---------- */
+var rail=document.getElementById("rail"), btn=document.getElementById("btnRail");
+btn.addEventListener("click",function(){
+  var aberto=rail.classList.toggle("aberto");
+  btn.setAttribute("aria-expanded",aberto?"true":"false");
+});
+rail.addEventListener("click",function(e){
+  if(e.target.tagName==="A"&&window.innerWidth<=1000){
+    rail.classList.remove("aberto"); btn.setAttribute("aria-expanded","false");
+  }
+});
+
+/* ---------- 3. Catálogo ---------- */
+var alvo=document.getElementById("catalogoLista");
+var htmlCat="";
+DADOS.forEach(function(g,gi){
+  htmlCat+='<section class="grupo" id="'+g.id+'"><h3>'+(g.ic||'')+esc(g.nome)+'</h3>';
+  g.itens.forEach(function(it,ii){
+    var id=g.id+"-"+ii, plano="", corpo="";
+    it.p.forEach(function(par,pi){
+      var txt=par[0], el=par[1];
+      plano+=(pi?" ":"")+txt.replace(/<\/?i>/g,"");
+      if(el) corpo+='<span class="pt" data-el="'+el+'" tabindex="0" role="button">'+marcado(txt)+'</span> ';
+      else corpo+='<span class="liso">'+marcado(txt)+'</span> ';
+    });
+    htmlCat+='<article class="ficha" id="'+id+'" data-busca="'+
+      normaliza(g.nome+" "+it.r+" "+plano).replace(/"/g,"")+'">'+
+      '<div class="ficha-cab"><span class="rotulo">'+esc(it.r)+'</span>'+
+      '<button class="copiar" type="button" data-txt="'+esc(plano)+'">copiar</button></div>'+
+      '<div class="ref">'+corpo+'</div>'+
+      '<p class="etiqueta" aria-live="polite"></p></article>';
+  });
+  htmlCat+='</section>';
+});
+alvo.innerHTML=htmlCat;
+
+/* chips de elementos */
+var chips=document.getElementById("chipsEl"), usados={};
+DADOS.forEach(function(g){g.itens.forEach(function(it){it.p.forEach(function(p){if(p[1])usados[p[1]]=1;});});});
+Object.keys(ELEMENTOS).forEach(function(k){
+  if(!usados[k]) return;
+  var b=document.createElement("button");
+  b.className="chip"; b.type="button"; b.dataset.el=k;
+  b.setAttribute("aria-pressed","false");
+  b.textContent=ELEMENTOS[k];
+  chips.appendChild(b);
+});
+
+var elAtivo=null;
+function pintar(){
+  Array.prototype.forEach.call(alvo.querySelectorAll(".pt"),function(s){
+    s.classList.toggle("on", !!elAtivo && s.dataset.el===elAtivo);
+  });
+  Array.prototype.forEach.call(alvo.querySelectorAll(".etiqueta"),function(e){e.textContent="";});
+}
+chips.addEventListener("click",function(e){
+  var b=e.target.closest(".chip"); if(!b) return;
+  var novo = (elAtivo===b.dataset.el) ? null : b.dataset.el;
+  elAtivo=novo;
+  Array.prototype.forEach.call(chips.querySelectorAll(".chip"),function(c){
+    c.setAttribute("aria-pressed", c.dataset.el===elAtivo ? "true":"false");
+  });
+  pintar();
+});
+
+/* clique numa parte da referência */
+function mostrarParte(s){
+  var ficha=s.closest(".ficha");
+  var jaAtivo=s.classList.contains("on") && !elAtivo;
+  Array.prototype.forEach.call(ficha.querySelectorAll(".pt"),function(x){
+    if(!elAtivo||x.dataset.el!==elAtivo) x.classList.remove("on");
+  });
+  var et=ficha.querySelector(".etiqueta");
+  if(jaAtivo){ et.textContent=""; return; }
+  s.classList.add("on");
+  et.innerHTML="Este trecho é a <b>"+ELEMENTOS[s.dataset.el]+"</b>";
+}
+alvo.addEventListener("click",function(e){
+  var b=e.target.closest(".copiar");
+  if(b){
+    var t=b.dataset.txt;
+    var ok=function(){ var o=b.textContent; b.textContent="copiado"; setTimeout(function(){b.textContent=o;},1400); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok,function(){}); }
+    else{ var ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta);
+          ta.select(); try{document.execCommand("copy"); ok();}catch(x){} document.body.removeChild(ta); }
+    return;
+  }
+  var s=e.target.closest(".pt"); if(s) mostrarParte(s);
+});
+alvo.addEventListener("keydown",function(e){
+  if(e.key!=="Enter"&&e.key!==" ") return;
+  var s=e.target.closest(".pt"); if(!s) return;
+  e.preventDefault(); mostrarParte(s);
+});
+
+/* filtro do catálogo */
+var filtro=document.getElementById("filtro"), contador=document.getElementById("contador");
+var fichas=Array.prototype.slice.call(alvo.querySelectorAll(".ficha"));
+var secoes=Array.prototype.slice.call(alvo.querySelectorAll(".grupo"));
+function filtrar(){
+  var q=normaliza(filtro.value.trim()), n=0;
+  fichas.forEach(function(f){
+    var bate = !q || f.dataset.busca.indexOf(q)>-1;
+    f.classList.toggle("oculto",!bate);
+    if(bate) n++;
+  });
+  secoes.forEach(function(s){
+    s.classList.toggle("oculto", !s.querySelector(".ficha:not(.oculto)"));
+  });
+  contador.textContent = n===fichas.length
+    ? fichas.length+" exemplos"
+    : (n===0 ? "nenhum exemplo" : n+" de "+fichas.length+" exemplos");
+}
+filtro.addEventListener("input",filtrar);
+filtrar();
+
+/* ---------- 4. Seção ativa ---------- */
+var alvos=[], elos={};
+SUMARIO.forEach(function(c){ alvos.push(c.id); c.itens.forEach(function(i){alvos.push(i[0]);}); });
+Array.prototype.forEach.call(lista.querySelectorAll("a"),function(a){
+  elos[a.getAttribute("href").slice(1)]=a;
+});
+if("IntersectionObserver" in window){
+  var vis={};
+  var obs=new IntersectionObserver(function(ents){
+    ents.forEach(function(e){ vis[e.target.id]=e.isIntersecting; });
+    var atual=null;
+    for(var i=0;i<alvos.length;i++){ if(vis[alvos[i]]){atual=alvos[i];break;} }
+    Array.prototype.forEach.call(lista.querySelectorAll("a.ativo"),function(a){a.classList.remove("ativo");});
+    if(atual&&elos[atual]) elos[atual].classList.add("ativo");
+  },{rootMargin:"-88px 0px -68% 0px"});
+  alvos.forEach(function(id){ var el=document.getElementById(id); if(el) obs.observe(el); });
+}
+})();
+
+</script>
+</body>
+</html>

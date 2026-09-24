@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia para elaboração de trabalhos de conclusão de curso constituídos por artigo — ABNT NBR 14724:2024</title>
+<meta name="description" content="Guia do Serviço de Biblioteca e Documentação da FOB-USP para elaboração de trabalhos de conclusão de curso constituídos por artigo, conforme a ABNT NBR 14724:2024.">
+<meta name="author" content="José Roberto Plácido Amadei; Valéria Cristina Trindade Ferraz; Jane Coelho Danuello">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   Paleta herdada do guia impresso da Biblioteca FOB-USP:
+   vinho e verde-petróleo dos diagramas, sálvia dos slides.
+   ============================================================ */
+:root{
+  --vinho:#2F5061;
+  --vinho-esc:#1E3743;
+  --vinho-cl:#5E8497;
+  --teal:#41837F;
+  --teal-esc:#2C5D5A;
+  --salvia:#E3EAEE;
+  --salvia-cl:#F2F6F8;
+  --rosa:#CBD9E0;
+  --papel:#FFFFFF;
+  --tinta:#221B1B;
+  --grafite:#645B5B;
+  --linha:rgba(47,80,97,.20);
+  --linha-fraca:rgba(34,27,27,.10);
+  --rail:300px;
+  --ui:'Archivo','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+  --norma:'Times New Roman',Times,serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  margin:0;
+  font-family:var(--ui);
+  font-size:16px;
+  line-height:1.6;
+  color:var(--tinta);
+  background:var(--salvia-cl);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--vinho);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--vinho-esc)}
+:focus-visible{outline:2.5px solid var(--teal);outline-offset:2px;border-radius:2px}
+
+/* ============================================================
+   BARRA SUPERIOR
+   ============================================================ */
+.topo{
+  position:sticky;top:0;z-index:60;
+  display:flex;align-items:center;gap:16px;
+  padding:10px 20px;
+  background:var(--vinho);color:#fff;
+  border-bottom:3px solid var(--vinho-esc);
+}
+.topo .marca{font-weight:700;font-size:.9rem;letter-spacing:.01em;line-height:1.25}
+.topo .marca span{display:block;font-weight:400;font-size:.75rem;opacity:.78}
+.topo .norma{
+  margin-left:auto;font-size:.75rem;font-weight:600;
+  padding:4px 10px;border:1px solid rgba(255,255,255,.45);border-radius:3px;white-space:nowrap;
+}
+.abre-rail{
+  display:none;background:transparent;border:1px solid rgba(255,255,255,.5);
+  color:#fff;font:inherit;font-size:.8rem;font-weight:600;padding:6px 11px;border-radius:3px;cursor:pointer;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.moldura{display:flex;align-items:flex-start;max-width:1440px;margin:0 auto;background:var(--papel)}
+
+.rail{
+  position:sticky;top:57px;flex:0 0 var(--rail);width:var(--rail);
+  height:calc(100vh - 57px);overflow-y:auto;
+  padding:22px 14px 60px 22px;
+  background:var(--salvia);
+  border-right:1px solid var(--linha);
+}
+.busca-caixa{position:relative;margin-bottom:16px}
+.busca{
+  width:100%;padding:9px 12px 9px 32px;
+  font:inherit;font-size:.86rem;color:var(--tinta);
+  background:#fff;border:1px solid var(--linha);border-radius:3px;
+}
+.busca::placeholder{color:#8b8080}
+.busca-caixa svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);opacity:.5;pointer-events:none}
+.busca-vazio{display:none;font-size:.8rem;color:var(--grafite);padding:6px 2px 10px}
+.busca-vazio.on{display:block}
+
+.rail nav ol{list-style:none;margin:0;padding:0;counter-reset:cap}
+.rail .ncap{margin-bottom:14px}
+.rail .ncap.oculto{display:none}
+.rail .ncap > a{
+  display:flex;gap:9px;align-items:baseline;
+  padding:5px 8px 5px 0;
+  font-size:.9rem;font-weight:600;color:var(--vinho-esc);text-decoration:none;
+  border-bottom:1px solid var(--linha);
+}
+.rail .ncap > a:hover{color:var(--vinho)}
+.rail .ncap > a b{font-variant-numeric:tabular-nums;font-weight:700;color:var(--vinho-cl);flex:0 0 18px}
+.rail .ncap ul{list-style:none;margin:5px 0 0;padding:0 0 0 27px}
+.rail .ncap li{margin:0}
+.rail .ncap li.oculto{display:none}
+.rail .ncap li a{
+  display:block;padding:3px 0;font-size:.83rem;color:var(--grafite);text-decoration:none;line-height:1.4;
+}
+.rail .ncap li a:hover{color:var(--vinho);text-decoration:underline}
+.rail .ncap li a.ativo,.rail .ncap > a.ativo{color:var(--vinho);font-weight:600}
+
+.conteudo{flex:1 1 auto;min-width:0;padding:0 0 80px}
+.faixa{padding:0 clamp(20px,4.2vw,64px)}
+.texto{max-width:70ch}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  padding:clamp(38px,5.5vw,70px) clamp(20px,4.2vw,64px) 40px;
+  border-bottom:1px solid var(--linha);
+}
+.hero .ancora{
+  font-size:.78rem;font-weight:600;color:var(--teal-esc);
+  margin:0 0 18px;letter-spacing:.02em;
+}
+.hero h1{
+  font-size:clamp(1.85rem,3.9vw,3.05rem);
+  line-height:1.06;letter-spacing:-.025em;font-weight:700;
+  margin:0 0 18px;max-width:19ch;color:var(--vinho-esc);
+}
+.hero .abre{font-size:1.03rem;line-height:1.62;color:var(--grafite);max-width:62ch;margin:0 0 28px}
+.hero .abre strong{color:var(--tinta);font-weight:600}
+.autoria{
+  display:flex;flex-wrap:wrap;gap:6px 22px;
+  font-size:.82rem;color:var(--grafite);
+  padding-top:16px;border-top:1px solid var(--linha-fraca);margin-top:30px;
+}
+.autoria b{font-weight:600;color:var(--tinta)}
+
+.atalhos{display:flex;flex-wrap:wrap;gap:10px}
+.atalho{
+  display:inline-flex;flex-direction:column;gap:2px;
+  padding:11px 16px;min-width:172px;
+  background:var(--salvia-cl);border:1px solid var(--linha);border-left:4px solid var(--vinho);
+  border-radius:2px;text-decoration:none;color:var(--tinta);
+}
+.atalho:hover{background:var(--salvia);color:var(--tinta)}
+.atalho b{font-size:.92rem;font-weight:600;color:var(--vinho-esc)}
+.atalho span{font-size:.78rem;color:var(--grafite)}
+
+/* ============================================================
+   AS TRÊS PARTES (espinha do documento)
+   ============================================================ */
+.anatomia{
+  padding:clamp(30px,4vw,48px) clamp(20px,4.2vw,64px);
+  background:var(--salvia-cl);border-bottom:1px solid var(--linha);
+}
+.anatomia h2{font-size:1.28rem;margin:0 0 4px;letter-spacing:-.01em;color:var(--vinho-esc)}
+.anatomia > p{margin:0 0 26px;font-size:.9rem;color:var(--grafite);max-width:64ch}
+.pilha{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.bloco{background:#fff;border:1px solid var(--linha);border-radius:3px;overflow:hidden}
+.bloco > h3{
+  margin:0;padding:11px 16px;font-size:.93rem;font-weight:700;color:#fff;background:var(--vinho);
+  display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+}
+.bloco > h3 em{font-style:normal;font-weight:500;font-size:.74rem;opacity:.8}
+.bloco:nth-child(2) > h3{background:var(--teal)}
+.bloco:nth-child(3) > h3{background:var(--vinho-cl)}
+.bloco ul{list-style:none;margin:0;padding:9px 0}
+.bloco li{margin:0}
+.bloco li a{
+  display:flex;align-items:baseline;gap:8px;
+  padding:5px 16px;font-size:.845rem;color:var(--tinta);text-decoration:none;line-height:1.4;
+}
+.bloco li a:hover{background:var(--salvia-cl);color:var(--vinho-esc)}
+.pt{flex:0 0 7px;height:7px;border-radius:50%;background:var(--vinho);transform:translateY(-1px)}
+.pt.op{background:transparent;border:1.5px solid var(--vinho-cl)}
+.pt.var{background:var(--teal)}
+.legenda{
+  display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px;
+  font-size:.79rem;color:var(--grafite);
+}
+.legenda span{display:inline-flex;align-items:center;gap:7px}
+
+/* ============================================================
+   SEÇÕES
+   ============================================================ */
+.cap{padding-top:clamp(40px,4.6vw,62px)}
+.cap-cab{
+  display:flex;align-items:baseline;gap:14px;
+  padding-bottom:10px;margin-bottom:26px;border-bottom:2px solid var(--vinho);
+}
+.cap-cab .num{
+  font-size:1.55rem;font-weight:700;color:var(--rosa);font-variant-numeric:tabular-nums;line-height:1;
+}
+.cap-cab h2{font-size:clamp(1.35rem,2.4vw,1.72rem);margin:0;letter-spacing:-.02em;color:var(--vinho-esc);line-height:1.15}
+
+.sub{padding-top:30px}
+.sub h3{
+  font-size:1.1rem;margin:0 0 10px;color:var(--vinho-esc);letter-spacing:-.01em;
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+}
+.sub h4{font-size:.95rem;margin:20px 0 6px;color:var(--tinta)}
+.sub p{margin:0 0 12px;max-width:70ch}
+.sub ul,.sub ol{max-width:70ch;margin:0 0 12px;padding-left:20px}
+.sub li{margin:0 0 6px}
+.sub li::marker{color:var(--vinho-cl)}
+
+.tag{
+  font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+  padding:3px 8px;border-radius:2px;white-space:nowrap;position:relative;top:-1px;
+}
+.tag.obr{background:var(--vinho);color:#fff}
+.tag.opc{background:#fff;color:var(--vinho-cl);border:1px solid var(--vinho-cl)}
+.tag.var{background:var(--teal);color:#fff}
+
+/* callouts */
+.nota{
+  border-left:4px solid var(--teal);background:var(--salvia-cl);
+  padding:14px 18px;margin:16px 0;max-width:70ch;border-radius:0 3px 3px 0;
+}
+.nota p{margin:0 0 8px}
+.nota p:last-child{margin:0}
+.nota .rot{font-weight:700;font-size:.85rem;color:var(--teal-esc);margin-bottom:4px}
+.nota.alerta{border-left-color:var(--vinho);background:#FBF6F6}
+.nota.alerta .rot{color:var(--vinho)}
+
+/* exemplo — composto na tipografia que a norma exige */
+.exemplo{
+  font-family:var(--norma);font-size:1.02rem;line-height:1.5;
+  background:#fff;border:1px solid var(--linha);border-radius:3px;
+  padding:14px 18px;margin:12px 0;max-width:70ch;
+}
+.exemplo .rot{
+  font-family:var(--ui);font-size:.7rem;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--vinho-cl);margin-bottom:8px;
+}
+.exemplo code{font-family:var(--norma);font-size:1.02rem;background:none}
+
+/* tabelas de referência rápida */
+.qr{width:100%;border-collapse:collapse;margin:12px 0 18px;font-size:.88rem;max-width:74ch}
+.qr caption{text-align:left;font-size:.85rem;color:var(--grafite);padding-bottom:8px}
+.qr th,.qr td{padding:9px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--linha-fraca)}
+.qr thead th{
+  background:var(--salvia);color:var(--vinho-esc);font-size:.78rem;font-weight:700;
+  border-bottom:2px solid var(--vinho);
+}
+.qr tbody tr:hover{background:var(--salvia-cl)}
+.qr td.pt-num{font-weight:700;color:var(--vinho);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+.grade2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin:16px 0;max-width:74ch}
+.cartao{border:1px solid var(--linha);border-radius:3px;padding:16px 18px;background:#fff}
+.cartao h4{margin:0 0 8px;font-size:.95rem;color:var(--vinho-esc)}
+.cartao p:last-child,.cartao ul:last-child{margin-bottom:0}
+.cartao ul{padding-left:18px;font-size:.9rem}
+
+.baixar{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 16px;background:var(--vinho);color:#fff;text-decoration:none;
+  font-size:.88rem;font-weight:600;border-radius:3px;border:none;
+}
+.baixar:hover{background:var(--vinho-esc);color:#fff}
+.baixar.sec{background:#fff;color:var(--vinho);border:1px solid var(--vinho)}
+.baixar.sec:hover{background:var(--salvia-cl);color:var(--vinho-esc)}
+.linha-btn{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+
+/* ============================================================
+   PÁGINA A4
+   ============================================================ */
+.a4-fig{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start;margin:14px 0}
+.a4{
+  position:relative;width:212px;height:300px;flex:0 0 auto;
+  background:#fff;border:1px solid var(--vinho);
+}
+.a4 .mancha{position:absolute;inset:0;border:1px dashed var(--teal);opacity:.85}
+.a4 .cota{
+  position:absolute;font-size:.7rem;font-weight:700;color:var(--vinho);background:#fff;padding:0 4px;
+}
+
+/* ============================================================
+   ESCALA DE FONTES
+   ============================================================ */
+.escala{border:1px solid var(--linha);border-radius:3px;overflow:hidden;max-width:74ch;margin:14px 0}
+.escala div{
+  display:flex;align-items:baseline;gap:16px;padding:11px 16px;
+  border-bottom:1px solid var(--linha-fraca);
+}
+.escala div:last-child{border-bottom:none}
+.escala .med{
+  flex:0 0 46px;font-size:.72rem;font-weight:700;color:#fff;background:var(--vinho);
+  padding:3px 0;text-align:center;border-radius:2px;position:relative;top:-2px;
+}
+.escala .amostra{font-family:var(--norma);line-height:1.2;flex:0 0 auto}
+.escala .uso{font-size:.83rem;color:var(--grafite);line-height:1.45}
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+.rodape{
+  margin-top:60px;padding:38px clamp(20px,4.2vw,64px) 44px;
+  background:var(--vinho);color:#fff;
+}
+.rodape a{color:#fff}
+.rodape h2{font-size:1.15rem;margin:0 0 16px}
+.rodape-grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:34px}
+.rodape ul{list-style:none;margin:0;padding:0;font-size:.9rem}
+.rodape li{margin-bottom:9px;line-height:1.45}
+.rodape .end{font-size:.87rem;line-height:1.65;opacity:.9}
+.rodape .fim{
+  margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.25);
+  font-size:.78rem;opacity:.78;line-height:1.6;
+}
+
+
+/* ============================================================
+   ESQUEMAS ILUSTRATIVOS
+   ============================================================ */
+.esquema{margin:18px 0 24px;max-width:560px}
+.esquema.larga{max-width:680px}
+.esquema svg{width:100%;height:auto;display:block;background:var(--salvia-cl);border:1px solid var(--linha);border-radius:3px;padding:6px}
+.esquema figcaption{font-size:.82rem;color:var(--grafite);margin-top:9px;line-height:1.5;max-width:56ch}
+.esquema .pg{fill:#fff;stroke:var(--vinho);stroke-width:.7}
+.esquema .mg{fill:none;stroke:var(--teal);stroke-width:.45;stroke-dasharray:3 2.4;opacity:.8}
+.esquema .vazio{fill:none;stroke:var(--rosa);stroke-width:.8;stroke-dasharray:4 3}
+.esquema .eixo{stroke:var(--teal);stroke-width:.45;stroke-dasharray:2 2;opacity:.9}
+.esquema .ln{fill:#CFC7C7}
+.esquema .tx{fill:#2E2626;font-family:'Times New Roman',Times,serif}
+.esquema .cal{fill:var(--vinho);font-family:var(--ui);font-weight:700}
+.esquema .lead{stroke:var(--vinho);stroke-width:.6}
+.esquema .dot{fill:var(--vinho)}
+.esquema .bx{fill:none;stroke:#9A9090;stroke-width:.45}
+.esquema .bx.nota{fill:var(--rosa);stroke:var(--vinho-cl);stroke-width:.6}
+.esquema .pont{stroke:#B9B0B0;stroke-width:.4;stroke-dasharray:.8 1.4}
+.esquema .forte{stroke:#2E2626;stroke-width:1.1}
+.esquema .img{fill:#F4F0EF;stroke:#C6BDBD;stroke-width:.5}
+.esquema .pulmao{fill:var(--rosa);stroke:var(--vinho-cl);stroke-width:.8}
+.esquema .traqueia{stroke:var(--vinho-cl);stroke-width:1.6;stroke-linecap:round}
+@media (max-width:560px){.esquema,.esquema.larga{max-width:100%}}
+
+
+.topo .norma b{font-weight:700;letter-spacing:.02em}
+.topo .norma{background:rgba(255,255,255,.12)}
+.aviso-irmao{display:flex;align-items:center;gap:9px;margin:0 0 26px;padding:10px 14px;
+  background:var(--salvia-cl);border:1px solid var(--linha);border-left:4px solid var(--teal);
+  border-radius:0 3px 3px 0;font-size:.86rem;color:var(--grafite);max-width:62ch}
+.aviso-irmao .ic{width:1.05em;height:1.05em;color:var(--teal);flex:0 0 auto}
+
+/* ============================================================
+   ÍCONES
+   ============================================================ */
+.ic{width:1em;height:1em;flex:0 0 auto;vertical-align:-.12em}
+.cap-cab h2{display:flex;align-items:center;gap:11px}
+.cap-cab .ic{width:1.08em;height:1.08em;color:var(--vinho);opacity:.9}
+.sub h3 .ic{width:1.06em;height:1.06em;color:var(--vinho-cl)}
+.atalho .ic{width:1.15em;height:1.15em;color:var(--vinho);margin-bottom:4px}
+.rail .ncap li a{display:flex;align-items:center;gap:8px}
+.rail .ncap li a .ic{width:1.02em;height:1.02em;color:var(--vinho-cl);opacity:.72}
+.nota .rot{display:flex;align-items:center;gap:7px}
+.nota .rot .ic{width:1.05em;height:1.05em}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width:1000px){
+  .pilha{grid-template-columns:1fr}
+  .abre-rail{display:block}
+  .rail{
+    position:fixed;top:57px;left:0;bottom:0;height:auto;width:min(320px,86vw);flex-basis:auto;
+    transform:translateX(-102%);transition:transform .22s ease;z-index:55;box-shadow:2px 0 18px rgba(0,0,0,.16);
+  }
+  .rail.aberto{transform:none}
+  .moldura{display:block}
+}
+@media (max-width:560px){
+  body{font-size:15.5px}
+  .atalho{flex:1 1 100%;min-width:0}
+  .baixar{width:100%;justify-content:center;text-align:center}
+  .a4{width:170px;height:240px}
+  .escala .amostra{display:none}
+  .topo .norma{display:none}
+}
+
+/* ============================================================
+   IMPRESSÃO
+   ============================================================ */
+@media print{
+  .topo,.rail,.atalhos,.abre-rail,.busca-caixa{display:none!important}
+  body{background:#fff;font-size:10.5pt}
+  .moldura{display:block;max-width:none}
+  .cap{page-break-inside:auto;padding-top:22px}
+  .cap-cab{page-break-after:avoid}
+  .sub h3,.sub h4{page-break-after:avoid}
+  .nota,.exemplo,.cartao,.seletor,.escala{page-break-inside:avoid}
+  .seletor-cab .chips{display:none}
+  a{text-decoration:none;color:#000}
+  .rodape{background:#fff;color:#000;border-top:2px solid #000}
+  .rodape a{color:#000}
+}
+
+/* rótulo do formato no topo */
+.topo .norma b{font-weight:700;letter-spacing:.02em}
+.topo .norma{background:rgba(255,255,255,.12)}
+.aviso-irmao{display:flex;align-items:center;gap:9px;margin:0 0 26px;padding:10px 14px;
+  background:var(--salvia-cl);border:1px solid var(--linha);border-left:4px solid var(--teal);
+  border-radius:0 3px 3px 0;font-size:.86rem;color:var(--grafite);max-width:62ch}
+.aviso-irmao .ic{width:1.05em;height:1.05em;color:var(--teal);flex:0 0 auto}
+
+/* ícones */
+.ic{width:1em;height:1em;flex:0 0 auto;vertical-align:-.12em}
+.cap-cab h2{display:flex;align-items:center;gap:11px}
+.cap-cab .ic{width:1.1em;height:1.1em;color:var(--vinho);opacity:.9}
+.sub h3 .ic{width:1.08em;height:1.08em;color:var(--vinho-cl)}
+.atalho .ic{width:1.15em;height:1.15em;color:var(--vinho);margin-bottom:4px}
+.rail .ncap li a{display:flex;align-items:center;gap:8px}
+.rail .ncap li a .ic{width:1.02em;height:1.02em;color:var(--vinho-cl);opacity:.72}
+.bloco li a .ic{width:1em;height:1em;color:var(--vinho-cl);opacity:.8;margin-right:1px}
+
+/* esquema da estrutura */
+.esquema .colb{fill:#fff;stroke:var(--linha);stroke-width:1}
+.esquema .colt{fill:var(--vinho);stroke:none}
+.esquema .colh{fill:#fff;font-family:var(--ui)}
+.esquema .mk{fill:none;stroke:var(--vinho-cl);stroke-width:1.2}
+.esquema .mk.on{fill:var(--vinho);stroke:var(--vinho)}
+.esquema .larga{max-width:100%}
+</style>
+</head>
+<body>
+<header class="topo">
+  <button class="abre-rail" id="btnRail" aria-expanded="false" aria-controls="rail">Sumário</button>
+  <div class="marca">Serviço de Biblioteca e Documentação<span>Faculdade de Odontologia de Bauru · USP</span></div>
+  <div class="norma"><b>TCC por artigo</b> · ABNT NBR 14724:2024</div>
+</header>
+<div class="moldura">
+<aside class="rail" id="rail">
+  <div class="busca-caixa">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+    <input type="search" class="busca" id="busca" placeholder="Buscar no guia" aria-label="Buscar seção do guia">
+  </div>
+  <p class="busca-vazio" id="buscaVazio">Nada encontrado com esse termo.</p>
+  <nav aria-label="Sumário do guia"><ol id="navLista"></ol></nav>
+</aside>
+<main class="conteudo">
+
+<section class="hero">
+  <p class="ancora">Guia para apoio para elaboração de trabalhos acadêmicos - Campus USP Bauru · set. 2026</p>
+  <h1>TCC constituído por artigo</h1>
+  <p class="abre">
+    Orientações para a elaboração de <strong>Trabalhos de Conclusão de Curso constituídos por artigo</strong>,
+    conforme a <strong>ABNT NBR 14724:2024</strong>. É a referência principal para os cursos de graduação do
+    Campus Bauru da USP e também serve aos trabalhos de conclusão de cursos de especialização,
+    aprimoramento e residência de instituições parceiras ou conveniadas.
+  </p>
+  <p class="aviso-irmao"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="8.5" height="15" rx="1.2"/><rect x="13" y="4.5" width="8.5" height="15" rx="1.2" stroke-dasharray="3 2.4"/><path d="M5 8.5h3.5M5 11.5h3.5M15.5 8.5h3.5M15.5 11.5h3.5"/></svg><span>Este guia trata do TCC <strong>constituído por artigo</strong> — o formato alternativo. Se o seu for uma monografia, use o <a href="https://sdd-files.github.io/Guias/Guia_TCC_convencional_FOB-USP.html">guia do TCC convencional</a>.</span></p>
+  <div class="atalhos">
+    <a class="atalho" href="#gabaritos"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11v5.5M9.5 14.2 12 16.7l2.5-2.5"/></svg><b>Baixar os gabaritos</b><span>Arquivos já formatados</span></a>
+    <a class="atalho" href="#formatacao"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h14v17H5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg><b>Regras de formatação</b><span>Margens, fontes, paginação</span></a>
+    <a class="atalho" href="#estrutura"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 9.5h16M4 14h11M4 18.5h11"/></svg><b>Estrutura do trabalho</b><span>O que é obrigatório</span></a>
+  </div>
+  <div class="autoria">
+    <span><b>José Roberto Plácido Amadei</b></span>
+    <span><b>Valéria Cristina Trindade Ferraz</b></span>
+    <span><b>Jane Coelho Danuello</b></span>
+    <span>Bauru, set. 2026</span>
+  </div>
+</section>
+
+
+<section class="anatomia" aria-labelledby="anatomia-t">
+  <h2 id="anatomia-t">As três partes do trabalho</h2>
+  <p>As três partes do documento, na ordem em que aparecem no trabalho. Clique em qualquer elemento para ir direto às suas regras.</p>
+  <div class="pilha">
+    <div class="bloco">
+      <h3>Pré-textuais <em>13 elementos</em></h3>
+      <ul>
+        <li><a href="#capa"><i class="pt"></i>Capa</a></li>
+        <li><a href="#folha-rosto"><i class="pt"></i>Folha de rosto</a></li>
+        <li><a href="#ficha"><i class="pt"></i>Ficha catalográfica</a></li>
+        <li><a href="#aprovacao"><i class="pt op"></i>Folha de aprovação</a></li>
+        <li><a href="#dedicatoria"><i class="pt op"></i>Dedicatória</a></li>
+        <li><a href="#agradecimentos"><i class="pt op"></i>Agradecimentos</a></li>
+        <li><a href="#epigrafe"><i class="pt op"></i>Epígrafe</a></li>
+        <li><a href="#resumo"><i class="pt"></i>Resumo</a></li>
+        <li><a href="#abstract"><i class="pt"></i>Abstract</a></li>
+        <li><a href="#lista-figuras"><i class="pt op"></i>Lista de figuras</a></li>
+        <li><a href="#lista-tabelas"><i class="pt op"></i>Lista de tabelas</a></li>
+        <li><a href="#lista-siglas"><i class="pt op"></i>Lista de abreviaturas e siglas</a></li>
+                <li><a href="#sumario"><i class="pt"></i>Sumário</a></li>
+      </ul>
+    </div>
+    <div class="bloco">
+      <h3>Textuais <em>2 elementos</em></h3>
+      <ul>
+        <li><a href="#introducao"><i class="pt var"></i>Introdução geral</a></li>
+        <li><a href="#artigo"><i class="pt var"></i>Artigo</a></li>
+      </ul>
+    </div>
+    <div class="bloco">
+      <h3>Pós-textuais <em>3 elementos</em></h3>
+      <ul>
+        <li><a href="#referencias"><i class="pt"></i>Referências</a></li>
+        <li><a href="#apendices"><i class="pt op"></i>Apêndices</a></li>
+        <li><a href="#anexos"><i class="pt op"></i>Anexos</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="legenda">
+    <span><i class="pt"></i> Obrigatório</span>
+    <span><i class="pt op"></i> Opcional</span>
+    <span><i class="pt var"></i> Elemento textual, obrigatório</span>
+  </p>
+</section>
+
+
+<section class="faixa cap" id="comecar">
+  <div class="cap-cab"><span class="num">1</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.7"/><path d="M12 11v5.5"/><path d="M12 7.8h.01"/></svg>Antes de começar</h2></div>
+
+  <div class="sub" id="gabaritos">
+    <h3>Gabaritos pré-formatados</h3>
+    <p class="texto">Os gabaritos já vêm com margens, fontes, espacejamento, paginação e a estrutura da ficha catalográfica configurados. Comece por eles: economizam retrabalho e evitam a maior parte das devoluções na conferência final.</p>
+    <div class="linha-btn">
+      <a class="baixar" href="https://sddinforma.fob.usp.br/gabaritos/">Ver todos os gabaritos</a>
+    </div>
+  </div>
+
+  <div class="sub" id="trabalhos">
+    <h3>O que é um trabalho de conclusão de curso</h3>
+    <p class="texto">O trabalho acadêmico apresenta o resultado de um estudo científico e é um dos principais requisitos para a conclusão de cursos de graduação, especialização, mestrado e doutorado. Nessa família estão os trabalhos de conclusão de curso, as dissertações e as teses.</p>
+    <div class="nota">
+      <p class="rot">A definição da ABNT NBR 14724:2024</p>
+      <p>Trabalho de conclusão de curso de graduação, trabalho de graduação interdisciplinar, trabalho de conclusão de curso de especialização e de aperfeiçoamento: documento que apresenta o resultado de estudo, devendo expressar conhecimento do assunto escolhido, obrigatoriamente emanado da disciplina, módulo, estudo independente, curso, programa e outros ministrados. Deve ser feito sob a coordenação de um orientador.</p>
+    </div>
+    <p class="texto">No formato convencional, o TCC toma a forma de uma <strong>monografia</strong>: um texto único, com introdução, desenvolvimento e conclusão, redigido pelo próprio aluno.</p>
+  </div>
+
+  <div class="sub" id="normas">
+    <h3>As normas do TCC na FOB-USP</h3>
+    <p class="texto">O TCC atende a uma exigência do Conselho Nacional de Educação — resoluções CES 03/2002 e 05/2002, que instituem as Diretrizes Curriculares Nacionais para os cursos de graduação em Odontologia e Fonoaudiologia. O artigo 12 de ambas determina que, para concluir o curso, o aluno deve elaborar um trabalho sob orientação docente.</p>
+    <p class="texto">Conforme o Regulamento Interno do Trabalho de Conclusão dos Cursos de Graduação em Odontologia e Fonoaudiologia da FOB-USP:</p>
+    <ul class="texto">
+      <li>O trabalho é dissertativo, em forma de <strong>monografia</strong> ou de <strong>artigo científico</strong> — o formato alternativo —, sobre tema pertinente às áreas de Odontologia e Fonoaudiologia, elaborado sob a orientação de um professor da FOB.</li>
+      <li>Pode ser uma revisão de literatura, um relato de caso clínico ou um trabalho de ensino, extensão ou pesquisa, decorrente ou não de bolsas de graduação como PIBIC, PET, PUB e FAPESP.</li>
+    </ul>
+  </div>
+
+  <div class="sub" id="regras-artigo">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h9L19 8v12.5H6z"/><path d="M14.5 3.5V8H19"/><path d="M9 12h7M9 15.5h5"/></svg>Condições do formato por artigo</h3>
+    <p class="texto">Ao escolher o TCC por artigo, confirme antes de começar cada um dos pontos abaixo — todos constam do regulamento interno do TCC.</p>
+    <ol class="texto">
+      <li>O periódico escolhido deve ser <strong>indexado nas principais bases de dados</strong>. O trabalho pode ser redigido integral ou parcialmente em português ou em inglês.</li>
+      <li>O aluno <strong>não precisa ser o primeiro autor</strong> do artigo. Quando não for, o orientador encaminha junto ao TCC uma declaração assinada atestando qual foi a participação do aluno como autor e relacionando-a ao tema do trabalho.</li>
+      <li>Vale também o artigo <strong>a ser submetido ou já submetido</strong>. Nesse caso, o artigo deve estar formatado nas normas do periódico escolhido, e as diretrizes da revista mais o protocolo ou e-mail de submissão entram no documento como <strong>apêndice</strong>.</li>
+      <li>Artigos <strong>aceitos ou publicados</strong> podem compor o TCC mediante autorização do periódico. A data de aprovação para publicação deve ter ocorrido, no máximo, seis meses antes da matrícula do aluno na disciplina de TCC.</li>
+      <li>Para artigos já publicados ou aceitos, o uso deve ser <strong>exclusivo do TCC</strong>, com manifestação dos coautores dando ciência de que o artigo não foi nem será utilizado em outras dissertações e teses.</li>
+    </ol>
+    <div class="nota alerta">
+      <p class="rot">A revista manda no artigo</p>
+      <p>Todo texto ou elemento que fizer parte do artigo segue as normas da revista escolhida para submissão ou publicação — estrutura, referências, fontes, espacejamento, tabelas e figuras. As regras deste guia valem para o restante do trabalho.</p>
+    </div>
+  </div>
+
+  <div class="sub" id="entrega">
+    <h3>Entrega</h3>
+    <p class="texto">Os trabalhos de conclusão dos cursos de graduação da FOB-USP são apresentados somente em formato digital e entregues em arquivo <strong>PDF</strong>.</p>
+    <p class="texto">Prazos e documentação são tratados pela Assistência Técnica Acadêmica da FOB-USP. Nos cursos de especialização e nos programas de residência, consulte diretamente a secretaria do seu curso: o formato de entrega e a documentação variam.</p>
+    <div class="linha-btn">
+      <a class="baixar sec" href="http://graduacao.fob.usp.br">Serviço de Graduação da FOB-USP</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="faixa cap" id="formatacao">
+  <div class="cap-cab"><span class="num">2</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h14v17H5z"/><path d="M8 7h8M8 10.5h8M8 14h5"/></svg>Apresentação e formatação</h2></div>
+  <p class="texto">O TCC deve ser entregue em formato digital, em arquivo PDF, respeitando o calendário e as orientações do Serviço de Graduação da FOB-USP ou da secretaria do curso.</p>
+
+  <div class="sub" id="pagina">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="1"/><rect x="7" y="5.5" width="10" height="13" rx=".5" stroke-dasharray="2.6 2"/></svg>Tamanho da página e margens</h3>
+    <div class="a4-fig">
+      <div class="a4" role="img" aria-label="Folha A4 com margens superior e esquerda de 3 cm e inferior e direita de 2 cm">
+        <div class="mancha" style="top:14%;bottom:9.3%;left:14.2%;right:9.4%"></div>
+        <span class="cota" style="top:5%;left:50%;transform:translateX(-50%)">3 cm</span>
+        <span class="cota" style="left:2%;top:50%;transform:translateY(-50%)">3 cm</span>
+        <span class="cota" style="right:1%;top:50%;transform:translateY(-50%)">2 cm</span>
+        <span class="cota" style="bottom:2.5%;left:50%;transform:translateX(-50%)">2 cm</span>
+      </div>
+      <div>
+        <table class="qr" style="max-width:340px"><tbody>
+          <tr><th scope="row">Papel</th><td>A4 (21 × 29,7 cm)</td></tr>
+          <tr><th scope="row">Margem superior</th><td>3 cm</td></tr>
+          <tr><th scope="row">Margem esquerda</th><td>3 cm</td></tr>
+          <tr><th scope="row">Margem inferior</th><td>2 cm</td></tr>
+          <tr><th scope="row">Margem direita</th><td>2 cm</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub" id="letra">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 19 9 5l5.5 14"/><path d="M5.4 14.5h7.2"/><path d="M17 11.2a2.6 2.6 0 1 1 3.5 2.4V19"/><path d="M20.5 8V5"/></svg>Tamanho de letra</h3>
+    <p class="texto">A ABNT permite as fontes <strong>Times New Roman</strong> ou <strong>Arial</strong>. Escolha uma e use a mesma em todo o trabalho.</p>
+    <div class="escala">
+      <div><span class="med">16</span><span class="amostra" style="font-size:16pt">Título</span><span class="uso">Título do trabalho, na capa e na folha de rosto</span></div>
+      <div><span class="med">14</span><span class="amostra" style="font-size:14pt">Instituição</span><span class="uso">Demais informações da capa e da folha de rosto</span></div>
+      <div><span class="med">12</span><span class="amostra" style="font-size:12pt">Texto corrido</span><span class="uso">Nota da natureza do trabalho na folha de rosto; partes pré-textual, textual e pós-textual; referências; apêndices; anexos</span></div>
+      <div><span class="med">10</span><span class="amostra" style="font-size:10pt">Legenda e nota</span><span class="uso">Citações textuais entre aspas com mais de três linhas; notas de rodapé; legendas de ilustrações, figuras e tabelas; texto da fonte das ilustrações e tabelas</span></div>
+    </div>
+  </div>
+
+  <div class="sub" id="espacejamento">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16M4 12h16M4 20h16"/><path d="M9 7v2M9 15v2"/><path d="M7.5 8.4 9 6.8l1.5 1.6M7.5 15.6 9 17.2l1.5-1.6"/></svg>Espacejamento</h3>
+    <table class="qr">
+      <thead><tr><th scope="col">Entrelinhas</th><th scope="col">Onde se aplica</th></tr></thead>
+      <tbody>
+        <tr><td class="pt-num">1,5</td><td>
+          <strong>Pré-textual:</strong> dedicatória, agradecimentos, resumo, abstract, listas e sumário.<br>
+          <strong>Textual:</strong> todos os elementos textuais, da introdução à conclusão.<br>
+          <strong>Pós-textual:</strong> apêndices e anexos.
+        </td></tr>
+        <tr><td class="pt-num">1,0</td><td>Citações com mais de três linhas · notas de rodapé · legendas de ilustrações e tabelas · referências</td></tr>
+      </tbody>
+    </table>
+    <div class="nota">
+      <p class="rot">Exceção que vale para todo o artigo</p>
+      <p>O artigo — texto, tabelas, figuras e referências — segue as normas da revista escolhida, e não as medidas desta página.</p>
+    </div>
+  </div>
+
+  <div class="sub" id="paginacao">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="1"/><path d="M14.5 6.5h2.5"/><path d="M7 11h10M7 14.5h10M7 18h6"/></svg>Paginação</h3>
+    <p class="texto">As páginas pré-textuais, a partir da folha de rosto, são contadas sequencialmente, mas não numeradas. A numeração passa a aparecer a partir da primeira folha da parte textual — a introdução — em algarismos arábicos, no <strong>canto superior direito</strong>.</p>
+    <p class="texto">Havendo apêndice e anexo, suas páginas são numeradas de maneira contínua, dando seguimento à numeração do texto principal.</p>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema da paginação: número da página em algarismo arábico no canto superior direito, a partir da introdução" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><text class="tx" x="191" y="29" font-size="5.4" text-anchor="end" font-weight="700">15</text><line class="lead" x1="191" y1="27" x2="215" y2="27"/><circle class="dot" cx="215" cy="27" r="1.6"/><text class="cal" x="220" y="29.2" font-size="6.4" text-anchor="start">canto superior</text><text class="cal" x="220" y="36" font-size="6.4" text-anchor="start">direito, arábico</text><text class="tx" x="33" y="45" font-size="5.6" text-anchor="start" font-weight="700">1 INTRODUÇÃO</text><rect class="ln" x="33" y="59" width="158" height="2" rx="1"/><rect class="ln" x="33" y="64" width="158" height="2" rx="1"/><rect class="ln" x="33" y="69" width="158" height="2" rx="1"/><rect class="ln" x="33" y="74" width="158" height="2" rx="1"/><rect class="ln" x="33" y="79" width="158" height="2" rx="1"/><rect class="ln" x="33" y="84" width="158" height="2" rx="1"/><rect class="ln" x="33" y="89" width="158" height="2" rx="1"/><rect class="ln" x="33" y="94" width="158" height="2" rx="1"/><rect class="ln" x="33" y="99" width="158" height="2" rx="1"/><rect class="ln" x="33" y="104" width="158" height="2" rx="1"/><rect class="ln" x="33" y="109" width="158" height="2" rx="1"/><rect class="ln" x="33" y="114" width="158" height="2" rx="1"/><rect class="ln" x="33" y="119" width="158" height="2" rx="1"/><rect class="ln" x="33" y="124" width="158" height="2" rx="1"/><rect class="ln" x="33" y="129" width="158" height="2" rx="1"/><rect class="ln" x="33" y="134" width="158" height="2" rx="1"/><rect class="ln" x="33" y="139" width="158" height="2" rx="1"/><rect class="ln" x="33" y="144" width="158" height="2" rx="1"/><rect class="ln" x="33" y="149" width="158" height="2" rx="1"/><rect class="ln" x="33" y="154" width="158" height="2" rx="1"/><rect class="ln" x="33" y="159" width="158" height="2" rx="1"/><rect class="ln" x="33" y="164" width="158" height="2" rx="1"/><rect class="ln" x="33" y="169" width="158" height="2" rx="1"/><rect class="ln" x="33" y="174" width="79" height="2" rx="1"/><line class="lead" x1="70" y1="45" x2="215" y2="45"/><circle class="dot" cx="215" cy="45" r="1.6"/><text class="cal" x="220" y="47.2" font-size="6.4" text-anchor="start">título com indicativo</text><text class="cal" x="220" y="56" font-size="6.4" text-anchor="start">numérico: alinhado</text><text class="cal" x="220" y="65" font-size="6.4" text-anchor="start">à margem esquerda</text></svg><figcaption>Paginação. A contagem começa na folha de rosto, mas o número só aparece a partir da introdução.</figcaption></figure>
+    <h4>Folhas de guarda <span class="tag opc">Opcional</span></h4>
+    <p class="texto">São folhas que antecedem cada capítulo e podem ser livremente decoradas. Se optar por usá-las, note que elas devem ser contadas, mas a numeração não deve aparecer nelas.</p>
+  </div>
+
+  <div class="sub" id="siglas">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18 6.5 8 10 18"/><path d="M4.1 15h4.8"/><path d="M13 8h4.5M15.2 8v10"/><path d="M19.5 13.5h2M20.5 12.5v2"/></svg>Siglas, equações e fórmulas</h3>
+    <h4>Siglas</h4>
+    <p class="texto">Na primeira menção no texto, a sigla deve ser precedida do nome completo e indicada entre parênteses.</p>
+    <div class="exemplo"><p class="rot">Exemplo</p>Associação Brasileira de Normas Técnicas (ABNT)</div>
+    <h4>Equações e fórmulas</h4>
+    <p class="texto">Devem ser destacadas no texto e, se necessário, numeradas com algarismos arábicos entre parênteses, alinhados à direita. Ao mencionar a fórmula mais adiante, pode-se usar apenas o número. Na sequência normal do texto, é permitido usar uma entrelinha maior que comporte seus elementos, como expoentes e índices.</p>
+    <div class="exemplo">
+      <p class="rot">Exemplo</p>
+      <div style="display:flex;justify-content:space-between;max-width:22em"><span>x² + y² = z²</span><span>(1)</span></div>
+      <div style="display:flex;justify-content:space-between;max-width:22em"><span>(x² + y²)/5 = n</span><span>(2)</span></div>
+    </div>
+    <p class="texto">As chamadas das equações e fórmulas no texto são feitas assim: eq. (1), form. (2).</p>
+  </div>
+
+  <div class="sub" id="ilustracoes">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="15" rx="1.5"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M3 16.5l4.8-4.3 3.4 3 3-2.6L21 16"/></svg>Apresentação das ilustrações</h3>
+    <p class="texto">Qualquer que seja o tipo de ilustração — desenho, esquema, fluxograma, fotografia, gráfico, mapa, organograma, planta, quadro, retrato, figura, imagem, entre outros — sua identificação deve aparecer na <strong>parte superior</strong>, precedida da palavra designativa, seguida do número de ordem de ocorrência no texto em algarismos arábicos, travessão e o respectivo título.</p>
+    <p class="texto">Depois da ilustração, na <strong>parte inferior</strong>, indique a fonte consultada — elemento obrigatório, mesmo quando a ilustração é produção do próprio autor — além de legenda, notas e outras informações necessárias à compreensão, se houver.</p>
+    <p class="texto">A ilustração deve ser citada no texto e inserida o mais próximo possível do trecho a que se refere.</p>
+    <div class="exemplo"><p class="rot">Chamada no texto</p>[...] característica que pode ser observada na Figura 1.</div>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema de apresentação de uma ilustração: identificação e título acima da imagem, indicação da fonte abaixo" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="20" width="207" height="240" rx="1"/><text class="tx" x="107" y="38" font-size="6" text-anchor="middle" font-weight="700">Figura 1 – Pulmão</text><line class="lead" x1="150" y1="36" x2="215" y2="36"/><circle class="dot" cx="215" cy="36" r="1.6"/><text class="cal" x="220" y="38.2" font-size="6.4" text-anchor="start">identificação</text><text class="cal" x="220" y="45" font-size="6.4" text-anchor="start">na parte superior</text><text class="cal" x="220" y="54" font-size="6.4" text-anchor="start">corpo 10</text><rect class="img" x="52" y="50" width="110" height="130" rx="2"/><path class="pulmao" d="M97 74c-10 4-18 18-18 40 0 16 5 30 12 30 6 0 8-8 8-20zM117 74c10 4 18 18 18 40 0 16-5 30-12 30-6 0-8-8-8-20z"/><line class="traqueia" x1="107" y1="60" x2="107" y2="84"/><text class="cal" x="107" y="172" font-size="5.4" text-anchor="middle">ilustração</text><text class="tx" x="52" y="194" font-size="4.2" text-anchor="start">Fonte: BALIK. [Lungs]. 29 Mar. 2017. 1 ilustração.</text><text class="tx" x="52" y="200" font-size="4.2" text-anchor="start">Disponível em: https://pixabay.com/en/lungs-heart-</text><text class="tx" x="52" y="206" font-size="4.2" text-anchor="start">anatomy-cross-section-2183442/. Acesso em: 6 jan. 2019.</text><line class="lead" x1="162" y1="200" x2="215" y2="200"/><circle class="dot" cx="215" cy="200" r="1.6"/><text class="cal" x="220" y="202.2" font-size="6.4" text-anchor="start">fonte obrigatória,</text><text class="cal" x="220" y="209" font-size="6.4" text-anchor="start">na parte inferior,</text><text class="cal" x="220" y="218" font-size="6.4" text-anchor="start">corpo 10</text></svg><figcaption>Ilustração. A identificação vai acima; a fonte, sempre abaixo — mesmo quando a figura é do próprio autor.</figcaption></figure>
+    <h4>Como indicar a fonte</h4>
+    <table class="qr">
+      <thead><tr><th scope="col">Situação</th><th scope="col">Forma (corpo 10)</th></tr></thead>
+      <tbody>
+        <tr><td>A publicação que contém a ilustração <strong>não consta</strong> na lista de referências</td><td style="font-family:var(--norma)">Fonte: BALIK. [Lungs]. 29 Mar. 2017. 1 ilustração. Disponível em: https://pixabay.com/en/lungs-heart-anatomy-cross-section-2183442/. Acesso em: 6 jan. 2019.</td></tr>
+        <tr><td>A publicação <strong>já consta</strong> na lista de referências</td><td style="font-family:var(--norma)">Fonte: BALIK. [Lungs] (2017)</td></tr>
+        <tr><td>A ilustração foi <strong>produzida pelo autor</strong> para o trabalho</td><td style="font-family:var(--norma)">Fonte: elaborada pelo autor</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sub" id="tabelas">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.2"/><path d="M3 9.5h18M3 14.2h18M9.5 9.5V19M15.5 9.5V19"/></svg>Apresentação das tabelas</h3>
+    <p class="texto">Tabela é a forma não discursiva de apresentar informações, nas quais o dado numérico se destaca como informação central. A construção segue os critérios das Normas de Apresentação Tabular do IBGE (1993):</p>
+    <ul class="texto">
+      <li>Toda tabela deve ter significado próprio, dispensando consultas ao texto, e estar o mais próxima possível do trecho a que se refere.</li>
+      <li>O título é precedido pela palavra Tabela — apenas com a inicial maiúscula — seguida do número de ordem em algarismos arábicos e um hífen.</li>
+      <li>As tabelas podem ser numeradas consecutivamente por capítulo ou no documento como um todo.</li>
+      <li>A tabela deve ficar preferencialmente em posição vertical. Se não houver espaço suficiente, use a posição horizontal, com o título voltado para a margem esquerda da folha.</li>
+      <li>As colunas não são delimitadas por traços verticais. Os traços horizontais superior e inferior ao cabeçalho devem ser mais fortes.</li>
+      <li>As fontes consultadas e outras notas ficam abaixo, após o traço inferior. Tabelas produzidas pelo próprio autor devem trazer essa informação na fonte.</li>
+    </ul>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema de uma tabela: título acima, traços horizontais reforçados no cabeçalho e no fechamento, sem traços verticais, e a fonte abaixo" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="20" width="207" height="240" rx="1"/><text class="tx" x="107" y="42" font-size="4.6" text-anchor="middle">Tabela 1 – Distribuição do número e percentagem de</text><text class="tx" x="107" y="48" font-size="4.6" text-anchor="middle">nascidos vivos segundo o grau de instrução da mãe</text><line class="lead" x1="180" y1="45" x2="215" y2="45"/><circle class="dot" cx="215" cy="45" r="1.6"/><text class="cal" x="220" y="47.2" font-size="6.4" text-anchor="start">título acima,</text><text class="cal" x="220" y="54" font-size="6.4" text-anchor="start">corpo 10</text><line class="forte" x1="40" y1="60" x2="174" y2="60"/><text class="tx" x="42" y="68" font-size="4.2" text-anchor="start" font-weight="700">Grau de instrução</text><text class="tx" x="106" y="68" font-size="4.2" text-anchor="middle" font-weight="700">Número</text><text class="tx" x="152" y="68" font-size="4.2" text-anchor="middle" font-weight="700">%</text><line class="forte" x1="40" y1="72" x2="174" y2="72"/><text class="tx" x="42" y="82" font-size="4.2" text-anchor="start">Nenhum</text><text class="tx" x="106" y="82" font-size="4.2" text-anchor="middle">1.204</text><text class="tx" x="152" y="82" font-size="4.2" text-anchor="middle">3,1</text><text class="tx" x="42" y="90" font-size="4.2" text-anchor="start">1 a 3 anos</text><text class="tx" x="106" y="90" font-size="4.2" text-anchor="middle">5.887</text><text class="tx" x="152" y="90" font-size="4.2" text-anchor="middle">15,2</text><text class="tx" x="42" y="98" font-size="4.2" text-anchor="start">4 a 7 anos</text><text class="tx" x="106" y="98" font-size="4.2" text-anchor="middle">14.310</text><text class="tx" x="152" y="98" font-size="4.2" text-anchor="middle">36,9</text><text class="tx" x="42" y="106" font-size="4.2" text-anchor="start">8 a 11 anos</text><text class="tx" x="106" y="106" font-size="4.2" text-anchor="middle">12.945</text><text class="tx" x="152" y="106" font-size="4.2" text-anchor="middle">33,4</text><text class="tx" x="42" y="114" font-size="4.2" text-anchor="start">12 anos ou mais</text><text class="tx" x="106" y="114" font-size="4.2" text-anchor="middle">4.412</text><text class="tx" x="152" y="114" font-size="4.2" text-anchor="middle">11,4</text><line class="forte" x1="40" y1="119" x2="174" y2="119"/><line class="lead" x1="174" y1="100" x2="215" y2="100"/><circle class="dot" cx="215" cy="100" r="1.6"/><text class="cal" x="220" y="102.2" font-size="6.4" text-anchor="start">sem traços</text><text class="cal" x="220" y="109" font-size="6.4" text-anchor="start">verticais</text><text class="tx" x="40" y="130" font-size="4.2" text-anchor="start">Fonte: MAIA (1997)</text><line class="lead" x1="174" y1="128" x2="215" y2="128"/><circle class="dot" cx="215" cy="128" r="1.6"/><text class="cal" x="220" y="130.2" font-size="6.4" text-anchor="start">fonte abaixo do</text><text class="cal" x="220" y="137" font-size="6.4" text-anchor="start">traço inferior,</text><text class="cal" x="220" y="146" font-size="6.4" text-anchor="start">corpo 10</text></svg><figcaption>Tabela. Os traços horizontais do cabeçalho e do fechamento são mais fortes; não há traços verticais.</figcaption></figure>
+    <h4>Corpo de letra na tabela</h4>
+    <table class="qr">
+      <thead><tr><th scope="col">Elemento</th><th scope="col">Corpo</th></tr></thead>
+      <tbody>
+        <tr><td>Título da tabela</td><td class="pt-num">10</td></tr>
+        <tr><td>Conteúdo da tabela</td><td class="pt-num">12 <span style="font-weight:400;color:var(--grafite)">— mesma fonte do texto</span></td></tr>
+        <tr><td>Indicação da fonte</td><td class="pt-num">10</td></tr>
+      </tbody>
+    </table>
+    <h4>Como indicar a fonte</h4>
+    <table class="qr">
+      <thead><tr><th scope="col">Situação</th><th scope="col">Forma (corpo 10)</th></tr></thead>
+      <tbody>
+        <tr><td>O trabalho <strong>consta</strong> na lista de referências</td><td style="font-family:var(--norma)">Fonte: MAIA (1997)</td></tr>
+        <tr><td>O trabalho <strong>não consta</strong> na lista de referências</td><td style="font-family:var(--norma)">Fonte: MAIA, M. A. C. Caracterização dos nascidos vivos hospitalares no primeiro ano de implantação do Subsistema de Informação sobre Nascidos Vivos, em município de Minas Gerais, Brasil, 1996. Rev Saude Publica, São Paulo, v. 31, n. 6, p. 583, dez. 1997.</td></tr>
+        <tr><td>Tabela <strong>produzida pelo autor</strong> para o trabalho</td><td style="font-family:var(--norma)">Fonte: elaborada pelo autor</td></tr>
+      </tbody>
+    </table>
+    <h4>Tabela que ultrapassa uma página</h4>
+    <p class="texto">A identificação e o cabeçalho devem ser repetidos nas páginas seguintes. O final da primeira folha não recebe traço horizontal na parte inferior. Cada folha recebe uma indicação:</p>
+<figure class="esquema larga"><svg viewBox="0 0 300 200" role="img" aria-label="Esquema de uma tabela que ocupa mais de uma página, com as indicações continua, continuação e conclusão" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="6" y="30" width="82" height="116" rx="1"/><text class="tx" x="47" y="44" font-size="3.8" text-anchor="middle">Tabela 1 – Título da tabela</text><text class="tx" x="84" y="52" font-size="3.8" text-anchor="end" font-style="italic">continua</text><line class="forte" x1="12" y1="56" x2="82" y2="56"/><text class="tx" x="16" y="63" font-size="3.6" text-anchor="start" font-weight="700">Cabeçalho repetido</text><line class="forte" x1="12" y1="66" x2="82" y2="66"/><rect class="ln" x="16" y="74" width="58" height="1.6" rx="0.8"/><rect class="ln" x="16" y="80" width="58" height="1.6" rx="0.8"/><rect class="ln" x="16" y="86" width="58" height="1.6" rx="0.8"/><rect class="ln" x="16" y="92" width="58" height="1.6" rx="0.8"/><rect class="ln" x="16" y="98" width="58" height="1.6" rx="0.8"/><rect class="ln" x="16" y="104" width="58" height="1.6" rx="0.8"/><rect class="pg" x="106" y="30" width="82" height="116" rx="1"/><text class="tx" x="147" y="44" font-size="3.8" text-anchor="middle">Tabela 1 – Título da tabela</text><text class="tx" x="184" y="52" font-size="3.8" text-anchor="end" font-style="italic">continuação</text><line class="forte" x1="112" y1="56" x2="182" y2="56"/><text class="tx" x="116" y="63" font-size="3.6" text-anchor="start" font-weight="700">Cabeçalho repetido</text><line class="forte" x1="112" y1="66" x2="182" y2="66"/><rect class="ln" x="116" y="74" width="58" height="1.6" rx="0.8"/><rect class="ln" x="116" y="80" width="58" height="1.6" rx="0.8"/><rect class="ln" x="116" y="86" width="58" height="1.6" rx="0.8"/><rect class="ln" x="116" y="92" width="58" height="1.6" rx="0.8"/><rect class="ln" x="116" y="98" width="58" height="1.6" rx="0.8"/><rect class="ln" x="116" y="104" width="58" height="1.6" rx="0.8"/><rect class="pg" x="206" y="30" width="82" height="116" rx="1"/><text class="tx" x="247" y="44" font-size="3.8" text-anchor="middle">Tabela 1 – Título da tabela</text><text class="tx" x="284" y="52" font-size="3.8" text-anchor="end" font-style="italic">conclusão</text><line class="forte" x1="212" y1="56" x2="282" y2="56"/><text class="tx" x="216" y="63" font-size="3.6" text-anchor="start" font-weight="700">Cabeçalho repetido</text><line class="forte" x1="212" y1="66" x2="282" y2="66"/><rect class="ln" x="216" y="74" width="58" height="1.6" rx="0.8"/><rect class="ln" x="216" y="80" width="58" height="1.6" rx="0.8"/><rect class="ln" x="216" y="86" width="58" height="1.6" rx="0.8"/><rect class="ln" x="216" y="92" width="58" height="1.6" rx="0.8"/><rect class="ln" x="216" y="98" width="58" height="1.6" rx="0.8"/><rect class="ln" x="216" y="104" width="58" height="1.6" rx="0.8"/><line class="forte" x1="212" y1="114" x2="282" y2="114"/><text class="tx" x="216" y="122" font-size="3.6" text-anchor="start">Fonte: ...</text><text class="cal" x="47" y="158" font-size="6" text-anchor="middle">1ª folha</text><text class="cal" x="147" y="158" font-size="6" text-anchor="middle">folhas do meio</text><text class="cal" x="247" y="158" font-size="6" text-anchor="middle">última folha</text><text class="cal" x="150" y="178" font-size="6" text-anchor="middle">A identificação e o cabeçalho são repetidos em todas as folhas.</text><text class="cal" x="150" y="188" font-size="6" text-anchor="middle">O traço inferior só aparece na folha de conclusão.</text></svg><figcaption>Tabela em mais de uma página.</figcaption></figure>
+    <table class="qr" style="max-width:44ch">
+      <thead><tr><th scope="col">Folha</th><th scope="col">Indicação</th></tr></thead>
+      <tbody>
+        <tr><td>Primeira</td><td><em>continua</em></td></tr>
+        <tr><td>Intermediárias</td><td><em>continuação</em></td></tr>
+        <tr><td>Última</td><td><em>conclusão</em></td></tr>
+      </tbody>
+    </table>
+    <div class="linha-btn"><a class="baixar sec" href="https://biblioteca.ibge.gov.br/visualizacao/livros/liv23907.pdf">Normas de Apresentação Tabular — IBGE (1993)</a></div>
+  </div>
+</section>
+
+
+<section class="faixa cap" id="estrutura">
+  <div class="cap-cab"><span class="num">3</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 9.5h16M4 14h11M4 18.5h11"/></svg>Estrutura do trabalho</h2></div>
+  <p class="texto">O trabalho se divide em três partes. A diferença em relação à monografia está na parte textual: em vez dos capítulos escritos pelo aluno, entram a introdução geral e o artigo já formatado nas normas da revista escolhida.</p>
+  <div class="grade2" style="max-width:none">
+    <div class="cartao" style="border-left:4px solid var(--vinho)">
+      <h4>Pré-textuais</h4>
+      <ul>
+        <li><strong>Capa</strong></li>
+        <li><strong>Folha de rosto</strong></li>
+        <li><strong>Ficha catalográfica</strong> — verso da folha de rosto</li>
+        <li>Folha de aprovação</li>
+        <li>Dedicatória</li>
+        <li>Agradecimentos</li>
+        <li>Epígrafe</li>
+        <li><strong>Resumo</strong></li>
+        <li><strong>Abstract</strong></li>
+        <li>Lista de figuras</li>
+        <li>Lista de tabelas</li>
+        <li>Lista de abreviaturas e siglas</li>
+        <li><strong>Sumário</strong></li>
+      </ul>
+    </div>
+    <div class="cartao" style="border-left:4px solid var(--teal)">
+      <h4>Textuais</h4>
+      <ul>
+        <li><strong>Introdução geral</strong></li>
+        <li><strong>Artigo</strong> — completo, formatado de acordo com as normas da revista escolhida</li>
+      </ul>
+    </div>
+    <div class="cartao" style="border-left:4px solid var(--vinho-cl)">
+      <h4>Pós-textuais</h4>
+      <ul>
+        <li><strong>Referências</strong></li>
+        <li>Apêndice(s)</li>
+        <li>Anexo(s)</li>
+      </ul>
+    </div>
+  </div>
+  <p class="texto" style="font-size:.88rem;color:var(--grafite)">Os elementos em negrito são obrigatórios; os demais são opcionais.</p>
+</section>
+
+
+
+
+<section class="faixa cap" id="pre-textuais">
+  <div class="cap-cab"><span class="num">4</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h10a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-15a1 1 0 0 1 1-1z"/><path d="M9.5 7h5M9.5 10.5h5"/><path d="M9.5 16h5"/></svg>Elementos pré-textuais</h2></div>
+  <p class="texto">Sete elementos são obrigatórios e sete são opcionais. A ordem abaixo é a ordem de apresentação no trabalho.</p>
+
+  <div class="sub" id="capa">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v18H5.5A1.5 1.5 0 0 1 4 19.5z"/><path d="M4 17.5h15"/><path d="M8.5 7h6"/></svg>Capa <span class="tag obr">Obrigatório</span></h3>
+    <p class="texto">Vale igualmente para FOB e FMBRU — o que muda entre as duas unidades é apenas a identidade visual do gabarito. A capa deve conter:</p>
+    <ul class="texto">
+      <li>Nome da instituição — universidade, faculdade, associação ou fundação <span style="color:var(--grafite)">(corpo 14)</span></li>
+      <li>Nome completo do autor <span style="color:var(--grafite)">(corpo 14)</span></li>
+      <li>Título principal do trabalho <span style="color:var(--grafite)">(corpo 16)</span></li>
+      <li>Local — cidade da instituição onde o trabalho será apresentado <span style="color:var(--grafite)">(corpo 14)</span></li>
+      <li>Ano de depósito — data da entrega <span style="color:var(--grafite)">(corpo 14)</span></li>
+    </ul>
+    <div class="nota">
+      <p class="rot">Como escrever o título</p>
+      <p>O título deve ser claro e preciso, com palavras que identifiquem o conteúdo e permitam a indexação e a recuperação da informação. Havendo subtítulo, separe-o do título por dois pontos. Use letras minúsculas, exceto em nomes próprios.</p>
+    </div>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema da capa: instituição no alto, autor acima do centro, título ao centro, cidade e ano no rodapé" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><text class="tx" x="107" y="52" font-size="4.6" text-anchor="middle">UNIVERSIDADE DE SÃO PAULO</text><text class="tx" x="107" y="58" font-size="4.6" text-anchor="middle">FACULDADE DE ODONTOLOGIA DE BAURU</text><line class="lead" x1="180" y1="55" x2="215" y2="55"/><circle class="dot" cx="215" cy="55" r="1.6"/><text class="cal" x="220" y="57.2" font-size="6.4" text-anchor="start">corpo 14</text><text class="tx" x="107" y="104" font-size="4.6" text-anchor="middle">NOME COMPLETO DO AUTOR</text><line class="lead" x1="160" y1="104" x2="215" y2="104"/><circle class="dot" cx="215" cy="104" r="1.6"/><text class="cal" x="220" y="106.2" font-size="6.4" text-anchor="start">corpo 14</text><text class="tx" x="107" y="162" font-size="5.6" text-anchor="middle" font-weight="700">Título do trabalho em letras minúsculas,</text><text class="tx" x="107" y="170" font-size="5.6" text-anchor="middle" font-weight="700">sem ponto final</text><line class="lead" x1="196" y1="166" x2="215" y2="166"/><circle class="dot" cx="215" cy="166" r="1.6"/><text class="cal" x="220" y="168.2" font-size="6.4" text-anchor="start">corpo 16</text><text class="tx" x="107" y="258" font-size="4.8" text-anchor="middle">BAURU</text><text class="tx" x="107" y="264" font-size="4.8" text-anchor="middle">2026</text><line class="lead" x1="125" y1="261" x2="215" y2="261"/><circle class="dot" cx="215" cy="261" r="1.6"/><text class="cal" x="220" y="263.2" font-size="6.4" text-anchor="start">corpo 14</text></svg><figcaption>Capa. Havendo subtítulo, ele é separado do título por dois pontos.</figcaption></figure>
+  </div>
+
+  <div class="sub" id="folha-rosto">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="1"/><path d="M8 6.5h8M9.5 11h5M8 15h8M10 18h4"/></svg>Folha de rosto <span class="tag obr">Obrigatório</span></h3>
+    <p class="texto">Deve conter:</p>
+    <ul class="texto">
+      <li>Nome completo do autor <span style="color:var(--grafite)">(corpo 14)</span></li>
+      <li>Título principal, seguido do subtítulo se houver <span style="color:var(--grafite)">(corpo 16)</span></li>
+      <li>Natureza do trabalho — monografia <span style="color:var(--grafite)">(corpo 12)</span></li>
+      <li>Nome da instituição à qual o trabalho é submetido</li>
+      <li>Grau pretendido — graduação, especialização, entre outros</li>
+      <li>Curso e área de concentração</li>
+      <li>Nome do orientador e do coorientador, se houver</li>
+      <li>Local — cidade <span style="color:var(--grafite)">(corpo 14)</span></li>
+      <li>Ano de depósito — entrega</li>
+    </ul>
+    <div class="nota alerta">
+      <p class="rot">Ponto de atenção</p>
+      <p>A contagem das páginas do trabalho começa nesta folha. Nos elementos pré-textuais as folhas são contadas, mas não numeradas; a numeração visível começa na introdução. As folhas dos elementos pós-textuais são contadas sequencialmente até o final do trabalho.</p>
+    </div>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema da folha de rosto: autor no alto, título ao centro, nota da natureza do trabalho e orientação na metade direita, cidade e ano no rodapé" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><text class="tx" x="107" y="48" font-size="4.6" text-anchor="middle">NOME COMPLETO DO AUTOR</text><line class="lead" x1="160" y1="48" x2="215" y2="48"/><circle class="dot" cx="215" cy="48" r="1.6"/><text class="cal" x="220" y="50.2" font-size="6.4" text-anchor="start">corpo 14</text><text class="tx" x="107" y="126" font-size="5.6" text-anchor="middle" font-weight="700">Título do trabalho em letras minúsculas,</text><text class="tx" x="107" y="134" font-size="5.6" text-anchor="middle" font-weight="700">sem ponto final</text><line class="lead" x1="196" y1="130" x2="215" y2="130"/><circle class="dot" cx="215" cy="130" r="1.6"/><text class="cal" x="220" y="132.2" font-size="6.4" text-anchor="start">corpo 16</text><rect class="ln" x="118" y="180" width="70" height="2" rx="1"/><rect class="ln" x="118" y="184.4" width="70" height="2" rx="1"/><rect class="ln" x="118" y="188.8" width="70" height="2" rx="1"/><rect class="ln" x="118" y="193.2" width="70" height="2" rx="1"/><rect class="ln" x="118" y="197.6" width="70" height="2" rx="1"/><rect class="ln" x="118" y="202" width="38.5" height="2" rx="1"/><line class="lead" x1="190" y1="190" x2="215" y2="190"/><circle class="dot" cx="215" cy="190" r="1.6"/><text class="cal" x="220" y="192.2" font-size="6.4" text-anchor="start">corpo 12</text><text class="tx" x="118" y="218" font-size="4.4" text-anchor="start">Orientador: Prof. Dr.</text><text class="tx" x="118" y="224" font-size="4.4" text-anchor="start">Coorientador: Prof. Dr.</text><text class="tx" x="107" y="258" font-size="4.8" text-anchor="middle">BAURU</text><text class="tx" x="107" y="264" font-size="4.8" text-anchor="middle">2026</text><line class="lead" x1="125" y1="261" x2="215" y2="261"/><circle class="dot" cx="215" cy="261" r="1.6"/><text class="cal" x="220" y="263.2" font-size="6.4" text-anchor="start">corpo 14</text></svg><figcaption>Folha de rosto. A nota da natureza do trabalho fica alinhada do meio da mancha gráfica até a margem direita.</figcaption></figure>
+  </div>
+
+  <div class="sub" id="ficha">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.2"/><path d="M6 9.5h8M6 12h12M6 14.5h9"/></svg>Folha da ficha catalográfica <span class="tag obr">Obrigatório</span></h3>
+    <p class="texto">Deve conter:</p>
+    <ul class="texto">
+      <li>Ficha catalográfica <strong>sem</strong> indicação da notação de autor</li>
+      <li>Nota de disponibilidade da versão original na biblioteca da Unidade</li>
+      <li>Autorização para reprodução do trabalho</li>
+      <li>Informação sobre o Comitê de Ética, incluindo o número do protocolo de aprovação, caso o projeto tenha sido submetido a esse comitê</li>
+    </ul>
+    <p class="texto">É elemento obrigatório nas monografias de graduação da FOB-USP e deve vir logo depois da folha de rosto, no verso. Recomenda-se que os trabalhos apresentados em outras instituições também tragam a ficha, ainda que ali ela nem sempre seja obrigatória. As dimensões e os alinhamentos já estão configurados no gabarito.</p>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema da folha da ficha catalográfica com quatro blocos: ficha, nota de disponibilidade, autorização de reprodução e informação do comitê de ética" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><rect class="bx" x="52" y="46" width="110" height="62"/><text class="tx" x="58" y="55" font-size="4.2" text-anchor="start">Sobrenome, Nome</text><text class="tx" x="64" y="61" font-size="3.6" text-anchor="start">Título do trabalho começando abaixo da quarta letra do</text><text class="tx" x="64" y="66" font-size="3.6" text-anchor="start">sobrenome do autor / Nome Completo do autor. -- Bauru,</text><text class="tx" x="64" y="71" font-size="3.6" text-anchor="start">ano de depósito.</text><text class="tx" x="70" y="76" font-size="3.6" text-anchor="start">000 p. : il., 31 cm.</text><text class="tx" x="64" y="88" font-size="3.6" text-anchor="start">Monografia (graduação) -- Faculdade de Odontologia de</text><text class="tx" x="58" y="93" font-size="3.6" text-anchor="start">Bauru, Universidade de São Paulo, ano de depósito.</text><text class="tx" x="64" y="103" font-size="3.6" text-anchor="start">Orientador: Prof. Dr.</text><line class="lead" x1="162" y1="77" x2="215" y2="77"/><circle class="dot" cx="215" cy="77" r="1.6"/><text class="cal" x="220" y="79.2" font-size="6.4" text-anchor="start">sem notação</text><text class="cal" x="220" y="86" font-size="6.4" text-anchor="start">de autor</text><text class="tx" x="34" y="122" font-size="3.6" text-anchor="start">Nota: A versão original deste trabalho encontra-se disponível no</text><text class="tx" x="34" y="127" font-size="3.6" text-anchor="start">Serviço de Biblioteca e Documentação da Unidade.</text><line class="lead" x1="160" y1="124" x2="215" y2="124"/><circle class="dot" cx="215" cy="124" r="1.6"/><text class="cal" x="220" y="126.2" font-size="6.4" text-anchor="start">disponibilidade</text><rect class="bx" x="52" y="160" width="110" height="24"/><text class="tx" x="57" y="168" font-size="3.6" text-anchor="start">Autorizo, exclusivamente para fins acadêmicos e científicos, a</text><text class="tx" x="57" y="173" font-size="3.6" text-anchor="start">reprodução total ou parcial deste trabalho, por processos</text><text class="tx" x="57" y="178" font-size="3.6" text-anchor="start">fotocopiadores e outros meios eletrônicos.</text><line class="lead" x1="162" y1="172" x2="215" y2="172"/><circle class="dot" cx="215" cy="172" r="1.6"/><text class="cal" x="220" y="174.2" font-size="6.4" text-anchor="start">autorização</text><rect class="bx" x="52" y="228" width="110" height="22"/><text class="tx" x="57" y="236" font-size="3.6" text-anchor="start">Aprovado pelo Comitê de Ética da [nome da instituição]</text><text class="tx" x="57" y="241" font-size="3.6" text-anchor="start">Protocolo nº:</text><text class="tx" x="57" y="246" font-size="3.6" text-anchor="start">Data:</text><line class="lead" x1="162" y1="239" x2="215" y2="239"/><circle class="dot" cx="215" cy="239" r="1.6"/><text class="cal" x="220" y="241.2" font-size="6.4" text-anchor="start">comitê de ética</text></svg><figcaption>Ficha catalográfica. As dimensões e o alinhamento exatos já vêm prontos no gabarito.</figcaption></figure>
+    <div class="linha-btn"><a class="baixar sec" href="https://sddinforma.fob.usp.br/gabaritos/">Baixar o gabarito</a></div>
+  </div>
+
+  <div class="sub" id="aprovacao">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="3" width="15" height="18" rx="1.4"/><path d="M8 8.5h8M8 12h8"/><path d="M8.5 16.2l2 2 4-4.2"/></svg>Folha de aprovação <span class="tag opc">Opcional</span></h3>
+    <p class="texto">A folha de aprovação não é obrigatória nos trabalhos de conclusão das graduações da FOB-USP. Em alguns cursos de especialização e programas de residência, porém, a inclusão pode ser orientada. Seus elementos principais são:</p>
+    <ul class="texto">
+      <li>Nome do autor</li>
+      <li>Título principal e subtítulo, se houver</li>
+      <li>Nome da instituição à qual o trabalho é submetido</li>
+      <li>Data</li>
+      <li>Banca examinadora</li>
+    </ul>
+    <p class="texto">Esses elementos podem variar conforme as normas da instituição.</p>
+    <div class="nota">
+      <p class="rot">Confirme com a secretaria</p>
+      <p>Se o seu curso exigir a folha, pergunte na secretaria como ela será inserida no arquivo final e se deve ser reservada uma página em branco no lugar dela até a defesa.</p>
+    </div>
+  </div>
+
+  <div class="sub" id="dedicatoria">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-9.6A4 4 0 0 1 12 8a4 4 0 0 1 7.5 2.4c0 5-7.5 9.6-7.5 9.6z"/></svg>Dedicatória <span class="tag opc">Opcional</span></h3>
+    <p class="texto">Texto de homenagem em que o autor presta tributo ou dedica seu trabalho a pessoas, instituições ou causas significativas.</p>
+    <p class="texto">Recomenda-se digitá-la com alinhamento do meio da mancha gráfica — a área de impressão — até a margem direita, na parte inferior da folha.</p>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema da dedicatória: bloco de texto na parte inferior da folha, do meio da mancha gráfica até a margem direita" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><line class="eixo" x1="112" y1="33" x2="112" y2="276"/><text class="cal" x="112" y="30" font-size="5.4" text-anchor="middle">meio da mancha gráfica</text><text class="tx" x="112" y="226" font-size="4.6" text-anchor="start">Dedico este trabalho a...</text><rect class="ln" x="112" y="231" width="79" height="2" rx="1"/><rect class="ln" x="112" y="236.4" width="79" height="2" rx="1"/><rect class="ln" x="112" y="241.8" width="79" height="2" rx="1"/><rect class="ln" x="112" y="247.2" width="79" height="2" rx="1"/><rect class="ln" x="112" y="252.6" width="56.88" height="2" rx="1"/><line class="lead" x1="191" y1="244" x2="215" y2="244"/><circle class="dot" cx="215" cy="244" r="1.6"/><text class="cal" x="220" y="246.2" font-size="6.4" text-anchor="start">da metade da</text><text class="cal" x="220" y="253" font-size="6.4" text-anchor="start">mancha até a</text><text class="cal" x="220" y="262" font-size="6.4" text-anchor="start">margem direita</text><line class="lead" x1="112" y1="282" x2="191" y2="282"/><text class="cal" x="151.5" y="289" font-size="5.4" text-anchor="middle">parte inferior da folha</text></svg><figcaption>Dedicatória. A epígrafe segue exatamente o mesmo alinhamento.</figcaption></figure>
+  </div>
+
+  <div class="sub" id="agradecimentos">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4.5 13.9 9l4.6.4-3.5 3 1.1 4.5-4.1-2.5-4.1 2.5 1.1-4.5-3.5-3 4.6-.4z"/></svg>Agradecimentos <span class="tag opc">Opcional</span></h3>
+    <p class="texto">Texto dirigido a quem contribuiu de maneira relevante para a elaboração do trabalho. O conteúdo é de livre escolha do autor. Havendo apoio financeiro à pesquisa, sugere-se agradecer à agência financiadora.</p>
+    <div class="nota alerta">
+      <p class="rot">FAPESP</p>
+      <p>Quando o agradecimento for à FAPESP, é obrigatório informar o número do processo, conforme o Termo de Outorga.</p>
+    </div>
+    <p class="texto">O tipo de letra deve ser o mesmo usado ao longo de todo o trabalho — Times New Roman ou Arial.</p>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema dos agradecimentos: título no alto e texto corrido, com lembrete sobre o número do processo FAPESP" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><text class="tx" x="107" y="41" font-size="6" text-anchor="middle" font-weight="700">AGRADECIMENTOS</text><rect class="ln" x="33" y="55" width="158" height="2" rx="1"/><rect class="ln" x="33" y="60.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="65.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="71.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="76.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="82" width="158" height="2" rx="1"/><rect class="ln" x="33" y="87.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="92.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="98.2" width="79" height="2" rx="1"/><rect class="ln" x="33" y="115" width="158" height="2" rx="1"/><rect class="ln" x="33" y="120.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="125.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="131.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="136.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="142" width="158" height="2" rx="1"/><rect class="ln" x="33" y="147.4" width="107.44" height="2" rx="1"/><rect class="ln" x="33" y="165" width="158" height="2" rx="1"/><rect class="ln" x="33" y="170.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="175.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="181.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="186.6" width="63.2" height="2" rx="1"/><line class="lead" x1="191" y1="73" x2="215" y2="73"/><circle class="dot" cx="215" cy="73" r="1.6"/><text class="cal" x="220" y="75.2" font-size="6.4" text-anchor="start">1,5 entrelinhas</text><rect class="bx" x="33" y="246" width="158" height="16" rx="2"/><text class="cal" x="107" y="256" font-size="5.2" text-anchor="middle">FAPESP: informar o número do processo,</text><text class="cal" x="107" y="262" font-size="5.2" text-anchor="middle">conforme o Termo de Outorga</text></svg><figcaption>Agradecimentos. Havendo apoio da FAPESP, o número do processo é obrigatório.</figcaption></figure>
+  </div>
+
+  <div class="sub" id="epigrafe">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6.5C7.3 7.6 6 9.6 6 12h2.2c1 0 1.8.8 1.8 1.8v2.4c0 1-.8 1.8-1.8 1.8H6.3c-1 0-1.8-.8-1.8-1.8v-3.6c0-3.4 2-6.3 5-7.6z"/><path d="M19 6.5c-2.2 1.1-3.5 3.1-3.5 5.5h2.2c1 0 1.8.8 1.8 1.8v2.4c0 1-.8 1.8-1.8 1.8h-1.9c-1 0-1.8-.8-1.8-1.8v-3.6c0-3.4 2-6.3 5-7.6z"/></svg>Epígrafe <span class="tag opc">Opcional</span></h3>
+    <p class="texto">Citação acompanhada da indicação de autoria, relacionada ao tema do trabalho ou usada para expressar sentimentos pessoais. É comum a escolha de trechos de grandes pensadores, versos de poesias ou letras de músicas que reflitam a essência ou o propósito do trabalho.</p>
+    <p class="texto">Recomenda-se digitá-la com alinhamento do meio da mancha gráfica até a margem direita, na parte inferior da folha.</p>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema da epígrafe: citação com indicação de autoria na parte inferior direita da folha" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><line class="eixo" x1="112" y1="33" x2="112" y2="276"/><text class="cal" x="112" y="30" font-size="5.4" text-anchor="middle">meio da mancha gráfica</text><text class="tx" x="112" y="226" font-size="4.6" text-anchor="start">“Citação escolhida pelo autor,</text><rect class="ln" x="112" y="231" width="79" height="2" rx="1"/><rect class="ln" x="112" y="236.4" width="79" height="2" rx="1"/><rect class="ln" x="112" y="241.8" width="63.2" height="2" rx="1"/><line class="lead" x1="191" y1="244" x2="215" y2="244"/><circle class="dot" cx="215" cy="244" r="1.6"/><text class="cal" x="220" y="246.2" font-size="6.4" text-anchor="start">da metade da</text><text class="cal" x="220" y="253" font-size="6.4" text-anchor="start">mancha até a</text><text class="cal" x="220" y="262" font-size="6.4" text-anchor="start">margem direita</text><line class="lead" x1="112" y1="282" x2="191" y2="282"/><text class="cal" x="151.5" y="289" font-size="5.4" text-anchor="middle">parte inferior da folha</text><text class="tx" x="151.5" y="253" font-size="4.4" text-anchor="middle">(Autor da citação)</text></svg><figcaption>Epígrafe. Citação seguida da indicação de autoria.</figcaption></figure>
+  </div>
+
+  <div class="sub" id="resumo">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="2.5" width="15" height="19" rx="1"/><path d="M9.5 6.5h5"/><path d="M7.5 10.5h9M7.5 13h9M7.5 15.5h6"/><path d="M7.5 18.5h5"/></svg>Resumo <span class="tag obr">Obrigatório</span></h3>
+    <p class="texto">Elaborado conforme a <strong>ABNT NBR 6028:2021</strong>. Apresenta uma síntese dos pontos mais relevantes do texto, oferecendo uma visão clara e rápida do conteúdo e das conclusões do trabalho.</p>
+    <table class="qr" style="max-width:48ch"><tbody>
+      <tr><th scope="row">Parágrafos</th><td>Um único</td></tr>
+      <tr><th scope="row">Espacejamento</th><td>1,5</td></tr>
+      <tr><th scope="row">Extensão</th><td>Até 500 palavras</td></tr>
+    </tbody></table>
+    <h4>Palavras-chave</h4>
+    <p class="texto">Logo abaixo do resumo, indique as palavras-chave que representam os principais temas do trabalho. Após a expressão <strong>Palavras-chave</strong>, seguida de dois pontos, elas figuram separadas por ponto e vírgula e terminam com ponto. São grafadas com iniciais minúsculas, exceto substantivos próprios e nomes científicos.</p>
+    <div class="exemplo"><p class="rot">Exemplo</p>Palavras-chave: cárie dentária; saúde bucal; <em>Streptococcus mutans</em>.</div>
+    <p class="texto">Selecione-as em fontes controladas como os <a href="http://decs.bvs.br/">Descritores em Ciências da Saúde (DeCS)</a>.</p>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema do resumo: título centralizado, um único parágrafo justificado e as palavras-chave logo abaixo" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><text class="tx" x="107" y="41" font-size="6" text-anchor="middle" font-weight="700">RESUMO</text><rect class="ln" x="33" y="55" width="158" height="2" rx="1"/><rect class="ln" x="33" y="59.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="64.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="68.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="73.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="78" width="158" height="2" rx="1"/><rect class="ln" x="33" y="82.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="87.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="91.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="96.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="101" width="158" height="2" rx="1"/><rect class="ln" x="33" y="105.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="110.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="114.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="119.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="124" width="158" height="2" rx="1"/><rect class="ln" x="33" y="128.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="133.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="137.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="142.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="147" width="158" height="2" rx="1"/><rect class="ln" x="33" y="151.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="156.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="160.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="165.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="170" width="158" height="2" rx="1"/><rect class="ln" x="33" y="174.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="179.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="183.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="188.4" width="86.9" height="2" rx="1"/><line class="lead" x1="191" y1="75" x2="215" y2="75"/><circle class="dot" cx="215" cy="75" r="1.6"/><text class="cal" x="220" y="77.2" font-size="6.4" text-anchor="start">um só parágrafo</text><text class="cal" x="220" y="84" font-size="6.4" text-anchor="start">1,5 entrelinhas</text><text class="cal" x="220" y="93" font-size="6.4" text-anchor="start">até 500 palavras</text><text class="tx" x="33" y="207" font-size="4.4" text-anchor="start" font-weight="700">Palavras-chave:</text><text class="tx" x="33" y="213" font-size="4.4" text-anchor="start">primeira palavra-chave; segunda palavra-chave; terceira.</text><line class="lead" x1="191" y1="210" x2="215" y2="210"/><circle class="dot" cx="215" cy="210" r="1.6"/><text class="cal" x="220" y="212.2" font-size="6.4" text-anchor="start">separadas por</text><text class="cal" x="220" y="219" font-size="6.4" text-anchor="start">ponto e vírgula,</text><text class="cal" x="220" y="228" font-size="6.4" text-anchor="start">com ponto final</text></svg><figcaption>Resumo. As palavras-chave vêm imediatamente depois do parágrafo.</figcaption></figure>
+  </div>
+
+  <div class="sub" id="abstract">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.7"/><path d="M3.5 12h17"/><path d="M12 3.3c2.2 2.4 3.4 5.3 3.4 8.7S14.2 18.3 12 20.7c-2.2-2.4-3.4-5.3-3.4-8.7S9.8 5.7 12 3.3z"/></svg>Abstract <span class="tag obr">Obrigatório</span></h3>
+    <p class="texto">Versão em inglês do resumo apresentado em português. Facilita a divulgação e a indexação do trabalho em bases de dados internacionais.</p>
+    <p class="texto">O título do trabalho em inglês deve ser incluído, centralizado, logo abaixo da palavra ABSTRACT. O texto segue as mesmas orientações de concisão e clareza do resumo: um único parágrafo, espacejamento 1,5 e no máximo 500 palavras.</p>
+    <p class="texto">Após a expressão <strong>Keywords</strong>, seguida de dois pontos, as palavras-chave figuram separadas por ponto e vírgula e terminam com ponto, com iniciais minúsculas — exceto substantivos próprios e nomes científicos. Também podem ser consultadas no <a href="http://decs.bvs.br/">DeCS</a>.</p>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema do abstract: palavra ABSTRACT, título em inglês centralizado logo abaixo, parágrafo único e keywords" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><text class="tx" x="107" y="41" font-size="6" text-anchor="middle" font-weight="700">ABSTRACT</text><text class="tx" x="107" y="51" font-size="4.8" text-anchor="middle">título do trabalho em inglês</text><rect class="ln" x="33" y="65" width="158" height="2" rx="1"/><rect class="ln" x="33" y="69.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="74.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="78.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="83.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="88" width="158" height="2" rx="1"/><rect class="ln" x="33" y="92.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="97.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="101.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="106.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="111" width="158" height="2" rx="1"/><rect class="ln" x="33" y="115.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="120.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="124.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="129.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="134" width="158" height="2" rx="1"/><rect class="ln" x="33" y="138.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="143.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="147.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="152.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="157" width="158" height="2" rx="1"/><rect class="ln" x="33" y="161.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="166.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="170.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="175.4" width="158" height="2" rx="1"/><rect class="ln" x="33" y="180" width="158" height="2" rx="1"/><rect class="ln" x="33" y="184.6" width="158" height="2" rx="1"/><rect class="ln" x="33" y="189.2" width="158" height="2" rx="1"/><rect class="ln" x="33" y="193.8" width="158" height="2" rx="1"/><rect class="ln" x="33" y="198.4" width="86.9" height="2" rx="1"/><line class="lead" x1="191" y1="85" x2="215" y2="85"/><circle class="dot" cx="215" cy="85" r="1.6"/><text class="cal" x="220" y="87.2" font-size="6.4" text-anchor="start">um só parágrafo</text><text class="cal" x="220" y="94" font-size="6.4" text-anchor="start">1,5 entrelinhas</text><text class="cal" x="220" y="103" font-size="6.4" text-anchor="start">até 500 palavras</text><text class="tx" x="33" y="217" font-size="4.4" text-anchor="start" font-weight="700">Keywords:</text><text class="tx" x="33" y="223" font-size="4.4" text-anchor="start">first keyword; second keyword; third keyword.</text><line class="lead" x1="191" y1="220" x2="215" y2="220"/><circle class="dot" cx="215" cy="220" r="1.6"/><text class="cal" x="220" y="222.2" font-size="6.4" text-anchor="start">separadas por</text><text class="cal" x="220" y="229" font-size="6.4" text-anchor="start">ponto e vírgula,</text><text class="cal" x="220" y="238" font-size="6.4" text-anchor="start">com ponto final</text></svg><figcaption>Abstract. O título em inglês entra centralizado, logo abaixo da palavra ABSTRACT.</figcaption></figure>
+  </div>
+
+  <div class="sub" id="lista-figuras">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></svg>Lista de figuras <span class="tag opc">Opcional</span></h3>
+    <p class="texto">Elaborada conforme a ordem em que as ilustrações aparecem no texto. Cada item é identificado por seu nome específico, seguido de travessão, o título da ilustração e o número da página em que se encontra.</p>
+    <p class="texto">O título LISTA DE FIGURAS deve ser centralizado no alto da página e redigido em letras maiúsculas.</p>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema da lista de figuras: título centralizado em maiúsculas e itens com nome, travessão, título e número da página" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><text class="tx" x="107" y="41" font-size="6" text-anchor="middle" font-weight="700">LISTA DE FIGURAS</text><text class="tx" x="33" y="59" font-size="4.4" text-anchor="start" font-weight="700">Figura 1 –</text><text class="tx" x="53" y="59" font-size="4.4" text-anchor="start">Pulmão</text><line class="pont" x1="67" y1="57.8" x2="181" y2="57.8"/><text class="tx" x="191" y="59" font-size="4.4" text-anchor="end">23</text><text class="tx" x="33" y="68" font-size="4.4" text-anchor="start" font-weight="700">Figura 2 –</text><text class="tx" x="53" y="68" font-size="4.4" text-anchor="start">Corte histológico do tecido ósseo</text><line class="pont" x1="121" y1="66.8" x2="181" y2="66.8"/><text class="tx" x="191" y="68" font-size="4.4" text-anchor="end">31</text><text class="tx" x="33" y="77" font-size="4.4" text-anchor="start" font-weight="700">Figura 3 –</text><text class="tx" x="53" y="77" font-size="4.4" text-anchor="start">Fluxograma de seleção dos participantes</text><line class="pont" x1="133" y1="75.8" x2="181" y2="75.8"/><text class="tx" x="191" y="77" font-size="4.4" text-anchor="end">42</text><text class="tx" x="33" y="86" font-size="4.4" text-anchor="start" font-weight="700">Figura 4 –</text><text class="tx" x="53" y="86" font-size="4.4" text-anchor="start">Distribuição das amostras por grupo</text><line class="pont" x1="125" y1="84.8" x2="181" y2="84.8"/><text class="tx" x="191" y="86" font-size="4.4" text-anchor="end">55</text><line class="lead" x1="191" y1="59" x2="215" y2="59"/><circle class="dot" cx="215" cy="59" r="1.6"/><text class="cal" x="220" y="61.2" font-size="6.4" text-anchor="start">nome específico,</text><text class="cal" x="220" y="68" font-size="6.4" text-anchor="start">travessão, título</text><text class="cal" x="220" y="77" font-size="6.4" text-anchor="start">e página</text></svg><figcaption>Lista de figuras. As listas de tabelas, abreviaturas, siglas e símbolos seguem o mesmo padrão.</figcaption></figure>
+  </div>
+
+  <div class="sub" id="lista-tabelas">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></svg>Lista de tabelas <span class="tag opc">Opcional</span></h3>
+    <p class="texto">Organizada de acordo com a ordem em que as tabelas aparecem no texto, indicando cada item pelo seu nome específico, seguido de travessão, o título da tabela e o número da página em que está localizada.</p>
+    <p class="texto">O título LISTA DE TABELAS deve estar centralizado no alto da página e redigido em letras maiúsculas.</p>
+  </div>
+
+  <div class="sub" id="lista-siglas">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01"/></svg>Lista de abreviaturas e siglas · Lista de símbolos <span class="tag opc">Opcional</span></h3>
+    <p class="texto">Relação alfabética das abreviaturas e siglas utilizadas no texto, acompanhadas das respectivas palavras ou expressões grafadas por extenso.</p>
+    <p class="texto">Se o trabalho usar abreviaturas e siglas, recomenda-se elaborar listas separadas para cada uma, visando maior clareza e organização.</p>
+    <p class="texto">O título LISTA DE ABREVIATURAS E SIGLAS deve ser centralizado no alto da página, em letras maiúsculas, seguindo o padrão de formatação do documento.</p>
+  </div>
+
+  <div class="sub" id="sumario">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h5M4 11h5M4 16h5"/><path d="M12 6h8M12 11h8M12 16h8"/></svg>Sumário <span class="tag obr">Obrigatório</span></h3>
+    <p class="texto">Elaborado conforme a <strong>ABNT NBR 6027:2012</strong>. Apresenta as principais divisões, seções e partes do trabalho na ordem em que aparecem no texto, indicando a página inicial de cada item em algarismos arábicos.</p>
+    <h4>Regras de elaboração</h4>
+    <ol class="texto">
+      <li>Elementos pré-textuais não devem constar no sumário.</li>
+      <li>Elementos textuais devem incluir indicativos numéricos para cada seção e subseção.</li>
+      <li>Elementos pós-textuais devem ser listados no sumário, mas sem indicativos numéricos.</li>
+    </ol>
+    <p class="texto">O título SUMÁRIO deve ser centralizado no alto da página, em letras maiúsculas.</p>
+
+    <h4>Alinhamento dos títulos de seção</h4>
+    <table class="qr" style="max-width:62ch">
+      <thead><tr><th scope="col">Título</th><th scope="col">Alinhamento</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Com</strong> indicativo numérico — 1 INTRODUÇÃO, 4.2 Colorações</td><td>À margem esquerda, separado do texto que o sucede por um espaço de 1,5</td></tr>
+        <tr><td><strong>Sem</strong> indicativo numérico — RESUMO, ABSTRACT, SUMÁRIO, listas, REFERÊNCIAS, APÊNDICE, ANEXO</td><td>Centralizado no alto da página</td></tr>
+      </tbody>
+    </table>
+
+    <h4>Hierarquia das seções</h4>
+    <div class="exemplo">
+      <p class="rot">Hierarquia das seções</p>
+      <div style="line-height:1.95;display:grid;grid-template-columns:auto 1fr;gap:0 1.4em">
+        <span>1</span><span style="text-transform:uppercase;font-weight:700">Caixa alta com negrito</span>
+        <span>1.1</span><span style="text-transform:uppercase">Caixa alta sem negrito</span>
+        <span>1.1.1</span><span style="font-weight:700">Caixa Alta e Baixa com Negrito</span>
+        <span>1.1.1.1</span><span>Caixa Alta e Baixa sem Negrito</span>
+        <span>1.1.1.1.1</span><span style="font-style:italic">Caixa Alta e Baixa em Itálico</span>
+      </div>
+    </div>
+<figure class="esquema"><svg viewBox="0 0 300 300" role="img" aria-label="Esquema do sumário de um TCC no formato convencional, com indicativos numéricos nos elementos textuais e sem indicativos nos pós-textuais" xmlns="http://www.w3.org/2000/svg"><rect class="pg" x="4" y="4" width="207" height="292" rx="1"/><rect class="mg" x="33" y="33" width="158" height="243"/><text class="tx" x="107" y="41" font-size="6" text-anchor="middle" font-weight="700">SUMÁRIO</text><text class="tx" x="33" y="57" font-size="4" text-anchor="start">1</text><text class="tx" x="49" y="57" font-size="4" text-anchor="start" font-weight="700">INTRODUÇÃO</text><line class="pont" x1="74.5" y1="55.9" x2="181" y2="55.9"/><text class="tx" x="191" y="57" font-size="4" text-anchor="end">15</text><text class="tx" x="33" y="65" font-size="4" text-anchor="start">2</text><text class="tx" x="49" y="65" font-size="4" text-anchor="start" font-weight="700">REVISÃO DE LITERATURA</text><line class="pont" x1="100.35" y1="63.9" x2="181" y2="63.9"/><text class="tx" x="191" y="65" font-size="4" text-anchor="end">17</text><text class="tx" x="33" y="73" font-size="4" text-anchor="start">2.1</text><text class="tx" x="49" y="73" font-size="4" text-anchor="start">LÍQUEN PLANO</text><line class="pont" x1="79.2" y1="71.9" x2="181" y2="71.9"/><text class="tx" x="191" y="73" font-size="4" text-anchor="end">23</text><text class="tx" x="33" y="81" font-size="4" text-anchor="start">2.2</text><text class="tx" x="49" y="81" font-size="4" text-anchor="start">REAÇÃO LIQUENÓIDE</text><line class="pont" x1="90.95" y1="79.9" x2="181" y2="79.9"/><text class="tx" x="191" y="81" font-size="4" text-anchor="end">41</text><text class="tx" x="33" y="89" font-size="4" text-anchor="start">3</text><text class="tx" x="49" y="89" font-size="4" text-anchor="start" font-weight="700">PROPOSIÇÃO</text><line class="pont" x1="74.5" y1="87.9" x2="181" y2="87.9"/><text class="tx" x="191" y="89" font-size="4" text-anchor="end">71</text><text class="tx" x="33" y="97" font-size="4" text-anchor="start">4</text><text class="tx" x="49" y="97" font-size="4" text-anchor="start" font-weight="700">MATERIAL E MÉTODOS</text><line class="pont" x1="93.3" y1="95.9" x2="181" y2="95.9"/><text class="tx" x="191" y="97" font-size="4" text-anchor="end">73</text><text class="tx" x="33" y="105" font-size="4" text-anchor="start">4.1</text><text class="tx" x="49" y="105" font-size="4" text-anchor="start">OBTENÇÃO DAS AMOSTRAS</text><line class="pont" x1="100.35" y1="103.9" x2="181" y2="103.9"/><text class="tx" x="191" y="105" font-size="4" text-anchor="end">73</text><text class="tx" x="33" y="113" font-size="4" text-anchor="start">4.2</text><text class="tx" x="49" y="113" font-size="4" text-anchor="start">COLORAÇÕES</text><line class="pont" x1="74.5" y1="111.9" x2="181" y2="111.9"/><text class="tx" x="191" y="113" font-size="4" text-anchor="end">73</text><text class="tx" x="33" y="121" font-size="4" text-anchor="start">4.2.1</text><text class="tx" x="49" y="121" font-size="4" text-anchor="start" font-weight="700">Métodos Histoquímicos</text><line class="pont" x1="100.35" y1="119.9" x2="181" y2="119.9"/><text class="tx" x="191" y="121" font-size="4" text-anchor="end">73</text><text class="tx" x="33" y="129" font-size="4" text-anchor="start">5</text><text class="tx" x="49" y="129" font-size="4" text-anchor="start" font-weight="700">RESULTADOS</text><line class="pont" x1="74.5" y1="127.9" x2="181" y2="127.9"/><text class="tx" x="191" y="129" font-size="4" text-anchor="end">81</text><text class="tx" x="33" y="137" font-size="4" text-anchor="start">6</text><text class="tx" x="49" y="137" font-size="4" text-anchor="start" font-weight="700">DISCUSSÃO</text><line class="pont" x1="72.15" y1="135.9" x2="181" y2="135.9"/><text class="tx" x="191" y="137" font-size="4" text-anchor="end">127</text><text class="tx" x="33" y="145" font-size="4" text-anchor="start">7</text><text class="tx" x="49" y="145" font-size="4" text-anchor="start" font-weight="700">CONCLUSÕES</text><line class="pont" x1="74.5" y1="143.9" x2="181" y2="143.9"/><text class="tx" x="191" y="145" font-size="4" text-anchor="end">139</text><text class="tx" x="49" y="153" font-size="4" text-anchor="start" font-weight="700">REFERÊNCIAS</text><line class="pont" x1="76.85" y1="151.9" x2="181" y2="151.9"/><text class="tx" x="191" y="153" font-size="4" text-anchor="end">141</text><text class="tx" x="49" y="161" font-size="4" text-anchor="start" font-weight="700">ANEXOS</text><line class="pont" x1="65.1" y1="159.9" x2="181" y2="159.9"/><text class="tx" x="191" y="161" font-size="4" text-anchor="end">153</text><line class="lead" x1="191" y1="57" x2="215" y2="57"/><circle class="dot" cx="215" cy="57" r="1.6"/><text class="cal" x="220" y="59.2" font-size="6.4" text-anchor="start">indicativos</text><text class="cal" x="220" y="66" font-size="6.4" text-anchor="start">numéricos só nos</text><text class="cal" x="220" y="75" font-size="6.4" text-anchor="start">elementos textuais</text><line class="lead" x1="191" y1="161" x2="215" y2="161"/><circle class="dot" cx="215" cy="161" r="1.6"/><text class="cal" x="220" y="163.2" font-size="6.4" text-anchor="start">pós-textuais sem</text><text class="cal" x="220" y="170" font-size="6.4" text-anchor="start">indicativo numérico</text></svg><figcaption>Sumário de um trabalho no formato convencional. Os elementos pré-textuais não aparecem.</figcaption></figure>
+  </div>
+</section>
+
+
+<section class="faixa cap" id="textuais">
+  <div class="cap-cab"><span class="num">5</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16M4 9.5h16M4 14h11M4 18.5h11"/></svg>Elementos textuais</h2></div>
+  <p class="texto">São dois: a introdução geral, escrita para o TCC, e o artigo. A numeração das páginas do trabalho começa a aparecer na primeira folha da introdução.</p>
+
+  <div class="sub" id="introducao">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12h11"/><path d="M11.5 8 15.5 12l-4 4"/><path d="M15.5 4.5h2.5a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5h-2.5"/></svg>Introdução geral</h3>
+    <p class="texto">Numa monografia que inclui um artigo científico como parte integrante, a introdução geral antecede o capítulo dedicado ao artigo e é o que dá unidade ao documento.</p>
+    <p class="texto">Ela apresenta o tema da pesquisa de forma ampla e contextualizada, situando o leitor no problema investigado e justificando sua relevância acadêmica ou prática. É o espaço para discutir aspectos teóricos, metodológicos e objetivos que muitas vezes não cabem no artigo, mas são necessários para a compreensão completa do trabalho.</p>
+    <p class="texto">A introdução geral também explicita a ligação entre o artigo e o contexto maior do TCC: esclarece como o artigo contribui para a pesquisa e justifica sua inclusão no trabalho acadêmico.</p>
+    <div class="nota alerta">
+      <p class="rot">Aqui começa a numeração</p>
+      <p>É nesta página que se inicia a numeração sequencial do trabalho. As páginas pré-textuais são contadas, mas não numeradas.</p>
+    </div>
+  </div>
+
+  <div class="sub" id="artigo">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="14" height="16" rx="1.5"/><path d="M17 8h3a1 1 0 0 1 1 1v9a2 2 0 0 1-2 2h-2"/><path d="M6.5 8h7M6.5 11.5h7M6.5 15h4"/></svg>Artigo</h3>
+    <p class="texto">O formato do artigo é o da revista científica escolhida para submissão. Cada periódico tem requisitos próprios, e são eles que valem aqui:</p>
+    <ul class="texto">
+      <li><strong>Estrutura</strong> — alguns periódicos exigem resumo, introdução, metodologia, resultados, discussão e conclusão; outros adotam variações.</li>
+      <li><strong>Referências</strong> — a norma de citação e de referências varia: Vancouver, ABNT, entre outras.</li>
+      <li><strong>Formatação</strong> — fonte e corpo, espacejamento, margens, limite de palavras ou de páginas, e a forma de apresentar títulos e subtítulos, incluindo a numeração hierárquica.</li>
+      <li><strong>Imagens e tabelas</strong> — inclusão, legendas e forma de citá-las no texto.</li>
+    </ul>
+    <div class="nota">
+      <p class="rot">Onde encontrar as regras</p>
+      <p>Consulte as instruções para autores no site da revista ou o manual de submissão, e guarde essa versão: é ela que será conferida junto com o trabalho.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faixa cap" id="pos-textuais">
+  <div class="cap-cab"><span class="num">6</span><h2><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v18H5.5A1.5 1.5 0 0 1 4 19.5z"/><path d="M4 17.5h15"/><path d="M8.5 7.5h6M8.5 11h4"/></svg>Elementos pós-textuais</h2></div>
+
+  <div class="sub" id="referencias">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.5 5 8.5 4.5 4 4.5v13c4.5 0 6.5.5 8 2 1.5-1.5 3.5-2 8-2v-13c-4.5 0-6.5.5-8 2z"/><path d="M12 6.5v13"/></svg>Referências <span class="tag obr">Obrigatório</span></h3>
+    <p class="texto">Referência é o conjunto padronizado de elementos descritivos, retirados de um documento, que permite sua identificação individual (ABNT, 2018).</p>
+    <div class="nota">
+      <p class="rot">O que entra nesta lista</p>
+      <p>Apenas as referências citadas fora do artigo — na introdução geral e nos demais elementos do trabalho. O artigo tem a sua própria lista, formatada conforme as normas da revista escolhida.</p>
+    </div>
+    <p class="texto">Nos trabalhos de conclusão de curso do campus USP Bauru, você pode elaborar essa lista conforme a <strong>ABNT NBR 6023:2018</strong> ou no formato <strong>Vancouver — ICMJE</strong>.</p>
+    <div class="nota alerta">
+      <p class="rot">A regra que vale para tudo</p>
+      <p>Só devem ser incluídas as publicações efetivamente citadas ao longo do texto. Tudo o que for citado deve estar referenciado, e tudo o que estiver referenciado deve ser citado.</p>
+    </div>
+    <table class="qr" style="max-width:52ch">
+      <caption>Formatação da lista de referências</caption>
+      <tbody>
+        <tr><th scope="row">Alinhamento</th><td>À esquerda</td></tr>
+        <tr><th scope="row">Espaçamento</th><td>Simples entre linhas</td></tr>
+        <tr><th scope="row">Fonte</th><td>Corpo 12, Times New Roman ou Arial — a mesma usada na redação do texto</td></tr>
+        <tr><th scope="row">Separação</th><td>Uma linha em branco entre cada referência</td></tr>
+        <tr><th scope="row">Ordenação em ABNT</th><td>Ordem alfabética, não numeradas</td></tr>
+        <tr><th scope="row">Ordenação em Vancouver</th><td>Numeradas sequencialmente em ordem crescente, conforme a apresentação no texto</td></tr>
+      </tbody>
+    </table>
+    <div class="linha-btn">
+      <a class="baixar sec" href="https://sdd-files.github.io/Guias/Guia_Referencias_ABNT6023_FOB-USP.html">Guia de referências ABNT NBR 6023:2018</a>
+      <a class="baixar sec" href="https://sdd-files.github.io/Guias/Guia_Referencias_Vancouver_NLM_FOB-USP.html">Guia de referências Vancouver — ICMJE</a>
+    </div>
+  </div>
+
+  <div class="sub" id="apendices">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M12 11.5v5M9.5 14h5"/></svg>Apêndices <span class="tag opc">Opcional</span></h3>
+    <p class="texto">Elementos complementares ao texto principal, <strong>elaborados pelo próprio autor</strong> para enriquecer ou detalhar sua argumentação: tabelas, gráficos, documentos ou explicações que não são essenciais ao corpo principal do trabalho, mas contribuem para a compreensão mais aprofundada do tema.</p>
+    <table class="qr" style="max-width:60ch"><tbody>
+      <tr><th scope="row">Identificação</th><td>Letras maiúsculas consecutivas, seguidas de travessão e o respectivo título — APÊNDICE A — TÍTULO DO APÊNDICE</td></tr>
+      <tr><th scope="row">Paginação</th><td>Contínua, seguindo a sequência do texto principal, sem reiniciar a contagem</td></tr>
+    </tbody></table>
+  </div>
+
+  <div class="sub" id="anexos">
+    <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 10 10 17.5a4 4 0 0 1-5.7-5.7l8-8a2.7 2.7 0 0 1 3.8 3.8l-8 8a1.4 1.4 0 0 1-1.9-1.9l7.3-7.3"/></svg>Anexos <span class="tag opc">Opcional</span></h3>
+    <p class="texto">Documentos ou textos <strong>não elaborados pelo autor</strong>, incluídos para fornecer fundamentação, comprovação ou ilustração de algum ponto abordado: pesquisas externas, documentos oficiais, relatórios, entre outros.</p>
+    <table class="qr" style="max-width:60ch"><tbody>
+      <tr><th scope="row">Identificação</th><td>Letras maiúsculas consecutivas, seguidas de travessão e o respectivo título — ANEXO A — TÍTULO DO ANEXO</td></tr>
+      <tr><th scope="row">Paginação</th><td>Contínua, seguindo a sequência do texto principal, sem reiniciar a contagem</td></tr>
+    </tbody></table>
+  </div>
+</section>
+
+
+<footer class="rodape" id="recursos">
+  <div class="rodape-grade">
+    <div>
+      <h2>Acesse também</h2>
+      <ul>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Citacoes_ABNT10520_FOB-USP.html">Guia para elaboração de citações em documentos — ABNT NBR 10520:2023</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Referencias_ABNT6023_FOB-USP.html">Guia para elaboração de referências — ABNT NBR 6023:2018</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Referencias_Vancouver_NLM_FOB-USP.html">Guia para elaboração de referências — Vancouver ICMJE</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_TCC_convencional_FOB-USP.html">Guia para TCC (formato convencional) — ABNT NBR 14724:2024</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Teses_Dissertacoes_convencional_FOB-USP.html">Guia para dissertações e teses (formato convencional) — ABNT NBR 14724:2024</a></li>
+        <li><a href="https://sdd-files.github.io/Guias/Guia_Teses_Dissertacoes_artigo_FOB-USP.html">Guia para dissertações e teses constituídas por artigos — ABNT NBR 14724:2024</a></li>
+        <li><a href="https://sddinforma.fob.usp.br/gabaritos/">Gabaritos pré-formatados</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Contato</h2>
+      <p class="end">
+        Universidade de São Paulo<br>Faculdade de Odontologia de Bauru<br>
+        Serviço de Biblioteca e Documentação<br>Al. Octávio Pinheiro Brisola, 9-75<br>
+        Bauru — SP — Brasil — 17012-901<br>(14) 3235-8373
+      </p>
+    </div>
+    <div>
+      <h2>Redes</h2>
+      <ul>
+        <li><a href="https://www.instagram.com/bibliotecafobusp/">Instagram · @bibliotecafobusp</a></li>
+        <li><a href="https://www.facebook.com/BibliotecaFOBUSP/">Facebook · Biblioteca FOB USP</a></li>
+        <li><a href="https://twitter.com/bibfobusp">X · @bibfobusp</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="fim">
+    Guia para elaboração de trabalhos de conclusão de curso constituídos por artigo — ABNT NBR 14724:2024.
+    José Roberto Plácido Amadei, Valéria Cristina Trindade Ferraz e Jane Coelho Danuello.
+    Serviço de Biblioteca e Documentação, FOB-USP. Bauru, set. 2026. Licença Creative Commons BY-NC.
+  </p>
+</footer>
+
+</main>
+</div>
+<script>
+var SUMARIO = [{"id": "comecar", "n": "1", "t": "Antes de começar", "itens": [["gabaritos", "Gabaritos pré-formatados", ""], ["trabalhos", "O que é um TCC", ""], ["normas", "As normas do TCC na FOB-USP", ""], ["regras-artigo", "Condições do formato por artigo", ""], ["entrega", "Entrega", ""]]}, {"id": "formatacao", "n": "2", "t": "Apresentação e formatação", "itens": [["pagina", "Tamanho da página e margens", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4\" y=\"2.5\" width=\"16\" height=\"19\" rx=\"1\"/><rect x=\"7\" y=\"5.5\" width=\"10\" height=\"13\" rx=\".5\" stroke-dasharray=\"2.6 2\"/></svg>"], ["letra", "Tamanho de letra", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3.5 19 9 5l5.5 14\"/><path d=\"M5.4 14.5h7.2\"/><path d=\"M17 11.2a2.6 2.6 0 1 1 3.5 2.4V19\"/><path d=\"M20.5 8V5\"/></svg>"], ["espacejamento", "Espacejamento", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4h16M4 12h16M4 20h16\"/><path d=\"M9 7v2M9 15v2\"/><path d=\"M7.5 8.4 9 6.8l1.5 1.6M7.5 15.6 9 17.2l1.5-1.6\"/></svg>"], ["paginacao", "Paginação e folhas de guarda", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4\" y=\"2.5\" width=\"16\" height=\"19\" rx=\"1\"/><path d=\"M14.5 6.5h2.5\"/><path d=\"M7 11h10M7 14.5h10M7 18h6\"/></svg>"], ["siglas", "Siglas, equações e fórmulas", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 18 6.5 8 10 18\"/><path d=\"M4.1 15h4.8\"/><path d=\"M13 8h4.5M15.2 8v10\"/><path d=\"M19.5 13.5h2M20.5 12.5v2\"/></svg>"], ["ilustracoes", "Apresentação das ilustrações", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"4.5\" width=\"18\" height=\"15\" rx=\"1.5\"/><circle cx=\"8.5\" cy=\"9.5\" r=\"1.6\"/><path d=\"M3 16.5l4.8-4.3 3.4 3 3-2.6L21 16\"/></svg>"], ["tabelas", "Apresentação das tabelas", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"1.2\"/><path d=\"M3 9.5h18M3 14.2h18M9.5 9.5V19M15.5 9.5V19\"/></svg>"]]}, {"id": "estrutura", "n": "3", "t": "Estrutura do trabalho", "itens": []}, {"id": "pre-textuais", "n": "4", "t": "Elementos pré-textuais", "itens": [["capa", "Capa", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 4.5A1.5 1.5 0 0 1 5.5 3H19v18H5.5A1.5 1.5 0 0 1 4 19.5z\"/><path d=\"M4 17.5h15\"/><path d=\"M8.5 7h6\"/></svg>"], ["folha-rosto", "Folha de rosto", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4.5\" y=\"2.5\" width=\"15\" height=\"19\" rx=\"1\"/><path d=\"M8 6.5h8M9.5 11h5M8 15h8M10 18h4\"/></svg>"], ["ficha", "Ficha catalográfica", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"6\" width=\"18\" height=\"12\" rx=\"1.2\"/><path d=\"M6 9.5h8M6 12h12M6 14.5h9\"/></svg>"], ["aprovacao", "Folha de aprovação", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4.5\" y=\"2.5\" width=\"15\" height=\"19\" rx=\"1\"/><path d=\"M8 15.5c1.6-1.4 3-1.4 4 0s2.4 1.4 4 0\"/><path d=\"M9 7.5h6\"/><path d=\"M8.5 11.5h7\"/></svg>"], ["dedicatoria", "Dedicatória", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 20s-7.5-4.6-7.5-9.6A4 4 0 0 1 12 8a4 4 0 0 1 7.5 2.4c0 5-7.5 9.6-7.5 9.6z\"/></svg>"], ["agradecimentos", "Agradecimentos", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 4.5 13.9 9l4.6.4-3.5 3 1.1 4.5-4.1-2.5-4.1 2.5 1.1-4.5-3.5-3 4.6-.4z\"/></svg>"], ["epigrafe", "Epígrafe", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9.5 6.5C7.3 7.6 6 9.6 6 12h2.2c1 0 1.8.8 1.8 1.8v2.4c0 1-.8 1.8-1.8 1.8H6.3c-1 0-1.8-.8-1.8-1.8v-3.6c0-3.4 2-6.3 5-7.6z\"/><path d=\"M19 6.5c-2.2 1.1-3.5 3.1-3.5 5.5h2.2c1 0 1.8.8 1.8 1.8v2.4c0 1-.8 1.8-1.8 1.8h-1.9c-1 0-1.8-.8-1.8-1.8v-3.6c0-3.4 2-6.3 5-7.6z\"/></svg>"], ["resumo", "Resumo", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"4.5\" y=\"2.5\" width=\"15\" height=\"19\" rx=\"1\"/><path d=\"M9.5 6.5h5\"/><path d=\"M7.5 10.5h9M7.5 13h9M7.5 15.5h6\"/><path d=\"M7.5 18.5h5\"/></svg>"], ["abstract", "Abstract", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"8.7\"/><path d=\"M3.5 12h17\"/><path d=\"M12 3.3c2.2 2.4 3.4 5.3 3.4 8.7S14.2 18.3 12 20.7c-2.2-2.4-3.4-5.3-3.4-8.7S9.8 5.7 12 3.3z\"/></svg>"], ["lista-figuras", "Lista de figuras", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6.5h11M9 12h11M9 17.5h11\"/><path d=\"M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01\"/></svg>"], ["lista-tabelas", "Lista de tabelas", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6.5h11M9 12h11M9 17.5h11\"/><path d=\"M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01\"/></svg>"], ["lista-siglas", "Lista de abreviaturas, siglas e símbolos", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 6.5h11M9 12h11M9 17.5h11\"/><path d=\"M4.5 6.5h.01M4.5 12h.01M4.5 17.5h.01\"/></svg>"], ["sumario", "Sumário", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 6h5M4 11h5M4 16h5\"/><path d=\"M12 6h8M12 11h8M12 16h8\"/></svg>"]]}, {"id": "textuais", "n": "5", "t": "Elementos textuais", "itens": [["introducao", "Introdução geral", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4.5 12h11\"/><path d=\"M11.5 8 15.5 12l-4 4\"/><path d=\"M15.5 4.5h2.5a1.5 1.5 0 0 1 1.5 1.5v12a1.5 1.5 0 0 1-1.5 1.5h-2.5\"/></svg>"], ["artigo", "Artigo", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"M20 20l-4.9-4.9\"/><path d=\"M7.8 10.5h5.4\"/></svg>"]]}, {"id": "pos-textuais", "n": "6", "t": "Elementos pós-textuais", "itens": [["referencias", "Referências", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 6.5C10.5 5 8.5 4.5 4 4.5v13c4.5 0 6.5.5 8 2 1.5-1.5 3.5-2 8-2v-13c-4.5 0-6.5.5-8 2z\"/><path d=\"M12 6.5v13\"/></svg>"], ["apendices", "Apêndices", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z\"/><path d=\"M14 3v5h5\"/><path d=\"M12 11.5v5M9.5 14h5\"/></svg>"], ["anexos", "Anexos", "<svg class=\"ic\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M17.5 10 10 17.5a4 4 0 0 1-5.7-5.7l8-8a2.7 2.7 0 0 1 3.8 3.8l-8 8a1.4 1.4 0 0 1-1.9-1.9l7.3-7.3\"/></svg>"]]}, {"id": "recursos", "n": "7", "t": "Outros guias e contato", "itens": []}];
+
+(function(){
+"use strict";
+function normaliza(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
+
+var lista=document.getElementById("navLista");
+SUMARIO.forEach(function(c){
+  var li=document.createElement("li"); li.className="ncap";
+  var a=document.createElement("a"); a.href="#"+c.id;
+  a.innerHTML='<b>'+c.n+'</b><span>'+c.t+'</span>';
+  li.appendChild(a);
+  if(c.itens.length){
+    var ul=document.createElement("ul");
+    c.itens.forEach(function(it){
+      var s=document.createElement("li");
+      var sa=document.createElement("a"); sa.href="#"+it[0];
+      sa.innerHTML=(it[2]||"")+"<span>"+it[1]+"</span>";
+      s.appendChild(sa); ul.appendChild(s);
+    });
+    li.appendChild(ul);
+  }
+  lista.appendChild(li);
+});
+
+var busca=document.getElementById("busca"),
+    vazio=document.getElementById("buscaVazio"),
+    caps=Array.prototype.slice.call(lista.querySelectorAll(".ncap"));
+busca.addEventListener("input",function(){
+  var q=normaliza(busca.value.trim()), achou=0;
+  caps.forEach(function(cap){
+    var titulo=normaliza(cap.querySelector("a").textContent);
+    var subs=Array.prototype.slice.call(cap.querySelectorAll("ul li"));
+    if(!q){
+      cap.classList.remove("oculto");
+      subs.forEach(function(s){s.classList.remove("oculto");});
+      achou++; return;
+    }
+    var capBate=titulo.indexOf(q)>-1, algumSub=false;
+    subs.forEach(function(s){
+      var bate=capBate||normaliza(s.textContent).indexOf(q)>-1;
+      s.classList.toggle("oculto",!bate);
+      if(bate) algumSub=true;
+    });
+    var mostra=capBate||algumSub;
+    cap.classList.toggle("oculto",!mostra);
+    if(mostra) achou++;
+  });
+  vazio.classList.toggle("on", !!q && achou===0);
+});
+
+var rail=document.getElementById("rail"), btn=document.getElementById("btnRail");
+btn.addEventListener("click",function(){
+  var aberto=rail.classList.toggle("aberto");
+  btn.setAttribute("aria-expanded",aberto?"true":"false");
+});
+rail.addEventListener("click",function(e){
+  if(e.target.closest("a")&&window.innerWidth<=1000){
+    rail.classList.remove("aberto"); btn.setAttribute("aria-expanded","false");
+  }
+});
+
+var alvos=[], elos={};
+SUMARIO.forEach(function(c){ alvos.push(c.id); c.itens.forEach(function(x){alvos.push(x[0]);}); });
+Array.prototype.forEach.call(lista.querySelectorAll("a"),function(a){
+  elos[a.getAttribute("href").slice(1)]=a;
+});
+if("IntersectionObserver" in window){
+  var vis={};
+  var obs=new IntersectionObserver(function(ents){
+    ents.forEach(function(e){ vis[e.target.id]=e.isIntersecting; });
+    var atual=null;
+    for(var i=0;i<alvos.length;i++){ if(vis[alvos[i]]){atual=alvos[i];break;} }
+    Array.prototype.forEach.call(lista.querySelectorAll("a.ativo"),function(a){a.classList.remove("ativo");});
+    if(atual&&elos[atual]) elos[atual].classList.add("ativo");
+  },{rootMargin:"-88px 0px -68% 0px"});
+  alvos.forEach(function(id){ var el=document.getElementById(id); if(el) obs.observe(el); });
+}
+})();
+
+</script>
+</body>
+</html>
